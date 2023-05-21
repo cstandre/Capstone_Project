@@ -9,16 +9,18 @@ class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     productName = db.Column(db.String(100), nullable=False)
-    price = db.Column(db.Numeric(percision=5, scale=2), nullable=False)
+    price = db.Column(db.Numeric(precision=5, scale=2), nullable=False)
     brand = db.Column(db.String, nullable=False)
-    stockQuantity = db.Column(db.integer, nullable=False)
+    stock_quantity = db.Column(db.Integer, nullable=False)
     description = db.Column(db.String(500), nullable=False)
 
     owner = db.relationship('User', back_populates='products')
 
     reviews = db.relationship('Review', back_populates='product')
 
-    productImages = db.relationship('ProductImage', back_populates='product')
+    product_images = db.relationship('ProductImage', back_populates='product')
+
+    cart_items = db.relationship('CartItem', back_populates='products')
 
     def to_dict(self):
         return {
@@ -27,7 +29,7 @@ class Product(db.Model):
             'productName': self.productName,
             'price': self.price,
             'brand': self.brand,
-            'stockQuantity': self.stockQuantity,
+            'stock_quantity': self.stockQuantity,
             'description': self.description,
-            'reviews': [reviews.to_dict() for reviews in self.reviews] if self.reviews else []
+            'reviews': [review.to_dict() for review in self.reviews] if self.reviews else []
         }

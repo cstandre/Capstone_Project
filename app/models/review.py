@@ -6,16 +6,18 @@ class Review(db.Model):
     if environment == 'production':
         __table_args__ = {'schema': SCHEMA}
 
-    id = db.Column(db.integer, primary_key=True)
-    user_id = db.Column(db.integer, db.Foreignkey(add_prefix_for_prod('users.id')), nullable=False)
-    product_id = db.Column(db.integer, db.Foreignkey(add_prefix_for_prod('products.id')), nullable=False)
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+    product_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('products.id')), nullable=False)
     header = db.Column(db.String(50), nullable=False)
     review = db.Column(db.String, nullable=False)
-    stars = db.Column(db.integer, nullabe=False)
+    stars = db.Column(db.Integer, nullable=False)
 
     owner = db.relationship('User', back_populates='reviews')
 
     product = db.relationship('Product', back_populates='reviews')
+
+    review_images = db.relationship('ReviewImage', back_populates='review')
 
     def to_dict(self):
         return {
@@ -23,5 +25,6 @@ class Review(db.Model):
             'owner_name': self.owner.username,
             'header': self.header,
             'review': self.review,
-            'stars': self.stars
+            'stars': self.stars,
+            'review_images': [reviewImage.url for reviewImage in self.reviewImages] if self.reviewImages else []
         }

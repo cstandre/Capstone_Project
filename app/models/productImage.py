@@ -7,8 +7,8 @@ class ProductImage(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    url = db.Colum(db.String, nullable=False)
-    preview = db.Colum(db.Boolean)
+    url = db.Column(db.String(255), nullable=False)
+    preview = db.Column(db.Boolean)
     product_id = db.Column(db.Integer, nullable=False)
 
     product = db.relationship('Product', back_populates='productImages')
