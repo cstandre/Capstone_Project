@@ -3,9 +3,9 @@ from sqlalchemy.sql import text
 
 
 def seed_product_images():
-    image1 = ProductImage()
-    image2 = ProductImage()
-    image3 = ProductImage()
+    image1 = ProductImage(url='', preview=, product_id=)
+    image2 = ProductImage(url='', preview=, product_id=)
+    image3 = ProductImage(url='', preview=, product_id=)
 
     db.session.add(image1)
     db.session.add(image2)

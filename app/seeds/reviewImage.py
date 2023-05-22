@@ -3,9 +3,9 @@ from sqlalchemy.sql import text
 
 
 def seed_review_images():
-    image1 = ReviewImage()
-    image2 = ReviewImage()
-    image3 = ReviewImage()
+    image1 = ReviewImage(url='', review_id=1)
+    image2 = ReviewImage(url='', review_id=2)
+    image3 = ReviewImage(url='', review_id=3)
 
     db.session.add(image1)
     db.session.add(image2)
