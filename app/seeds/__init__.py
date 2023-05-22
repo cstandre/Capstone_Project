@@ -2,9 +2,9 @@ from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .products import seed_products, undo_products
 from .productImage import seed_product_images, undo_product_images
-from cartItems import seed_cart_items, undo_cart_items
-from review import seed_reviews, undo_reviews
-from reviewImage import seed_review_images, undo_review_images
+from .cartItems import seed_cart_items, undo_cart_items
+from .review import seed_reviews, undo_reviews
+from .reviewImage import seed_review_images, undo_review_images
 
 from app.models.db import db, environment, SCHEMA
 

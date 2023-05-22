@@ -1,4 +1,4 @@
-from .db import db, environment, SCHEMA
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 
 class ReviewImage(db.Model):
     __tablename__ = 'reviewImages'
@@ -8,9 +8,9 @@ class ReviewImage(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     url = db.Column(db.String, nullable=False)
-    review_id = db.Column(db.Integer, nullable=False)
+    review_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('reviews.id')), nullable=False)
 
-    review = db.relationship('Review', back_populates='reviewImages')
+    review = db.relationship('Review', back_populates='review_images')
 
 
     def to_dict(self):
