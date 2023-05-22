@@ -3,9 +3,9 @@ from sqlalchemy.sql import text
 
 
 def seed_review_images():
-    image1 = ReviewImage(url='', review_id=1)
-    image2 = ReviewImage(url='', review_id=2)
-    image3 = ReviewImage(url='', review_id=3)
+    image1 = ReviewImage(url='https://res.cloudinary.com/djclmc80y/image/upload/v1684715152/review_image_1_yhxoyl.png', review_id=2)
+    image2 = ReviewImage(url='https://res.cloudinary.com/djclmc80y/image/upload/v1684715152/review_image_2_xttjp2.png', review_id=3)
+    image3 = ReviewImage(url='https://res.cloudinary.com/djclmc80y/image/upload/v1684715152/review_image_3_w5uwai.png', review_id=3)
 
     db.session.add(image1)
     db.session.add(image2)
