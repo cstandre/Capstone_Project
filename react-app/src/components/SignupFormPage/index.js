@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { signUp } from "../../store/session";
 import './SignupForm.css';
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 function SignupFormPage() {
   const dispatch = useDispatch();
@@ -29,11 +30,21 @@ function SignupFormPage() {
 
   return (
     <>
-      <h1>Sign Up</h1>
+      <h1>Create Account</h1>
       <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
+        <label>
+          Your Name
+          <input
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="First and last name"
+            required
+          />
+        </label>
         <label>
           Email
           <input
@@ -62,7 +73,7 @@ function SignupFormPage() {
           />
         </label>
         <label>
-          Confirm Password
+          Re-enter Password
           <input
             type="password"
             value={confirmPassword}
@@ -70,7 +81,9 @@ function SignupFormPage() {
             required
           />
         </label>
-        <button type="submit">Sign Up</button>
+        <button type="submit">Continue</button>
+        <p>By creating an account, you agree to Amazon's Conditions of Use and Privacy Notice.</p>
+        <p>Already have an account?<Link exact to="/login">Sign in</Link></p>
       </form>
     </>
   );

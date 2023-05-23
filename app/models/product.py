@@ -26,10 +26,11 @@ class Product(db.Model):
         return {
             'id': self.id,
             'owner_id': self.owner_id,
-            'productName': self.productName,
+            'product_name': self.product_name,
             'price': self.price,
             'brand': self.brand,
-            'stock_quantity': self.stockQuantity,
+            'stock_quantity': self.stock_quantity,
             'description': self.description,
+            'preview_image': [product_image.url for product_image in self.product_images if product_image.preview] if self.product_images else [],
             'reviews': [review.to_dict() for review in self.reviews] if self.reviews else []
         }

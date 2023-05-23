@@ -26,5 +26,5 @@ class Review(db.Model):
             'header': self.header,
             'review': self.review,
             'stars': self.stars,
-            'review_images': [reviewImage.url for reviewImage in self.reviewImages] if self.reviewImages else []
+            'review_images': [review_image.url for review_image in self.review_images] if self.review_images else []
         }
