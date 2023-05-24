@@ -28,48 +28,71 @@ function LoginFormPage() {
     history.push('/signup')
   }
 
+  const homeClick = (e) => {
+    e.preventDefault()
+    history.push('/')
+  }
+
+  const demoUser = async (e) => {
+    e.preventDefault();
+    setEmail('demo@aa.io');
+    setPassword('password');
+    await dispatch(login(email, password));
+  }
+
   return (
     <div className="form">
       <form onSubmit={handleSubmit}>
         <div className="img">
-          <img className="logo" src="https://res.cloudinary.com/djclmc80y/image/upload/v1684814624/amazon_logo_weywcm.png" />
+          <img className="logo" onClick={homeClick} src="https://res.cloudinary.com/djclmc80y/image/upload/v1684814624/amazon_logo_weywcm.png" />
         </div>
       <div className="form-content">
         <p className="header">Sign in</p>
-          <ul>
-            {errors.map((error, idx) => (
-              <li key={idx}>{error}</li>
-            ))}
-          </ul>
+        <div className="input-fields">
           <label>
-            Email
+            <h3>Email</h3>
             <div>
               <input
                 type="text"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
+                className="input"
               />
             </div>
           </label>
           <label>
-            Password
+            <h3>Password</h3>
             <div>
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                className="input"
               />
             </div>
           </label>
+        </div>
+          <ul>
+            {errors.map((error, idx) => (
+              <li key={idx}>{error}</li>
+            ))}
+          </ul>
           <button type="submit" className="continue-botton">Continue</button>
           <p>By continuing, you agree to Amazon's Conditions of Use and Privacy Notice.</p>
+          <div>
+            <p className="demoUser" onClick={demoUser}>Demo User?</p>
+          </div>
         </div>
       </form>
-      <div className="create-account">
+      <div className="after-form-area">
+        <div className="after-form-header">
           <p>New to Amazon?</p>
-          <button onClick={handleClick}>Create your Amazon account</button>
+        </div>
+        <div className="button-div">
+          <button className="signup-button" onClick={handleClick}>Create your Amazon account</button>
+        </div>
       </div>
     </div>
   );

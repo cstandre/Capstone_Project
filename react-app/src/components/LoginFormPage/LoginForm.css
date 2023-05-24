@@ -5,6 +5,11 @@
 
 .logo {
     height: 40px;
+    margin-bottom: 3px;
+}
+
+.logo:hover {
+    cursor: pointer;
 }
 
 .img {
@@ -18,7 +23,7 @@
     justify-content: center;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
-    border: 1px solid #c2c0c0;
+    border: 1px solid #ddd;
     width: 300px;
     border-radius: 5px;
     padding: 20px;
@@ -38,9 +43,67 @@
 }
 
 .continue-botton {
-    background-color: #f0c14b;
+    background: -webkit-linear-gradient(top, #f4dc9a, #eec962);
     border-color: #767676;
     height: 30px;
     border-radius: 3px;
-    border-style: none;
+    border-width: 1px;
+}
+
+.continue-botton:hover {
+    cursor: pointer;
+}
+
+h3 {
+    margin: 2px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.input {
+    background-color: #eaf0fe;
+    border: 1px solid #949494;
+    border-radius: 3px;
+    width: 100%;
+}
+
+.input-fields {
+    display: grid;
+    margin-top: 10px;
+}
+
+.after-form-area {
+    display: grid;
+    justify-content: center;
+    width: 300px;
+    margin: 0;
+    padding: 20px;
+}
+
+.after-form-area p::before {
+    content:" ";
+}
+
+.after-form-area p::after {
+    content:" ";
+}
+
+
+.button-div {
+    display: grid;
+    justify-content: center;
+}
+
+.signup-button:hover {
+    cursor: pointer;
+}
+
+.after-form-header {
+    display: grid;
+    justify-content: center;
+}
+
+.demoUser:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }

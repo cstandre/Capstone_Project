@@ -8,16 +8,14 @@ function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
 
 	return (
-		<ul>
-			<li>
-				<NavLink exact to="/">Home</NavLink>
-			</li>
+		<>
+			<div>
+				<NavLink exact to="/"><img className='nav-logo' src='https://res.cloudinary.com/djclmc80y/image/upload/v1684893514/amazon_logo_dark_blue_w4vfje.jpg' /></NavLink>
+			</div>
 			{isLoaded && (
-				<li>
 					<ProfileButton user={sessionUser} />
-				</li>
 			)}
-		</ul>
+		</>
 	);
 }
 

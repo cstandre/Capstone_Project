@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { signUp } from "../../store/session";
 import './SignupForm.css';
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 function SignupFormPage() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -28,64 +29,83 @@ function SignupFormPage() {
     }
   };
 
+  const homeClick = (e) => {
+    e.preventDefault()
+    history.push('/')
+  }
+
   return (
-    <>
-      <h1>Create Account</h1>
+    <div className="form">
       <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-        </ul>
-        <label>
-          Your Name
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="First and last name"
-            required
-          />
-        </label>
-        <label>
-          Email
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Username
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Re-enter Password
-          <input
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-        </label>
-        <button type="submit">Continue</button>
-        <p>By creating an account, you agree to Amazon's Conditions of Use and Privacy Notice.</p>
-        <p>Already have an account?<Link exact to="/login">Sign in</Link></p>
+        <div className="img">
+          <img className="logo" onClick={homeClick} src="https://res.cloudinary.com/djclmc80y/image/upload/v1684814624/amazon_logo_weywcm.png" />
+        </div>
+        <div className="form-content">
+          <p className="header">Create Account</p>
+          <div className="input-fields">
+            <label className="input-section">
+              <h3>Your Name</h3>
+              <input
+                type="text"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="First and last name"
+                required
+                className="signup-input"
+              />
+            </label>
+            <label className="input-section">
+              <h3>Email</h3>
+              <input
+                type="text"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="signup-input"
+              />
+            </label>
+            <label className="input-section">
+              <h3>Username</h3>
+              <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+                className="signup-input"
+              />
+            </label>
+            <label className="input-section">
+              <h3>Password</h3>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className="signup-input"
+              />
+            </label>
+            <label className="input-section">
+              <h3>Re-enter Password</h3>
+              <input
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+                className="signup-input"
+              />
+            </label>
+          </div>
+          <ul>
+            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+          </ul>
+          <button type="submit" className="continue-botton">Continue</button>
+          <div className="after-form-area">
+            <p>By creating an account, you agree to Amazon's Conditions of Use and Privacy Notice.</p>
+            <p>Already have an account? <Link exact to="/login">Sign in</Link></p>
+        </div>
+        </div>
       </form>
-    </>
+    </div>
   );
 }
 
