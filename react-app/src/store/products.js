@@ -28,82 +28,82 @@ export const loadProducts = () => async (dispatch) => {
     };
 };
 
-export const userProducts = () => async (dispatch) => {
-    const res = await fetch('/api/products/current');
+// export const userProducts = () => async (dispatch) => {
+//     const res = await fetch('/api/products/current');
 
-    if (res.ok) {
-        products = await res.json();
-        dispatch(load(products));
-        return products;
-    };
-};
+//     if (res.ok) {
+//         products = await res.json();
+//         dispatch(load(products));
+//         return products;
+//     };
+// };
 
-export const productDetails = (productId) => async (dispatch) => {
-    const res = await fetch(`/api/${productId}`);
+// export const productDetails = (productId) => async (dispatch) => {
+//     const res = await fetch(`/api/${productId}`);
 
-    if (res.ok) {
-        const product = await res.json();
-        dispatch(details(product));
-        return product
-    };
-};
+//     if (res.ok) {
+//         const product = await res.json();
+//         dispatch(details(product));
+//         return product
+//     };
+// };
 
-export const createProduct = (product) => async (dispatch) => {
-    const { product_name, price, brand, stock_quantity, description } = product
+// export const createProduct = (product) => async (dispatch) => {
+//     const { product_name, price, brand, stock_quantity, description } = product;
 
-    const res = await fetch('/api/products', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            product_name,
-            price,
-            brand,
-            stock_quantity,
-            description
-        })
-    });
+//     const res = await fetch('/api/products', {
+//         method: 'POST',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify({
+//             product_name,
+//             price,
+//             brand,
+//             stock_quantity,
+//             description
+//         })
+//     });
 
-    const newProduct = await res.json();
-    if (res.ok) {
-        dispatch(details(newProduct));
-        return newProduct;
-    }
-};
+//     const newProduct = await res.json();
+//     if (res.ok) {
+//         dispatch(details(newProduct));
+//         return newProduct;
+//     }
+// };
 
-export const editProduct = (product) => async (dispatch) => {
-    { id, product_name, price, brand, stock_quantity, description } = product
+// export const editProduct = (product) => async (dispatch) => {
+//     { id, product_name, price, brand, stock_quantity, description } = product
 
-    const res = await fetch(`/api/products/${id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            id: id,
-            product_name,
-            price,
-            brand,
-            stock_quantity,
-            description
-        })
-    });
+//     const res = await fetch(`/api/products/${id}`, {
+//         method: 'PUT',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify({
+//             id: id,
+//             product_name,
+//             price,
+//             brand,
+//             stock_quantity,
+//             description
+//         })
+//     });
 
-    if (res.ok) {
-        const product = await res.json();
-        dispatch(details(product));
-        return product;
-    };
-};
+//     if (res.ok) {
+//         const product = await res.json();
+//         dispatch(details(product));
+//         return product;
+//     };
+// };
 
-export const deleteProduct = (productId) => async (dispatch) => {
-    const res = await fetach(`/api/products/${productId}`, {
-        method: 'DELETE'
-    });
+// export const deleteProduct = (productId) => async (dispatch) => {
+//     const res = await fetach(`/api/products/${productId}`, {
+//         method: 'DELETE'
+//     });
 
-    if (res.ok) {
-        const product = await res.json();
-        dispatch(remove(productId));
-        return product
-    };
-};
+//     if (res.ok) {
+//         const product = await res.json();
+//         dispatch(remove(productId));
+//         return product
+//     };
+// };
 
 const initialState = {};
 
