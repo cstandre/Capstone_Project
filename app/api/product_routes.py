@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import current_user, login_required
-from app.models import db, Product
+from app.models import db, Product, ProductImage
 from app.forms.create_product import ProductForm
 
 product_routes = Blueprint('products', __name__)
@@ -94,3 +94,19 @@ def delete_product(id):
     db.session.commit()
 
     return {'message': 'successful delete'}
+
+## Get all product images
+@product_routes.route('/images')
+def get_images():
+    """
+    Query all the preview images for products to display on the main page.
+    """
+    images = ProductImage.query.filter_by(preview = True).all()
+    return {image.id: image.to_dict() for image in images}
+
+
+## Add images to a product
+
+## Update the images of a product
+
+## Delete images of a product

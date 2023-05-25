@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import { signUp } from "../../store/session";
-import './SignupForm.css';
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+
+import './SignupForm.css';
 
 function SignupFormPage() {
   const dispatch = useDispatch();
@@ -40,16 +41,25 @@ function SignupFormPage() {
         <div className="img">
           <img className="logo" onClick={homeClick} src="https://res.cloudinary.com/djclmc80y/image/upload/v1684814624/amazon_logo_weywcm.png" />
         </div>
-        <div className="form-content">
+        <div className="form-content-signup">
           <p className="header">Create Account</p>
           <div className="input-fields">
             <label className="input-section">
-              <h3>Your Name</h3>
+              <h3>First Name</h3>
               <input
                 type="text"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="First and last name"
+                required
+                className="signup-input"
+              />
+            </label>
+            <label className="input-section">
+              <h3>Last Name</h3>
+              <input
+                type="text"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
                 className="signup-input"
               />
