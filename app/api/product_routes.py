@@ -5,6 +5,16 @@ from app.forms.create_product import ProductForm
 
 product_routes = Blueprint('products', __name__)
 
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
+
 ## Get all products
 @product_routes.route('')
 def all_products():
@@ -35,14 +45,14 @@ def product_id(id):
     return product.to_dict_detail()
 
 ## Create a product
-@product_routes.route('', methods=['POST'])
+@product_routes.route('/create', methods=['POST'])
 @login_required
 def create_product():
     """
     Creates a product and returns the new products details.
     """
     form = ProductForm()
-    owner_id = current_user.get_id()
+    owner_id = current_user.id
 
     form['csrf_token'].data = request.cookies['csrf_token']
 
@@ -58,6 +68,7 @@ def create_product():
         db.session.add(new_product)
         db.session.commit()
         return new_product.to_dict_detail()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 ## Update a product
 @product_routes.route('/<int:id>', methods=['PUT'])

@@ -14,6 +14,10 @@ class User(db.Model, UserMixin):
     last_name = db.Column(db.String, nullable=False)
     username = db.Column(db.String(20), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
+    street_address = db.Column(db.String(50), nullable=False)
+    city = db.Column(db.String(50), nullable=False)
+    state = db.Column(db.String(2), nullable=False)
+    zip = db.Column(db.Integer, nullable=False)
     hashed_password = db.Column(db.String(255), nullable=False)
 
     products = db.relationship('Product', back_populates='owner')
@@ -37,5 +41,8 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'first_name': self.first_name,
+            'city': self.city,
+            'zip': self.zip
         }

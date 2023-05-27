@@ -39,7 +39,7 @@ function SignupFormPage() {
     <div className="form">
       <form onSubmit={handleSubmit}>
         <div className="img">
-          <img className="logo" onClick={homeClick} src="https://res.cloudinary.com/djclmc80y/image/upload/v1684814624/amazon_logo_weywcm.png" />
+          <img className="logo" onClick={homeClick} alt="" src="https://res.cloudinary.com/djclmc80y/image/upload/v1684814624/amazon_logo_weywcm.png" />
         </div>
         <div className="form-content-signup">
           <p className="header">Create Account</p>

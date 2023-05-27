@@ -1,0 +1,8 @@
+.body {
+    background-color: #e4e6e6;
+}
+
+.slider {
+    display: grid;
+    justify-content: center;
+}

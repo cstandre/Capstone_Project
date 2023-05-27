@@ -1,38 +1,52 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import ProfileButton from './ProfileButton';
+import { NavLink } from 'react-router-dom';
+// import { useSelector } from 'react-redux';
+// import ProfileButton from './ProfileButton';
 import './Navigation.css';
 
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
 
+	{/* {isLoaded && (
+	<ProfileButton user={sessionUser} />
+)} */}
+
 	return (
 		<div>
 			<div className='nav-bar'>
 				<div className='section section1'>
-					<NavLink exact to="/"><img className='nav-logo' src='https://res.cloudinary.com/djclmc80y/image/upload/v1684893514/amazon_logo_dark_blue_w4vfje.jpg' /></NavLink>
+					<NavLink exact to="/"><img className='nav-logo' alt='' src='https://res.cloudinary.com/djclmc80y/image/upload/v1684893514/amazon_logo_dark_blue_w4vfje.jpg' /></NavLink>
 				</div>
-				<div className='section section2'>
-					<span className='icon'>
-						<img className='geo-loc-icon' src='https://res.cloudinary.com/djclmc80y/image/upload/v1684983616/geo-location-icon_qj4cuw.png'/>
+				<span className='section section2'>
+					<span>
+						<img className='geo-loc-icon' alt='' src='https://res.cloudinary.com/djclmc80y/image/upload/v1684983616/geo-location-icon_qj4cuw.png'/>
 					</span>
-					<span className='line-1'>Home</span>
-					<div className='line-2'>Sign in to get started</div>
-				</div>
-				<div className='section secion3'>
+				</span>
+				{sessionUser && (
+					<span className='section section3'>
+						<span>
+							<div className='line-1'>Deliver to {sessionUser.first_name} </div>
+							<div className='line-2'></div>
+						</span>
+					</span>
+				)}
+				<div className='section secion4'>
 					<span>
 						<input type='search' placeholder='Search Amazon'></input>
 					</span>
 					<span className='search-icon'>
-						<img scr='https://res.cloudinary.com/djclmc80y/image/upload/v1684986674/seach_icon_m377xc.jpg'></img>
+						<img alt='' scr='https://res.cloudinary.com/djclmc80y/image/upload/v1684986674/seach_icon_m377xc.jpg'></img>
 					</span>
 				</div>
-				<div className='section section4'>
-					account info
-				</div>
 				<div className='section section5'>
-					cart
+					<div>Hello, {sessionUser?.first_name}</div>
+					<span>Manage Account</span>
+					<span><i class="fa-solid fa-caret-down"></i></span>
+				</div>
+				<div className='section section6'>
+					<img className='cart-icon' alt='' src='https://caitlyn.s3.us-west-2.amazonaws.com/cart-icon.jpg'></img>
+					<span>Cart</span>
 				</div>
 			</div>
 			<div className='category-bar'>
@@ -42,7 +56,3 @@ function Navigation({ isLoaded }){
 }
 
 export default Navigation;
-
-{/* {isLoaded && (
-	<ProfileButton user={sessionUser} />
-)} */}

@@ -44,7 +44,7 @@ function LoginFormPage() {
     <div className="form">
       <form onSubmit={handleSubmit}>
         <div className="img">
-          <img className="logo" onClick={homeClick} src="https://res.cloudinary.com/djclmc80y/image/upload/v1684814624/amazon_logo_weywcm.png" />
+          <img className="logo" alt="" onClick={homeClick} src="https://res.cloudinary.com/djclmc80y/image/upload/v1684814624/amazon_logo_weywcm.png" />
         </div>
       <div className="form-content">
         <p className="header">Sign in</p>

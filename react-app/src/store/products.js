@@ -12,10 +12,10 @@ const details = (product) => ({
     product
 });
 
-const remove = (productId) => ({
-    type: DELETE_PRODUCTS,
-    productId
-});
+// const remove = (productId) => ({
+//     type: DELETE_PRODUCTS,
+//     productId
+// });
 
 
 export const loadProducts = () => async (dispatch) => {
@@ -38,37 +38,37 @@ export const loadProducts = () => async (dispatch) => {
 //     };
 // };
 
-// export const productDetails = (productId) => async (dispatch) => {
-//     const res = await fetch(`/api/${productId}`);
+export const productDetails = (productId) => async (dispatch) => {
+    const res = await fetch(`/api/products/${productId}`);
 
-//     if (res.ok) {
-//         const product = await res.json();
-//         dispatch(details(product));
-//         return product
-//     };
-// };
+    if (res.ok) {
+        const product = await res.json();
+        dispatch(load(product));
+        return product
+    };
+};
 
-// export const createProduct = (product) => async (dispatch) => {
-//     const { product_name, price, brand, stock_quantity, description } = product;
+export const createProductFetch = (product) => async (dispatch) => {
+    const { product_name, price, brand, stock_quantity, description } = product
 
-//     const res = await fetch('/api/products', {
-//         method: 'POST',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify({
-//             product_name,
-//             price,
-//             brand,
-//             stock_quantity,
-//             description
-//         })
-//     });
+    const res = await fetch('/api/products/create', {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            product_name,
+            price,
+            brand,
+            stock_quantity,
+            description
+        })
+    });
 
-//     const newProduct = await res.json();
-//     if (res.ok) {
-//         dispatch(details(newProduct));
-//         return newProduct;
-//     }
-// };
+    if (res.ok) {
+        const newProduct = await res.json();
+        dispatch(details(newProduct));
+        return newProduct;
+    }
+};
 
 // export const editProduct = (product) => async (dispatch) => {
 //     { id, product_name, price, brand, stock_quantity, description } = product
