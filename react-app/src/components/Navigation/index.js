@@ -2,15 +2,11 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 // import { useSelector } from 'react-redux';
-// import ProfileButton from './ProfileButton';
+import ProfileButton from './ProfileButton';
 import './Navigation.css';
 
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
-
-	{/* {isLoaded && (
-	<ProfileButton user={sessionUser} />
-)} */}
 
 	return (
 		<div>
@@ -23,11 +19,18 @@ function Navigation({ isLoaded }){
 						<img className='geo-loc-icon' alt='' src='https://res.cloudinary.com/djclmc80y/image/upload/v1684983616/geo-location-icon_qj4cuw.png'/>
 					</span>
 				</span>
-				{sessionUser && (
+				{sessionUser ? (
 					<span className='section section3'>
 						<span>
 							<div className='line-1'>Deliver to {sessionUser.first_name} </div>
-							<div className='line-2'></div>
+							<div className='line-2'>{sessionUser.city}, {sessionUser.zip}</div>
+						</span>
+					</span>
+				): (
+					<span className='section section3'>
+						<span>
+							<div className='line-1'>Hello</div>
+							<div className='line-2'>Select your address</div>
 						</span>
 					</span>
 				)}
@@ -42,7 +45,9 @@ function Navigation({ isLoaded }){
 				<div className='section section5'>
 					<div>Hello, {sessionUser?.first_name}</div>
 					<span>Manage Account</span>
-					<span><i class="fa-solid fa-caret-down"></i></span>
+					{isLoaded && (
+						<ProfileButton user={sessionUser} />
+					)}
 				</div>
 				<div className='section section6'>
 					<img className='cart-icon' alt='' src='https://caitlyn.s3.us-west-2.amazonaws.com/cart-icon.jpg'></img>

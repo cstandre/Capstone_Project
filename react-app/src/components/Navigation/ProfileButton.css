@@ -1,0 +1,31 @@
+.profile-button {
+    background-color: transparent;
+    border: none;
+}
+
+.profile-button:hover {
+    cursor: pointer;
+}
+
+.logout-button {
+    background-color: transparent;
+    border: none;
+}
+
+.logout-button:hover {
+    cursor: pointer;
+}
+
+.profile-dropdown {
+    background-color: #ffffff;
+    color: black;
+}
+
+.store-button {
+    background-color: transparent;
+    border: none;
+}
+
+.store-button:hover {
+    cursor: pointer;
+}

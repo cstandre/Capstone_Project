@@ -28,15 +28,16 @@ export const loadProducts = () => async (dispatch) => {
     };
 };
 
-// export const userProducts = () => async (dispatch) => {
-//     const res = await fetch('/api/products/current');
+export const userProducts = () => async (dispatch) => {
+    const res = await fetch('/api/products/current');
+    console.log(res)
 
-//     if (res.ok) {
-//         products = await res.json();
-//         dispatch(load(products));
-//         return products;
-//     };
-// };
+    if (res.ok) {
+        const products = await res.json();
+        dispatch(load(products));
+        return products;
+    };
+};
 
 export const productDetails = (productId) => async (dispatch) => {
     const res = await fetch(`/api/products/${productId}`);

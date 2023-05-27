@@ -7,3 +7,7 @@
 .fa-brands {
     color: white;
 }
+
+.footer-icon:hover {
+    cursor: pointer;
+}

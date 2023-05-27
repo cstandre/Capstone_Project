@@ -6,10 +6,14 @@ const Footer = () => {
     return (
         <div className="footer">
             <span>
-                <i class="fa-brands fa-github fa-2x"></i>
+            <a href="https://github.com/cstandre">
+                <i className="fa-brands fa-github fa-2x footer-icon"></i>
+            </a>
             </span>
             <span>
-                <i class="fa-brands fa-linkedin fa-2x"></i>
+                <a href="https://www.linkedin.com/in/caitlyn-st-andre-46b1ba143/">
+                    <i className="fa-brands fa-linkedin fa-2x footer-icon"></i>
+                </a>
             </span>
         </div>
     )

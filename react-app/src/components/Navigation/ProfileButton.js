@@ -6,6 +6,8 @@ import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 // import SignupFormPage from "../SignupFormPage";
 
+import './ProfileButton.css'
+
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -36,40 +38,47 @@ function ProfileButton({ user }) {
     dispatch(logout());
   };
 
-  const handleClick = (e) => {
+  const handleSignUp = (e) => {
     e.preventDefault();
-    history.push('/signup')
+    history.push('/signup');
+    closeMenu();
+  };
+
+  const handleLogIn = (e) => {
+    e.preventDefault();
+    history.push('/login');
+    closeMenu();
+  };
+
+  const handleStore = (e) => {
+    e.preventDefault();
+    history.push('/products/user-store');
     closeMenu()
   }
+
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
   const closeMenu = () => setShowMenu(false);
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+      <button className="profile-button" onClick={openMenu}>
+        <i className="fa-solid fa-caret-down" />
       </button>
-      <ul className={ulClassName} ref={ulRef}>
+      <div className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>{user.username}</li>
-            <li>{user.email}</li>
-            <li>
-              <button onClick={handleLogout}>Log Out</button>
-            </li>
+            <div>{user.first_name}</div>
+            <button className='store-button' onClick={handleStore}>Your Store</button>
+            <button className='logout-button' onClick={handleLogout}>Log Out</button>
           </>
         ) : (
           <>
-            <OpenModalButton
-              buttonText="Log In"
-              onItemClick={closeMenu}
-              modalComponent={<LoginFormModal />}
-            />
-            <button onClick={handleClick}>Sign Up</button>
+            <button onClick={handleLogIn}>Log In</button>
+            <button onClick={handleSignUp}>Sign Up</button>
           </>
         )}
-      </ul>
+      </div>
     </>
   );
 }
