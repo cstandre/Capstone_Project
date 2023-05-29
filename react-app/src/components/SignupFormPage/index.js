@@ -109,7 +109,7 @@ function SignupFormPage() {
             {errors.map((error, idx) => <li key={idx}>{error}</li>)}
           </ul>
           <button type="submit" className="continue-botton">Continue</button>
-          <div className="after-form-area">
+          <div className="after-signup-area">
             <p>By creating an account, you agree to Amazon's Conditions of Use and Privacy Notice.</p>
             <p>Already have an account? <Link exact to="/login">Sign in</Link></p>
         </div>

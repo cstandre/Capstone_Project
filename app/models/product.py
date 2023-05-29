@@ -16,11 +16,11 @@ class Product(db.Model):
 
     owner = db.relationship('User', back_populates='products')
 
-    reviews = db.relationship('Review', back_populates='product')
+    reviews = db.relationship('Review', back_populates='product', cascade='all, delete-orphan')
 
-    product_images = db.relationship('ProductImage', back_populates='product')
+    product_images = db.relationship('ProductImage', back_populates='product', cascade='all, delete-orphan')
 
-    cart_items = db.relationship('CartItem', back_populates='products')
+    cart_items = db.relationship('CartItem', back_populates='products', cascade='all, delete-orphan')
 
     def to_dict(self):
         return {

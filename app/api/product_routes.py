@@ -80,7 +80,7 @@ def edit_product(id):
 
     form = ProductForm()
     product = Product.query.get_or_404(id)
-
+    print(product, "herehehrehrjekshfjdsklhksahfueihrtje")
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():

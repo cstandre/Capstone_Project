@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { createProductFetch } from "../../store/products";
+import { useHistory, useParams } from "react-router-dom";
+import { editProduct, productDetails } from "../../store/products";
 
 
-const EditProduct = (productId) => {
+const EditProduct = () => {
     const dispatch = useDispatch();
     const history = useHistory();
+    const { productId } = useParams();
     const product = useSelector(state=>state?.products[productId]);
+    console.log(product)
 
     const [ product_name, setProductName ] = useState(product.product_name);
     const [ price, setPrice ] = useState(product.price);
@@ -16,13 +18,16 @@ const EditProduct = (productId) => {
     const [ description, setDescription ] = useState(product.description);
     const [ errors, setErrors ] = useState([]);
 
-
+    useEffect(() => {
+        dispatch(productDetails(productId))
+    }, [dispatch, productId])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrors([]);
 
         const newProduct = {
+            id: productId,
             product_name,
             price,
             brand,
@@ -30,15 +35,15 @@ const EditProduct = (productId) => {
             description,
         };
 
-        const product = await dispatch(createProductFetch(newProduct))
+        const updatedProduct = await dispatch(editProduct(newProduct))
         .catch(async (res) => {
             if (res.status === 400) {
                 const errorMsg = "One or more required fields are missing.";
                 setErrors([errorMsg])
             }
         })
-        if (product) {
-            history.push(`/products/${product.id}`)
+        if (updatedProduct) {
+            history.push(`/products/${updatedProduct.id}`)
         }
 
     }
@@ -46,7 +51,7 @@ const EditProduct = (productId) => {
     return (
         <form className="create-product" onSubmit={handleSubmit}>
             <div>
-                <h1>Create your product</h1>
+                <h1>Edit your product</h1>
             </div>
             <ul>{errors?.map((error, idx) => <li key={idx}>{error}</li>)}</ul>
             <div>
@@ -95,7 +100,7 @@ const EditProduct = (productId) => {
                 />
             </div>
             <div className="creates">
-                <button className="create-button" type="submit">Create</button>
+                <button className="create-button" type="submit">Edit</button>
             </div>
         </form>
     )

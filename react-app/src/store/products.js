@@ -12,10 +12,10 @@ const details = (product) => ({
     product
 });
 
-// const remove = (productId) => ({
-//     type: DELETE_PRODUCTS,
-//     productId
-// });
+const remove = (productId) => ({
+    type: DELETE_PRODUCTS,
+    productId
+});
 
 
 export const loadProducts = () => async (dispatch) => {
@@ -71,40 +71,40 @@ export const createProductFetch = (product) => async (dispatch) => {
     }
 };
 
-// export const editProduct = (product) => async (dispatch) => {
-//     { id, product_name, price, brand, stock_quantity, description } = product
+export const editProduct = (product) => async (dispatch) => {
+    const { id, product_name, price, brand, stock_quantity, description } = product
+    console.log(product)
+    const res = await fetch(`/api/products/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            id: id,
+            product_name,
+            price,
+            brand,
+            stock_quantity,
+            description
+        })
+    });
 
-//     const res = await fetch(`/api/products/${id}`, {
-//         method: 'PUT',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify({
-//             id: id,
-//             product_name,
-//             price,
-//             brand,
-//             stock_quantity,
-//             description
-//         })
-//     });
+    if (res.ok) {
+        const product = await res.json();
+        dispatch(details(product));
+        return product;
+    };
+};
 
-//     if (res.ok) {
-//         const product = await res.json();
-//         dispatch(details(product));
-//         return product;
-//     };
-// };
+export const deleteProduct = (productId) => async (dispatch) => {
+    const res = await fetch(`/api/products/${productId}`, {
+        method: 'DELETE'
+    });
 
-// export const deleteProduct = (productId) => async (dispatch) => {
-//     const res = await fetach(`/api/products/${productId}`, {
-//         method: 'DELETE'
-//     });
-
-//     if (res.ok) {
-//         const product = await res.json();
-//         dispatch(remove(productId));
-//         return product
-//     };
-// };
+    if (res.ok) {
+        const product = await res.json();
+        dispatch(remove(productId));
+        return product
+    };
+};
 
 const initialState = {};
 

@@ -10,6 +10,7 @@ import ProductDetailsPage from "./components/Products/ProductDetails";
 import CreateProduct from "./components/Products/CreateProduct";
 import Footer from "./components/Footer";
 import UserStorePage from "./components/Products/UserStorePage";
+import EditProduct from "./components/Products/EditProduct";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,6 +38,9 @@ function App() {
           </Route>
           <Route exact path="/products/user-store">
             <UserStorePage />
+          </Route>
+          <Route path="/products/:productId/edit">
+            <EditProduct />
           </Route>
           <Route path="/products/:productId">
             <ProductDetailsPage />

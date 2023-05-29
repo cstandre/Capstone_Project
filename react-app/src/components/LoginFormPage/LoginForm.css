@@ -74,25 +74,48 @@ h3 {
 }
 
 .after-form-area {
-    display: grid;
-    justify-content: center;
-    width: 300px;
+    justify-self: center;
+    position: relative;
+    width: 345px;
     margin: 0;
-    padding: 20px;
+}
+
+.after-form-area p {
+    color: #767676;
+    font-size: 13px;
+    margin-top: 40px;
+}
+
+.after-form-area p::before,
+.after-form-area p::after {
+    content: " ";
+    display: block;
+    width: 120px;
+    height: 1px;
+    background: #e7e7e7;
+    position: absolute;
+    top: 40%;
 }
 
 .after-form-area p::before {
-    content:" ";
+    left: 0
 }
 
 .after-form-area p::after {
-    content:" ";
+    right: 0
 }
-
 
 .button-div {
     display: grid;
     justify-content: center;
+}
+
+.signup-button {
+    padding: 5px;
+    margin-bottom: 20px;
+    width: 345px;
+    border: 1px solid #a2a6ac;
+    border-radius: 3px;
 }
 
 .signup-button:hover {
