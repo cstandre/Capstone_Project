@@ -3,10 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { userProducts } from "../../store/products";
 import DeleteProductModal from "./DeleteProductModal";
-import EditProduct from "./EditProduct";
 import OpenModalButton from "../OpenModalButton";
 
-
+import './UserStorePage.css';
 
 const UserStorePage = () => {
     const products = useSelector(state=>state?.products);
@@ -15,7 +14,7 @@ const UserStorePage = () => {
 
 
     useEffect(() => {
-        dispatch(userProducts())
+        dispatch(userProducts());
     }, [dispatch]);
 
     const addProduct = (e) => {
@@ -26,8 +25,15 @@ const UserStorePage = () => {
     const handleEdit = (e) => {
         e.preventDefault();
         const productId = e.target.value;
-        history.push(`/products/${productId}/edit`)
-    }
+        history.push(`/products/${productId}/edit`);
+    };
+
+    const handleProductDetail = (e) => {
+        e.preventDefault();
+        const productId = e.target.dataset.productId;
+        console.log(productId)
+        history.push(`/products/${productId}`);
+    };
 
     return (
         <>
@@ -35,6 +41,9 @@ const UserStorePage = () => {
         {products ? (
             Object.values(products).map((product, idx) =>
             <div key={idx}>
+                <div className="img-container" value={product.id} onClick={handleProductDetail}>
+                    <img className="user-store-img" alt='' src={product.preview_image} data-product-id={product.id} />
+                </div>
                 <div>{product.product_name}</div>
                 <div>Review Count: {product.reviews?.length}</div>
                 <button value={product.id} onClick={handleEdit}>Update</button>

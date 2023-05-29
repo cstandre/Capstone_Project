@@ -1,0 +1,15 @@
+.user-store-img {
+    width: 150px;
+    height: 150px;
+}
+
+.img-container {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    border: 1px solid #e7e7e7;
+    border-radius: 2px;
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+}

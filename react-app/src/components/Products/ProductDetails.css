@@ -1,0 +1,19 @@
+.detail-page-img {
+    display: grid;
+    height: 40px;
+    width: 40px;
+}
+
+.img-side {
+    display: grid;
+    justify-content: center;
+    margin: 2px;
+    border: 1px solid black;
+    border-radius: 2.5px;
+    width: 45px;
+}
+
+.img-side:hover {
+    cursor: pointer;
+}
+

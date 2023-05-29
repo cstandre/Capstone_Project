@@ -30,7 +30,6 @@ export const loadProducts = () => async (dispatch) => {
 
 export const userProducts = () => async (dispatch) => {
     const res = await fetch('/api/products/current');
-    console.log(res)
 
     if (res.ok) {
         const products = await res.json();
@@ -73,7 +72,7 @@ export const createProductFetch = (product) => async (dispatch) => {
 
 export const editProduct = (product) => async (dispatch) => {
     const { id, product_name, price, brand, stock_quantity, description } = product
-    
+
     const res = await fetch(`/api/products/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
