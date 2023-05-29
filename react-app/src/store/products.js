@@ -73,7 +73,7 @@ export const createProductFetch = (product) => async (dispatch) => {
 
 export const editProduct = (product) => async (dispatch) => {
     const { id, product_name, price, brand, stock_quantity, description } = product
-    console.log(product)
+    
     const res = await fetch(`/api/products/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },

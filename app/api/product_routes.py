@@ -85,9 +85,9 @@ def edit_product(id):
 
     if form.validate_on_submit():
         product.product_name = form.data['product_name']
-        product.price = form.data['price'],
-        product.brand = form.data['brand'],
-        product.stock_quantity = form.data['stock_quantity'],
+        product.price = form.data['price']
+        product.brand = form.data['brand']
+        product.stock_quantity = form.data['stock_quantity']
         product.description = form.data['description']
 
         db.session.commit()
