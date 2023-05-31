@@ -1,6 +1,7 @@
-const GET_PRODUCTS = 'products/GET_PRODUCTS'
-const DETAILS_PRODUCTS = 'products/DETAILS_PRODUCTS'
-const DELETE_PRODUCTS = 'products/DELETE_PRODUCTS'
+const GET_PRODUCTS = 'products/GET_PRODUCTS';
+const DETAILS_PRODUCTS = 'products/DETAILS_PRODUCTS';
+const DELETE_PRODUCTS = 'products/DELETE_PRODUCTS';
+const ADD_IMG = 'products/ADD_IMG';
 
 const load = (products) => ({
     type: GET_PRODUCTS,
@@ -17,6 +18,10 @@ const remove = (productId) => ({
     productId
 });
 
+const addImg = (image) => ({
+    type: ADD_IMG,
+    image
+});
 
 export const loadProducts = () => async (dispatch) => {
     const res = await fetch('/api/products');
@@ -105,6 +110,26 @@ export const deleteProduct = (productId) => async (dispatch) => {
     };
 };
 
+export const addProductImg = (productId, image) => async (dispatch) => {
+    const { url, preview } = image;
+
+    const res = await fetch(`/api/products/${productId}/images`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            url,
+            preview,
+            productId
+        })
+    });
+
+    if (res.ok) {
+        const new_image = await res.json();
+        dispatch(addImg(new_image));
+        return new_image;
+    };
+};
+
 const initialState = {};
 
 export default function productReducer(state = initialState, action) {
@@ -117,6 +142,12 @@ export default function productReducer(state = initialState, action) {
             const newState = { ...state };
             delete newState[action.productId];
             return newState
+        case ADD_IMG:
+            return {
+                ...state,
+                [action.image.id]: { ...state[action.image.id]
+                }
+            }
         default:
             return state
     }

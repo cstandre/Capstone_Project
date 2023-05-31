@@ -2,8 +2,11 @@ from flask import Blueprint, request
 from flask_login import current_user, login_required
 from app.models import db, Product, ProductImage
 from app.forms.create_product import ProductForm
+from app.forms.product_pictures import ImageForm
+from .aws_helpers import upload_file_to_s3, get_unique_filename
 
 product_routes = Blueprint('products', __name__)
+
 
 def validation_errors_to_error_messages(validation_errors):
     """
@@ -65,6 +68,7 @@ def create_product():
             stock_quantity = form.data['stock_quantity'],
             description = form.data['description']
         )
+
         db.session.add(new_product)
         db.session.commit()
         return new_product.to_dict_detail()
@@ -80,7 +84,7 @@ def edit_product(id):
 
     form = ProductForm()
     product = Product.query.get_or_404(id)
-    print(product, "herehehrehrjekshfjdsklhksahfueihrtje")
+
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
@@ -115,8 +119,29 @@ def get_images():
     images = ProductImage.query.filter_by(preview = True).all()
     return {image.id: image.to_dict() for image in images}
 
+## Add image to product by product Id
+@product_routes.route('/<int:id>/images', methods=["POST"])
+@login_required
+def add_img(id):
+    form = ImageForm()
 
-## Add images to a product
+    if form.validate_on_submit():
+        image = form.data["image"]
+        image.filename = get_unique_filename(image.filename)
+        upload = upload_file_to_s3(image)
+        if "errors" in upload:
+            return { 'errors': validation_errors_to_error_messages(form.errors) }
+
+        url = upload["url"]
+        new_image = ProductImage (
+            url = url,
+            product_id = id
+        )
+
+        db.session.add(new_image)
+        db.session.commit()
+        return new_image.to_dict()
+    return { 'errors': validation_errors_to_error_messages(form.errors) }
 
 ## Update the images of a product
 

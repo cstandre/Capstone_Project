@@ -8,6 +8,7 @@ import OpenModalButton from "../OpenModalButton";
 import './UserStorePage.css';
 
 const UserStorePage = () => {
+    const sessionUser = useSelector(state=>state?.session?.user)
     const products = useSelector(state=>state?.products);
     const dispatch = useDispatch();
     const history = useHistory();
@@ -37,23 +38,25 @@ const UserStorePage = () => {
 
     return (
         <>
-        <button onClick={addProduct}>Add</button>
+        <h1>{sessionUser?.first_name}'s Store</h1>
+        <button onClick={addProduct}>Sell More</button>
         {products ? (
-            Object.values(products).map((product, idx) =>
+            Object.values(products)?.map((product, idx) =>
             <div key={idx}>
-                <div className="img-container" value={product.id} onClick={handleProductDetail}>
-                    <img className="user-store-img" alt='' src={product.preview_image} data-product-id={product.id} />
+                <div className="img-container" value={product?.id} onClick={handleProductDetail}>
+                    <img className="user-store-img" alt='' src={product?.preview_image} data-product-id={product?.id} />
                 </div>
-                <div>{product.product_name}</div>
-                <div>Review Count: {product.reviews?.length}</div>
-                <button value={product.id} onClick={handleEdit}>Update</button>
+                <div>{product?.product_name}</div>
+                <div>Review Count: {product?.reviews?.length}</div>
+                <button value={product?.id} onClick={handleEdit}>Update</button>
                 <OpenModalButton
                     buttonText={"Delete"}
-                    modalComponent={<DeleteProductModal productId={product.id} />}
+                    modalComponent={<DeleteProductModal productId={product?.id} />}
                 />
             </div>
         )): (
             <>
+                <h1>Get started today!</h1>
             </>
         )}
         </>

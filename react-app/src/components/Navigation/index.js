@@ -1,12 +1,18 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 // import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
+	const history = useHistory();
+
+	const signIn = (e) => {
+		e.preventDefault();
+		history.push('/login');
+	};
 
 	return (
 		<div>
@@ -27,10 +33,10 @@ function Navigation({ isLoaded }){
 						</span>
 					</span>
 				): (
-					<span className='section section3'>
+					<span className='section section3' onClick={signIn}>
 						<span>
 							<div className='line-1'>Hello</div>
-							<div className='line-2'>Select your address</div>
+							<div className='line-2'>Sign in to get started</div>
 						</span>
 					</span>
 				)}

@@ -1,6 +1,8 @@
 .user-store-img {
-    width: 150px;
-    height: 150px;
+    display: grid;
+    justify-self: center;
+    max-width: 70%;
+    height: auto;
 }
 
 .img-container {
@@ -10,6 +12,6 @@
     border: 1px solid #e7e7e7;
     border-radius: 2px;
     width: 200px;
-    height: 200px;
+    height: 300px;
     margin: 10px;
 }

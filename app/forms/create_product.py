@@ -3,7 +3,6 @@ from wtforms import StringField, DecimalField, IntegerField, SubmitField
 from wtforms.validators import DataRequired, NumberRange
 
 
-
 class ProductForm(FlaskForm):
     product_name = StringField('product_name', validators=[DataRequired()])
     price = DecimalField('price', places=2, validators=[NumberRange(min=0)])

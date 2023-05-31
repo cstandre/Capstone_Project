@@ -18,9 +18,10 @@ const CreateProduct = () => {
 
 
 
-    const handleSubmit = async (e) => {
+    const handleProductSubmit = async (e) => {
         e.preventDefault();
         setErrors([]);
+
 
         const newProduct = {
             product_name,
@@ -30,6 +31,7 @@ const CreateProduct = () => {
             description,
         };
 
+
         const product = await dispatch(createProductFetch(newProduct))
         .catch(async (res) => {
             if (res.status === 400) {
@@ -38,7 +40,7 @@ const CreateProduct = () => {
             }
         })
         if (product) {
-            history.push(`/products/${product.id}`)
+            history.push(`/products/${product.id}/images`)
         }
 
     };
@@ -50,7 +52,10 @@ const CreateProduct = () => {
 
     return (
         <div className="form">
-            <form onSubmit={handleSubmit}>
+            <form
+            onSubmit={handleProductSubmit}
+            encType="multipart/form-data"
+            >
                 <div className="img">
                     <img className="logo" alt="" onClick={homeClick} src="https://res.cloudinary.com/djclmc80y/image/upload/v1684814624/amazon_logo_weywcm.png" />
                 </div>
@@ -105,7 +110,7 @@ const CreateProduct = () => {
                     </div>
                     <ul>{errors?.map((error, idx) => <li key={idx}>{error}</li>)}</ul>
                     <div className="creates">
-                        <button className="create-button" type="submit">Create</button>
+                        <button className="create-button" type="submit">Next</button>
                     </div>
                 </div>
             </form>

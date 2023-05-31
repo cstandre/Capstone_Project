@@ -56,3 +56,7 @@
 .fa-caret-down {
   color: #a8acb2
 }
+
+.section3:hover {
+  cursor: pointer;
+}
