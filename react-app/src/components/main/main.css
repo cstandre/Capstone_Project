@@ -1,4 +1,6 @@
 .body {
+    display: grid;
+    justify-content: center;
     background-color: #e4e6e6;
     height: 100vh
 }
@@ -6,4 +8,28 @@
 .slider {
     display: grid;
     justify-content: center;
+    -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,0) 0%,rgba(0,0,0,2) 100%);
 }
+
+.ad-container {
+    display: grid;
+    position: relative;
+    justify-content: center;
+    bottom: 70%;
+    width: 1400px;
+    height: 420px;
+    grid-template-areas: "container-1 container-2 container-3 container-4"
+                         "container-1 container-2 container-3 container-5";
+    gap: 15px;
+}
+
+.ad-box {
+    background-color: white;
+    width: 305px;
+}
+
+.container-1 { grid-area: container-1; }
+.container-2 { grid-area: container-2; }
+.container-3 { grid-area: container-3; }
+.container-4 { grid-area: container-4; }
+.container-5 { grid-area: container-5; }

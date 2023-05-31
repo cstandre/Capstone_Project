@@ -27,6 +27,23 @@ const MainPage = () => {
           showNavs={true}
         />
       </div>
+      <div className="ad-container">
+        <div className="ad-box container-1">
+            <h1>container 1</h1>
+        </div>
+        <div className="ad-box container-2">
+          <h1>container 2</h1>
+        </div>
+        <div className="ad-box container-3">
+          <h1>container 3</h1>
+        </div>
+        <div className="ad-box container-4">
+          <h1>container 4</h1>
+        </div>
+        <div className="ad-box container-5">
+          <h1>container 5</h1>
+        </div>
+      </div>
     </div>
   )
 };
