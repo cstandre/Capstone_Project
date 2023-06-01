@@ -28,16 +28,20 @@ const ProductDetailsPage = () => {
         {product ? (
             <>
             <div className="side-img-container">
-              {product.product_images?.map((img, idx)=><div key={idx} className="small-img"><img className="detail-page-img" src={img.url}></img></div>)}
-            </div>
+              {product.product_images?.map((img, idx)=>
+                <img key={idx} className="small-img" src={img.url}></img>
+              )}
+              </div>
             <div className="main-img-container">
               <img className="main-img" alt="" src={mainImg}></img>
             </div>
             <div className="product-info-container">
-              {product.product_name}
+              <h2>{product.product_name}</h2>
               {product.brand}
-              {product.description}
-              {product.reviews?.map(review=>review.review)}
+              <p>{product.description}</p>
+            </div>
+            <div className="cart-container">
+              <button>Add to cart</button>
             </div>
             </>
         ): (

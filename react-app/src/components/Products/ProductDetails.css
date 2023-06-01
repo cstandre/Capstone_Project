@@ -1,16 +1,17 @@
 .product-page {
     display: grid;
+    width: 80%;
+    grid-template-areas: "side-img main-img details cart";
 }
 
+.side-img-container { grid-area: side-img; }
+.main-img-container { grid-area: main-img; }
 
-.detail-page-img {
-    justify-self: center;
-    max-width: 70%;
-    height: auto;
+.side-img-container {
+    display: grid;
 }
 
 .small-img {
-    justify-content: center;
     margin: 2px;
     border: 1px solid black;
     border-radius: 2.5px;
@@ -33,4 +34,8 @@
 
 .main-img:hover {
     cursor: pointer;
+}
+
+.product-info-container {
+    width: 50%;
 }
