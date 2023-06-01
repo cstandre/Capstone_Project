@@ -1,10 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 import SimpleImageSlider from "react-simple-image-slider";
 
 import "./main.css"
 
 
 const MainPage = () => {
+
   const images = [
     {
       url: "https://caitlyn.s3.us-west-2.amazonaws.com/amazon_banner_1.jpg"
@@ -22,7 +23,7 @@ const MainPage = () => {
       <div className="slider">
         <SimpleImageSlider
           width={1400}
-          height={700}
+          height={600}
           images={images}
           showNavs={true}
         />

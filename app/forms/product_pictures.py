@@ -1,8 +1,9 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed, FileRequired
-from wtforms import SubmitField
+from wtforms import SubmitField, BooleanField
 from app.api.aws_helpers import ALLOWED_EXTENSIONS
 
 class ImageForm(FlaskForm):
-    image = FileField("Image File", validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
+    image = FileField("image", validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
+    is_preview = BooleanField("Is Preview")
     submit = SubmitField("submit")

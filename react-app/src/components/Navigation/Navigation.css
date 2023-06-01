@@ -1,6 +1,6 @@
 .nav-bar{
   display: grid;
-  height: 70px;
+  height: 60px;
   background-color: #141921;
   margin: 0px;
   color: white;
@@ -44,7 +44,7 @@
 
 
 .category-bar {
-  height: 30px;
+  height: 40px;
   background-color: #262f3e;
 }
 

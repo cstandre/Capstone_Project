@@ -21,7 +21,7 @@ const remove = (productId) => ({
 const addImg = (image) => ({
     type: ADD_IMG,
     image
-});
+})
 
 export const loadProducts = () => async (dispatch) => {
     const res = await fetch('/api/products');
@@ -110,18 +110,14 @@ export const deleteProduct = (productId) => async (dispatch) => {
     };
 };
 
-export const addProductImg = (productId, image) => async (dispatch) => {
-    const { url, preview } = image;
+export const addProductImg = (productId, formData) => async (dispatch) => {
 
     const res = await fetch(`/api/products/${productId}/images`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            url,
-            preview,
-            productId
-        })
+        body: formData,
     });
+    console.log(formData, "form data in the thunk")
 
     if (res.ok) {
         const new_image = await res.json();
