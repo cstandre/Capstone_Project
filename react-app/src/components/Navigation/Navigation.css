@@ -1,27 +1,40 @@
 .nav-bar{
   display: grid;
+  justify-content: space-between;
+  align-items: center;
   height: 60px;
+  padding-left: 20px;
+  padding-right: 20px;
   background-color: #141921;
   margin: 0px;
   color: white;
   font-family: Arial, Helvetica, sans-serif;
-  grid-template-areas: "section1 section2 section3 section4 section4 section4 section5 section6";
-  gap: 10px;
+  grid-template-areas: "section1 section2 section3 section4 section5";
 }
 
-.section {
-  padding: 10px;
-}
 
 .section1 { grid-area: section1; }
 .section2 { grid-area: section2; }
 .section3 { grid-area: section3; }
 .section4 { grid-area: section4; }
 .section5 { grid-area: section5; }
-.section6 { grid-area: section6; }
+
 
 .profile-dropdown {
   position: absolute;
+}
+
+.section2 {
+  display: flex
+}
+
+.section5 {
+  display: flex;
+  align-items: center;
+}
+
+.section5:hover {
+  cursor: pointer;
 }
 
 .hidden {
@@ -32,11 +45,10 @@
   height: 45px;
 }
 
-/* .nav-logo:hover {
+.nav-logo:hover {
   box-sizing: border-box;
   border: 1px solid white;
-  transform: none;
-} */
+}
 
 .geo-loc-icon {
   height: 30px;
@@ -59,4 +71,8 @@
 
 .section3:hover {
   cursor: pointer;
+}
+
+.search_icon {
+  background-color: yellow;
 }

@@ -17,6 +17,9 @@
 }
 
 .profile-dropdown {
+    display: grid;
+    border-radius: 5px;
+    justify-items: start;
     background-color: #ffffff;
     color: black;
 }
@@ -28,4 +31,9 @@
 
 .store-button:hover {
     cursor: pointer;
+}
+
+.drop-down-header {
+    font-size: 12px;
+    padding: 5px;
 }
