@@ -41,7 +41,11 @@ const ProductDetailsPage = () => {
               <p>{product.description}</p>
             </div>
             <div className="cart-container">
-              <button>Add to cart</button>
+              <form>
+                <input
+                  type="select"
+                />
+              </form>
             </div>
             </>
         ): (
