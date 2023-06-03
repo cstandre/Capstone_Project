@@ -10,9 +10,15 @@ function SignupFormPage() {
   const dispatch = useDispatch();
   const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [streetAddress, setStreetAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [zip, setZip] = useState("");
+  const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
@@ -20,8 +26,21 @@ function SignupFormPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const new_user = {
+      firstName,
+      lastName,
+      email,
+      username,
+      streetAddress,
+      city,
+      state,
+      zip,
+      password
+    };
+
     if (password === confirmPassword) {
-        const data = await dispatch(signUp(username, email, password));
+        const data = await dispatch(signUp(new_user));
         if (data) {
           setErrors(data)
         }
@@ -48,8 +67,8 @@ function SignupFormPage() {
               <h3>First Name</h3>
               <input
                 type="text"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
                 required
                 className="signup-input"
               />
@@ -58,8 +77,8 @@ function SignupFormPage() {
               <h3>Last Name</h3>
               <input
                 type="text"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
                 required
                 className="signup-input"
               />
@@ -80,6 +99,46 @@ function SignupFormPage() {
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
+                required
+                className="signup-input"
+              />
+            </label>
+              <label className="input-section">
+              <h3>Street Address</h3>
+              <input
+                type="text"
+                value={streetAddress}
+                onChange={(e) => setStreetAddress(e.target.value)}
+                required
+                className="signup-input"
+              />
+            </label>
+              <label className="input-section">
+              <h3>City</h3>
+              <input
+                type="text"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                required
+                className="signup-input"
+              />
+            </label>
+              <label className="input-section">
+              <h3>State</h3>
+              <input
+                type="text"
+                value={state}
+                onChange={(e) => setState(e.target.value)}
+                required
+                className="signup-input"
+              />
+            </label>
+              <label className="input-section">
+              <h3>Zip</h3>
+              <input
+                type="text"
+                value={zip}
+                onChange={(e) => setZip(e.target.value)}
                 required
                 className="signup-input"
               />
