@@ -21,11 +21,10 @@ export const loadItems = () => async (dispatch) => {
     };
 };
 
-export const addItem = (item) => async (dispatch) => {
-    const res = await fetch ('/api/cart', {
+export const addItem = (productId, quantity) => async (dispatch) => {
+    const res = await fetch (`/api/cart/${productId}/${quantity}`, {
         method: "POST",
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify( {item} )
+        headers: { 'Content-Type': 'application/json' }
     });
 
     if (res.ok) {

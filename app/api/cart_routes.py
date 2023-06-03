@@ -1,7 +1,6 @@
 from flask import Blueprint, request
 from flask_login import current_user, login_required
-from app.models import db, Cart, CartItem
-from app.forms.cart_quantity import CartQuantity
+from app.models import db, Cart, CartItem, Product
 
 
 cart_routes = Blueprint('cart', __name__)
@@ -16,38 +15,37 @@ def users_cart():
     return {cart.id: cart.to_dict() for cart in carts}
 
 ## Add items to cart
-@cart_routes.route('/<int:productId>', methods=['POST'])
+@cart_routes.route('/<int:productId>/<int:quantity>', methods=['POST'])
 @login_required
-def add_item(productId):
-    form = CartQuantity()
+def add_item(productId, quantity):
+    product = Product.query.get(productId)
 
-    form['csrf_token'].data = request.cookies['csrf_token']
+    if not product:
+        return {'error': 'Product not found'}
 
-    if form.validate_on_submit():
-        added_product = CartItem(
-            cart_id = 1,
-            product_id = productId,
-            quantity = form.data['quantity']
-        )
+    added_product = CartItem(
+        cart_id = 1,
+        product_id = productId,
+        quantity = quantity
+    )
 
-        db.session.add(added_product)
-        db.session.commit()
-        return added_product.to_dict()
+    db.session.add(added_product)
+    db.session.commit()
+    return added_product.to_dict()
 
 ## Update items in cart
-@cart_routes.route('/<int:itemId>', methods=['PUT'])
+@cart_routes.route('/<int:itemId>/<int:quantity>', methods=['PUT'])
 @login_required
-def cart_quantity(itemId):
-    form = CartQuantity()
-    item = CartItem.query.get_or_404(itemId)
+def cart_quantity(itemId, quantity):
+    item = CartItem.query.get(itemId)
 
-    form['csrf_token'].data = request.cookies['csrf_token']
+    if not item:
+        return {'error': 'Cart Item not found'}
 
-    if  form.validate_on_submit():
-        item.quantity = form.data['quantity']
+    item.quantity = quantity
 
-        db.session.commit()
-        return item.to_dict()
+    db.session.commit()
+    return item.to_dict()
 
 ## Delte items from cart
 @cart_routes.route('/<int:itemId>', methods=['DELETE'])
