@@ -8,9 +8,12 @@ const Cart = () => {
     const cartItems = useSelector(state=>state?.cartItems);
 
     const products = Object?.values(cartItems)?.map(items => items?.product)
-    console.log(products, "1st console.log")
-    const product = products?.forEach(product => product?.product_name)
-    console.log(product, "2nd console.log")
+    console.log(products, "console.log # 1")
+    const product = products?.map(product => product)
+    console.log(product, "console.log # 2")
+
+    // const product = products?.forEach(product => product?.product_name)
+    // console.log(product, "2nd console.log")
 
     useEffect(() => {
         dispatch(loadItems())
