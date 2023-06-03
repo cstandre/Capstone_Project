@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { productDetails } from "../../store/products";
 import { addItem } from "../../store/cart";
@@ -8,6 +8,7 @@ import './ProductDetails.css';
 
 const ProductDetailsPage = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const { productId } = useParams();
     const sessionUser = useSelector(state=>state?.session?.user);
     const product = useSelector(state=>state?.products);
@@ -30,10 +31,11 @@ const ProductDetailsPage = () => {
         setSelectedQuantity(e.target.value)
       };
 
-      const handleCartButton = (e) => {
+      const handleCartButton = async (e) => {
         e.preventDefault();
-        dispatch(addItem(productId, selectedQuantity))
-      }
+        await dispatch(addItem(productId, selectedQuantity));
+        history.push('/cart');
+      };
 
     return (
         <div className="product-page">

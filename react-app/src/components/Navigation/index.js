@@ -14,6 +14,11 @@ function Navigation({ isLoaded }){
 		history.push('/login');
 	};
 
+	const handleClick = (e) => {
+		e.preventDefault();
+		history.push('/cart');
+	};
+
 	return (
 		<div>
 			<div className='nav-bar'>
@@ -55,7 +60,7 @@ function Navigation({ isLoaded }){
 						<ProfileButton user={sessionUser} />
 					)}
 				</div>
-				<div className='section section6'>
+				<div className='section section6' onClick={handleClick}>
 					<img className='cart-icon' alt='' src='https://caitlyn.s3.us-west-2.amazonaws.com/cart-icon.jpg'></img>
 					<span>Cart</span>
 				</div>

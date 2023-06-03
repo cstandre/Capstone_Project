@@ -23,8 +23,8 @@ const ProductPicture = () => {
         }
 
         formData.append("image_preview", prevImg);
-        console.log(prevImg)
-        console.log(formData, "after first append")
+        // console.log(prevImg)
+        // console.log(formData, "after first append")
         optionalImgs.forEach((optionalImg, index) => {
             if (optionalImg) {
                 formData.append(`image_${index}`, optionalImg);
@@ -32,7 +32,7 @@ const ProductPicture = () => {
         });
 
         const productImages = await dispatch(addProductImg(productId, formData)).catch((res) => {
-            console.log(formData, 'in the dispatch for the thunk')
+            // console.log(formData, 'in the dispatch for the thunk')
             if (res.status === 400) {
                 const errorMsg = "File type is not supported.";
                 setErrors([errorMsg]);

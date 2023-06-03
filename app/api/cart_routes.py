@@ -1,4 +1,5 @@
 from flask import Blueprint, request
+import uuid
 from flask_login import current_user, login_required
 from app.models import db, Cart, CartItem, Product
 
@@ -10,21 +11,28 @@ cart_routes = Blueprint('cart', __name__)
 @login_required
 def users_cart():
     user_id = current_user.id
-    carts = Cart.query.filter_by(user_id = user_id)
+    cart = Cart.query.filter_by(user_id = user_id).first()
 
-    return {cart.id: cart.to_dict() for cart in carts}
+    if not cart:
+        return {'error': 'Cart not found'}
+
+    cart_items = CartItem.query.filter_by(cart_id = cart.id).all()
+
+    return {cart_item.id : cart_item.to_dict() for cart_item in cart_items}
 
 ## Add items to cart
 @cart_routes.route('/<int:productId>/<int:quantity>', methods=['POST'])
 @login_required
 def add_item(productId, quantity):
+    user_id = current_user.id
+    cart = Cart.query.filter_by(user_id = user_id).first()
     product = Product.query.get(productId)
 
     if not product:
         return {'error': 'Product not found'}
 
     added_product = CartItem(
-        cart_id = 1,
+        cart_id = cart.id,
         product_id = productId,
         quantity = quantity
     )

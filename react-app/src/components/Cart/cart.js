@@ -5,7 +5,10 @@ import { loadItems } from "../../store/cart";
 const Cart = () => {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state=>state?.session?.user);
-    const items = useSelector(state=>state?.items)
+    const cart = useSelector(state=>state?.cart);
+
+    const cartItems = Object?.values(cart)?.map(items => items)
+    console.log(cartItems)
 
     useEffect(() => {
         dispatch(loadItems())
@@ -14,7 +17,7 @@ const Cart = () => {
 
     return (
         <div>
-            {sessionUser && items ? (
+            {sessionUser && cartItems?.length > 0 ? (
                 <h1>display items</h1>
             ): (
                 <h1>Your Amazon Cart is empty</h1>

@@ -57,6 +57,7 @@
   color: #a8acb2
 }
 
-.section3:hover {
+.section3:hover,
+.section6:hover {
   cursor: pointer;
 }

@@ -32,7 +32,7 @@ const UserStorePage = () => {
     const handleProductDetail = (e) => {
         e.preventDefault();
         const productId = e.target.dataset.productId;
-        console.log(productId)
+        // console.log(productId)
         history.push(`/products/${productId}`);
     };
 

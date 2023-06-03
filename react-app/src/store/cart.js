@@ -16,6 +16,7 @@ export const loadItems = () => async (dispatch) => {
 
     if (res.ok) {
         const items = await res.json();
+        // console.log(items)
         dispatch(load(items));
         return items;
     };
@@ -39,7 +40,7 @@ const initialState = {};
 export default function cartReducer(state = initialState, action) {
     switch (action.type) {
         case CART_ITEMS:
-            return { ...state, ...action.products };
+            return { ...state, ...action.items };
         case CART_DETAILS:
             return { ...state, [action.item.id]: action.item };
         default:
