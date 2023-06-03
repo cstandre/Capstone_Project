@@ -5,10 +5,12 @@ import { loadItems } from "../../store/cart";
 const Cart = () => {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state=>state?.session?.user);
-    const cart = useSelector(state=>state?.cart);
+    const cartItems = useSelector(state=>state?.cartItems);
 
-    const cartItems = Object?.values(cart)?.map(items => items)
-    console.log(cartItems)
+    const products = Object?.values(cartItems)?.map(items => items?.product)
+    console.log(products, "1st console.log")
+    const product = products?.forEach(product => product?.product_name)
+    console.log(product, "2nd console.log")
 
     useEffect(() => {
         dispatch(loadItems())
@@ -17,8 +19,10 @@ const Cart = () => {
 
     return (
         <div>
-            {sessionUser && cartItems?.length > 0 ? (
-                <h1>display items</h1>
+            {sessionUser && products?.length > 0 ? (
+                <div>
+                    {/* {products.forEach(product => product.product_name)} */}
+                </div>
             ): (
                 <h1>Your Amazon Cart is empty</h1>
             )}

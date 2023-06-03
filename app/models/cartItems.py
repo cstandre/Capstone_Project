@@ -19,6 +19,6 @@ class CartItem(db.Model):
         return {
             'id': self.id,
             'cart_id': self.cart_id,
-            'product_id': self.product_id,
+            'product': self.products.to_dict_detail() if self.products else [],
             'quantity': self.quantity
         }
