@@ -25,21 +25,28 @@ def users_cart():
 @login_required
 def add_item(productId, quantity):
     user_id = current_user.id
-    cart = Cart.query.filter_by(user_id = user_id).first()
+    cart = Cart.query.filter_by(user_id=user_id).first()
     product = Product.query.get(productId)
 
     if not product:
         return {'error': 'Product not found'}
 
-    added_product = CartItem(
-        cart_id = cart.id,
-        product_id = productId,
-        quantity = quantity
-    )
+    cart_item = CartItem.query.filter_by(cart_id=cart.id, product_id=productId).first()
 
-    db.session.add(added_product)
+    if cart_item:
+        cart_item.quantity += quantity
+    else:
+        cart_item = CartItem(
+            cart_id=cart.id,
+            product_id=productId,
+            quantity=quantity
+        )
+
+        db.session.add(cart_item)
+
     db.session.commit()
-    return added_product.to_dict()
+
+    return cart_item.to_dict()
 
 ## Update items in cart
 @cart_routes.route('/<int:itemId>/<int:quantity>', methods=['PUT'])
@@ -59,8 +66,22 @@ def cart_quantity(itemId, quantity):
 @cart_routes.route('/<int:itemId>', methods=['DELETE'])
 @login_required
 def delete_item(itemId):
-    item = CartItem.query.get_or_404(itemId)
+    item = CartItem.query.get(itemId)
+
+    if not item:
+        return {'error': 'Item not found'}
+
+    product_details = item.products.to_dict_detail() if item.products else None
+
+    deleted_item = {
+        'id': item.id,
+        'cart_id': item.cart_id,
+        'product': product_details,
+        'quantity': item.quantity
+    }
+
     db.session.delete(item)
     db.session.commit()
 
-    return {'message': "Successful delete"}
+    return deleted_item
+

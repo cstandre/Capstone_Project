@@ -1,5 +1,6 @@
 const CART_ITEMS = 'cart/CART_ITEMS';
-const CART_DETAILS = 'cart/CART_DETAILS';
+const ITEM_DETAILS = 'cart/ITEM_DETAILS';
+const ITEM_REMOVE = 'cart/ITEM_REMOVE';
 
 const load = (items) => ({
     type: CART_ITEMS,
@@ -7,9 +8,14 @@ const load = (items) => ({
 });
 
 const details = (item) => ({
-    type: CART_DETAILS,
+    type: ITEM_DETAILS,
     item
 });
+
+const remove = (item) => ({
+    type: ITEM_REMOVE,
+    item
+})
 
 export const loadItems = () => async (dispatch) => {
     const res = await fetch('/api/cart');
@@ -23,7 +29,7 @@ export const loadItems = () => async (dispatch) => {
 };
 
 export const addItem = (productId, quantity) => async (dispatch) => {
-    const res = await fetch (`/api/cart/${productId}/${quantity}`, {
+    const res = await fetch(`/api/cart/${productId}/${quantity}`, {
         method: "POST",
         headers: { 'Content-Type': 'application/json' }
     });
@@ -35,14 +41,30 @@ export const addItem = (productId, quantity) => async (dispatch) => {
     };
 };
 
+export const deleteItem = (itemId) => async (dispatch) => {
+    const res = await fetch(`/api/cart/${itemId}`, {
+        method: "DELETE"
+    });
+
+    if (res.ok) {
+        const deletedItem = await res.json();
+        dispatch(remove(deleteItem));
+        return deletedItem;
+    };
+};
+
 const initialState = {};
 
 export default function cartReducer(state = initialState, action) {
     switch (action.type) {
         case CART_ITEMS:
             return { ...state, ...action.items };
-        case CART_DETAILS:
+        case ITEM_DETAILS:
             return { ...state, [action.item.id]: action.item };
+        case ITEM_REMOVE:
+            const newState = { ...state };
+            delete newState[action.item.id];
+            return newState
         default:
             return state;
     };
