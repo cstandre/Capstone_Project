@@ -56,10 +56,17 @@ function Navigation({ isLoaded }){
 						<ProfileButton user={sessionUser} />
 					)}
 				</div>
-				<div className='section section5' onClick={handleCartClick}>
-					<img className='cart-icon' alt='' src='https://caitlyn.s3.us-west-2.amazonaws.com/cart-icon.jpg'></img>
-					<div className='cart'>Cart</div>
-				</div>
+				{sessionUser ? (
+					<div className='section section5' onClick={handleCartClick}>
+						<img className='cart-icon' alt='' src='https://caitlyn.s3.us-west-2.amazonaws.com/cart-icon.jpg'></img>
+						<div className='cart'>Cart</div>
+					</div>
+				): (
+					<div className='section section5' onClick={signIn}>
+						<img className='cart-icon' alt='' src='https://caitlyn.s3.us-west-2.amazonaws.com/cart-icon.jpg'></img>
+						<div className='cart'>Cart</div>
+					</div>
+				)}
 			</div>
 			<div className='category-bar'>
 			</div>

@@ -12,14 +12,13 @@ const ProductDetailsPage = () => {
     const product = useSelector(state=>state?.products);
     const [ mainImg, setMainImg ] = useState(null);
 
-
     useEffect(() => {
-        dispatch(productDetails(productId));
-      }, [dispatch, productId]);
+      dispatch(productDetails(productId));
+    }, [dispatch, productId]);
 
       useEffect(() => {
         if (product) {
-          setMainImg(product.preview_image);
+          setMainImg(product?.preview_image);
         }
       }, [product]);
 
@@ -28,7 +27,7 @@ const ProductDetailsPage = () => {
         {product ? (
             <>
             <div className="side-img-container">
-              {product.product_images?.map((img, idx)=>
+              {product?.product_images?.map((img, idx)=>
                 <img key={idx} className="small-img" src={img.url}></img>
               )}
               </div>
@@ -36,9 +35,9 @@ const ProductDetailsPage = () => {
               <img className="main-img" alt="" src={mainImg}></img>
             </div>
             <div className="product-info-container">
-              <h2>{product.product_name}</h2>
-              {product.brand}
-              <p>{product.description}</p>
+              <h2>{product?.product_name}</h2>
+              {product?.brand}
+              <p>{product?.description}</p>
             </div>
             <div className="cart-container">
               <button>Add to cart</button>

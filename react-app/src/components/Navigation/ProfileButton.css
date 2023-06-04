@@ -19,6 +19,7 @@
 .profile-dropdown {
     display: grid;
     border-radius: 5px;
+    border: 1px solid #efefef;
     justify-items: start;
     background-color: #ffffff;
     color: black;

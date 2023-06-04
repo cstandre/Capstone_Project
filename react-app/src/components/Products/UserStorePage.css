@@ -1,8 +1,37 @@
-.user-store-img {
+.store-container {
     display: grid;
-    justify-self: center;
+    justify-content: center;
     max-width: 70%;
-    height: auto;
+    margin: 0 auto;
+  }
+
+.header-container {
+    display: flex;
+}
+
+.store-header {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 27px;
+}
+
+.sell-more-container {
+    align-self: center;
+    padding: 10px;
+}
+
+.sell-more-btn {
+    border-right: 0;
+    border-bottom: 0;
+    border-top: 0;
+    font-size: 15px;
+    background-color: white;
+}
+
+.sell-more-btn:hover,
+.product-name:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    color: blue;
 }
 
 .img-container {
@@ -13,5 +42,29 @@
     border-radius: 2px;
     width: 200px;
     height: 300px;
-    margin: 10px;
+}
+
+.user-store-img {
+    display: grid;
+    justify-self: center;
+    max-width: 70%;
+    height: auto;
+}
+
+.product-details {
+    display: grid;
+    margin-top: 10px;
+    width: 200px;
+    height: 100px;
+}
+
+.update-btn {
+    border: 0;
+    background-color: white;
+}
+
+.update-btn:hover,
+.fa-trash-can:hover,
+.img-container:hover {
+    cursor: pointer;
 }

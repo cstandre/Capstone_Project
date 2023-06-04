@@ -42,11 +42,11 @@ function App() {
           <Route exact path="/products/user-store">
             <UserStorePage />
           </Route>
-          <Route path="/products/:productId/edit">
-            <EditProduct />
-          </Route>
           <Route exact path="/products/:productId">
             <ProductDetailsPage />
+          </Route>
+          <Route path="/products/:productId/edit">
+            <EditProduct />
           </Route>
           <Route path="/products/:productId/images">
             <ProductPicture />

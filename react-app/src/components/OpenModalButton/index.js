@@ -15,6 +15,10 @@ function OpenModalButton({
     if (onButtonClick) onButtonClick();
   };
 
+
+  if (buttonText === 'Delete') {
+    return (<i className="fa-regular fa-trash-can"></i>)
+  }
   return (
     <button onClick={onClick}>{buttonText}</button>
   );

@@ -53,7 +53,7 @@ def product_id(id):
     Query for one product by the id and return product detials.
     """
     product = Product.query.get(id)
-    if not products:
+    if not product:
         return {'error': 'No products could be found'}
     return product.to_dict_detail()
 

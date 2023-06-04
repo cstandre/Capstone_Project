@@ -22,6 +22,7 @@
 
 .profile-dropdown {
   position: absolute;
+  z-index: 1000;
 }
 
 .section2 {
@@ -31,10 +32,6 @@
 .section5 {
   display: flex;
   align-items: center;
-}
-
-.section5:hover {
-  cursor: pointer;
 }
 
 .hidden {
@@ -69,10 +66,9 @@
   color: #a8acb2
 }
 
-.section3:hover {
+.section3:hover,
+.section5:hover,
+.section2:hover {
   cursor: pointer;
 }
 
-.search_icon {
-  background-color: yellow;
-}
