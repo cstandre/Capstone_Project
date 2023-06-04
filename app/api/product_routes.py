@@ -25,16 +25,24 @@ def all_products():
     Query for all products and returns them in a list of user dictionaries.
     """
     products = Product.query.all()
+
+    if not products:
+        return {'error': 'No products could be found'}
+
     return {product.id: product.to_dict() for product in products}
 
 ## Get products that the current user owns.
 @product_routes.route('/current')
+@login_required
 def user_products():
     """
     Query for all products and return only the products that are owned by the current user.
     """
     user_id = current_user.id
     products = Product.query.filter_by(owner_id = user_id)
+    if not products:
+        return {'error': 'No products could be found'}
+
     return {product.id: product.to_dict() for product in products}
 
 
@@ -45,6 +53,8 @@ def product_id(id):
     Query for one product by the id and return product detials.
     """
     product = Product.query.get(id)
+    if not products:
+        return {'error': 'No products could be found'}
     return product.to_dict_detail()
 
 ## Create a product
@@ -72,6 +82,7 @@ def create_product():
         db.session.add(new_product)
         db.session.commit()
         return new_product.to_dict_detail()
+
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 ## Update a product
@@ -97,6 +108,9 @@ def edit_product(id):
         db.session.commit()
         return product.to_dict_detail()
 
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
 ## Delete a product
 @product_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
@@ -117,6 +131,10 @@ def get_images():
     Query all the preview images for products to display on the main page.
     """
     images = ProductImage.query.filter_by(preview = True).all()
+
+    if not images:
+        return {'error': 'No images were found'}
+
     return {image.id: image.to_dict() for image in images}
 
 ## Add image to product by product Id
@@ -152,10 +170,7 @@ def add_img(id):
         db.session.commit()
         return new_image.to_dict()
 
-    if form.errors:
-        return { 'errors': form.errors }
-
-    return { 'message': "Invalid request" }
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 ## Update the images of a product
 

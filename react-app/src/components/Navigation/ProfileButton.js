@@ -69,7 +69,7 @@ function ProfileButton({ user }) {
       <div className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <div>{user.first_name}</div>
+            <h1 className="drop-down-header">Your Account</h1>
             <button className='store-button' onClick={handleStore}>Your Store</button>
             <button className='logout-button' onClick={handleLogout}>Log Out</button>
           </>

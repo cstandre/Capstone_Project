@@ -15,7 +15,7 @@
     display: grid;
     position: relative;
     justify-content: center;
-    bottom: 83%;
+    bottom: 60%;
     width: 1400px;
     height: 420px;
     grid-template-areas: "container-1 container-2 container-3 container-4"
