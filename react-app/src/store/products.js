@@ -117,7 +117,7 @@ export const addProductImg = (productId, formData) => async (dispatch) => {
         headers: { 'Content-Type': 'application/json' },
         body: formData,
     });
-    console.log(formData, "form data in the thunk")
+    // console.log(formData, "form data in the thunk")
 
     if (res.ok) {
         const new_image = await res.json();

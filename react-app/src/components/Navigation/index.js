@@ -20,7 +20,7 @@ function Navigation({ isLoaded }){
 		history.push('/login');
 	};
 
-	const handleCartClick = (e) => {
+	const handleClick = (e) => {
 		e.preventDefault();
 		history.push('/cart');
 	};
@@ -62,17 +62,10 @@ function Navigation({ isLoaded }){
 						<ProfileButton user={sessionUser} />
 					)}
 				</div>
-				{sessionUser ? (
-					<div className='section section5' onClick={handleCartClick}>
-						<img className='cart-icon' alt='' src='https://caitlyn.s3.us-west-2.amazonaws.com/cart-icon.jpg'></img>
-						<div className='cart'>Cart</div>
-					</div>
-				): (
-					<div className='section section5' onClick={signIn}>
-						<img className='cart-icon' alt='' src='https://caitlyn.s3.us-west-2.amazonaws.com/cart-icon.jpg'></img>
-						<div className='cart'>Cart</div>
-					</div>
-				)}
+				<div className='section section6' onClick={handleClick}>
+					<img className='cart-icon' alt='' src='https://caitlyn.s3.us-west-2.amazonaws.com/cart-icon.jpg'></img>
+					<span>Cart</span>
+				</div>
 			</div>
 			<div className='category-bar'>
 			</div>
