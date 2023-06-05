@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
-// import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
+
 import './Navigation.css';
 
 function Navigation({ isLoaded }){
-	const sessionUser = useSelector(state => state.session.user);
+	const sessionUser = useSelector(state => state?.session?.user);
+	const cartItems = useSelector(state=>state?.cartItems)
 	const history = useHistory();
+	const [cartQuantity, setCartQuantity] = useState(0);
+
+	useEffect(() => {
+
+	})
 
 	const signIn = (e) => {
 		e.preventDefault();
@@ -45,7 +51,7 @@ function Navigation({ isLoaded }){
 				)}
 				<div className='section secion3'>
 					<span>
-						<input type='search' placeholder='Search Amazon'></input>
+						<input className='search' type='search' placeholder='Search Amazon'></input>
 					</span>
 					<img className='search-icon' alt='' scr='https://caitlyn.s3.us-west-2.amazonaws.com/seach_icon.png'></img>
 				</div>

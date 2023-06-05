@@ -26,7 +26,8 @@
 }
 
 .section2 {
-  display: flex
+  display: flex;
+  padding-right: 5px;
 }
 
 .section5 {
@@ -42,8 +43,10 @@
   height: 45px;
 }
 
-.nav-logo:hover {
-  box-sizing: border-box;
+.section1:hover,
+.section2:hover,
+.section4:hover,
+.section5:hover {
   border: 1px solid white;
 }
 
@@ -71,4 +74,3 @@
 .section2:hover {
   cursor: pointer;
 }
-

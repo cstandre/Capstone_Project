@@ -7,6 +7,14 @@
 
 .header-container {
     display: flex;
+    align-items: center;
+}
+
+.product-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 90px;
 }
 
 .store-header {
@@ -32,6 +40,10 @@
     cursor: pointer;
     text-decoration: underline;
     color: blue;
+}
+
+.product-name {
+    height: 100%;
 }
 
 .img-container {

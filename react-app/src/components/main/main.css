@@ -5,6 +5,10 @@
     height: 100vh
 }
 
+.img-ad-container {
+    height: 70%;
+}
+
 .slider {
     display: grid;
     justify-content: center;
@@ -15,17 +19,34 @@
     display: grid;
     position: relative;
     justify-content: center;
-    bottom: 60%;
-    width: 1400px;
-    height: 420px;
+    height: auto;
+    bottom: 25%;
     grid-template-areas: "container-1 container-2 container-3 container-4"
                          "container-1 container-2 container-3 container-5";
     gap: 15px;
+    margin-bottom: 50px;
 }
 
 .ad-box {
     background-color: white;
-    width: 305px;
+}
+
+@media (max-width: 1366px) {
+    .ad-box {
+      width: 200px;
+    }
+}
+
+@media (max-width: 992px) {
+    .ad-box {
+      width: 150px;
+    }
+}
+
+@media (min-width: 1367px) {
+    .ad-box {
+      width: 300px;
+    }
 }
 
 .container-1 { grid-area: container-1; }
