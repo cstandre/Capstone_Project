@@ -6,7 +6,7 @@
 }
 
 .img-ad-container {
-    height: 70%;
+    height: 200px;
 }
 
 .slider {
@@ -19,16 +19,25 @@
     display: grid;
     position: relative;
     justify-content: center;
-    height: auto;
-    bottom: 25%;
-    grid-template-areas: "container-1 container-2 container-3 container-4"
-                         "container-1 container-2 container-3 container-5";
+    height: 500px;
+    bottom: 90%;
+    grid-template-areas:
+        "container-0 container-1 container-2 container-3"
+        "container-0 container-1 container-2 container-4";
     gap: 15px;
     margin-bottom: 50px;
 }
 
 .ad-box {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    border: 1px solid #e7e7e7;
+    border-radius: 2px;
+    width: 200px;
+    height: 200px;
     background-color: white;
+
 }
 
 @media (max-width: 1366px) {
@@ -49,8 +58,16 @@
     }
 }
 
+.ad-box-img {
+    display: grid;
+    justify-self: center;
+    max-width: 100px;
+    max-height: 100px;
+    height: auto;
+}
+
+.container-0 { grid-area: container-0; }
 .container-1 { grid-area: container-1; }
 .container-2 { grid-area: container-2; }
 .container-3 { grid-area: container-3; }
 .container-4 { grid-area: container-4; }
-.container-5 { grid-area: container-5; }

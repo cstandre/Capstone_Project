@@ -1,12 +1,23 @@
 import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import SimpleImageSlider from "react-simple-image-slider";
+import { loadProducts } from "../../store/products";
+import { addItem } from "../../store/cart";
 
 import "./main.css"
 
 
 const MainPage = () => {
+  const products = useSelector(state=>state?.products);
+  const dispatch = useDispatch();
   const [sliderWidth, setSliderWidth] = useState(0);
   const [sliderHeight, setSliderHeight] = useState(0);
+
+  const adsArr = Object.values(products)?.slice(0,5)
+
+  useEffect(() => {
+    dispatch(loadProducts())
+  }, [dispatch])
 
   useEffect(() => {
     const calculateSliderSize = () => {
@@ -38,6 +49,10 @@ const MainPage = () => {
     }
   ];
 
+  const handleCartButton = (id) => {
+    dispatch(addItem(id, 1));
+  };
+
   return (
     <div className="body">
       <div className="img-ad-container">
@@ -50,21 +65,23 @@ const MainPage = () => {
           />
         </div>
         <div className="ad-container">
-          <div className="ad-box container-1">
-              <h1>container 1</h1>
-          </div>
-          <div className="ad-box container-2">
-            <h1>container 2</h1>
-          </div>
-          <div className="ad-box container-3">
-            <h1>container 3</h1>
-          </div>
-          <div className="ad-box container-4">
-            <h1>container 4</h1>
-          </div>
-          <div className="ad-box container-5">
-            <h1>container 5</h1>
-          </div>
+          {adsArr?.map((ad, idx) =>
+            <div className={`ad-box container-${idx}`} key={idx} >
+              <img className="ad-box-img" alt="" src={ad.preview_image}></img>
+              <p>{ad.product_name}</p>
+              {ad?.stock_quantity > 0 ? (
+                <p>In Stock</p>
+              ): (
+                <p>Out of Stock</p>
+              )}
+              <button value={ad?.id} onClick={() => handleCartButton(ad?.id)}>Add to cart</button>
+              {ad?.reviews?.length == 0 ? (
+                <div>Be the first to review!</div>
+                ): (
+                  <div>Review Count: {ad?.reviews?.length}</div>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>

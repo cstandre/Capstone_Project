@@ -55,7 +55,11 @@ const UserStorePage = () => {
                                 />
                             </div>
                             <div className="product-name">{product?.product_name}</div>
-                            <div>Review Count: {product?.reviews?.length}</div>
+                            {product?.reviews?.length == 0 ? (
+                                <div>Review Count: {product?.reviews?.length}</div>
+                            ): (
+                                <div>Review Count: {product?.reviews?.length}</div>
+                            )}
                         </div>
                     </div>
                 )): (

@@ -1,19 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
 import ProfileButton from './ProfileButton';
+import { loadItems } from '../../store/cart';
 
 import './Navigation.css';
 
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state?.session?.user);
-	const cartItems = useSelector(state=>state?.cartItems)
+	const cartItems = useSelector(state=>state?.cartItems);
 	const history = useHistory();
-	const [cartQuantity, setCartQuantity] = useState(0);
+	const dispatch = useDispatch();
+
+	const quantityArr = Object.values(cartItems).map(item => item.quantity)
+	const quantityNum = quantityArr.reduce((acc, num) => acc + num, 0)
 
 	useEffect(() => {
-
-	})
+		dispatch(loadItems())
+	}, [dispatch])
 
 	const signIn = (e) => {
 		e.preventDefault();
@@ -50,10 +54,13 @@ function Navigation({ isLoaded }){
 					</span>
 				)}
 				<div className='section secion3'>
-					<span>
+					<span className='search-container'>
+						<button>All</button>
+						<span>
 						<input className='search' type='search' placeholder='Search Amazon'></input>
+						</span>
+						<span className='magnifying-container'><i className="fa-solid fa-magnifying-glass"></i></span>
 					</span>
-					<img className='search-icon' alt='' scr='https://caitlyn.s3.us-west-2.amazonaws.com/seach_icon.png'></img>
 				</div>
 				<div className='section section4'>
 					<div>Hello, {sessionUser?.first_name}</div>
@@ -62,8 +69,9 @@ function Navigation({ isLoaded }){
 						<ProfileButton user={sessionUser} />
 					)}
 				</div>
-				<div className='section section6' onClick={handleClick}>
+				<div className='section section5' onClick={handleClick}>
 					<img className='cart-icon' alt='' src='https://caitlyn.s3.us-west-2.amazonaws.com/cart-icon.jpg'></img>
+					<div className='cart-num'>{quantityNum}</div>
 					<span>Cart</span>
 				</div>
 			</div>
