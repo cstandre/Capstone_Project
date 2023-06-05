@@ -19,7 +19,7 @@
     display: grid;
     position: relative;
     justify-content: center;
-    height: 500px;
+    height: 200px;
     bottom: 90%;
     grid-template-areas:
         "container-0 container-1 container-2 container-3"
@@ -31,11 +31,9 @@
 .ad-box {
     display: grid;
     justify-content: center;
-    align-content: center;
+    align-content: start;
     border: 1px solid #e7e7e7;
     border-radius: 2px;
-    width: 200px;
-    height: 200px;
     background-color: white;
 
 }
@@ -58,12 +56,25 @@
     }
 }
 
-.ad-box-img {
-    display: grid;
-    justify-self: center;
-    max-width: 100px;
+.ad-box-img-0,
+.ad-box-img-1,
+.ad-box-img-2 {
+    display: block;
+    max-width: 100%;
+    min-width: 100%;
+    max-height: 200px;
+    width: auto;
+    object-fit: contain;
+}
+
+.ad-box-img-3,
+.ad-box-img-4 {
+    display: block;
+    max-width: 100%;
+    min-width: 100%;
     max-height: 100px;
-    height: auto;
+    width: auto;
+    object-fit: contain;
 }
 
 .container-0 { grid-area: container-0; }
@@ -71,3 +82,11 @@
 .container-2 { grid-area: container-2; }
 .container-3 { grid-area: container-3; }
 .container-4 { grid-area: container-4; }
+
+.product-name {
+    margin: 0;
+}
+
+.stock {
+    margin: 0;
+}

@@ -9,6 +9,7 @@ import "./main.css"
 
 const MainPage = () => {
   const products = useSelector(state=>state?.products);
+  const sessionUser = useSelector(state=>state?.session.user);
   const dispatch = useDispatch();
   const [sliderWidth, setSliderWidth] = useState(0);
   const [sliderHeight, setSliderHeight] = useState(0);
@@ -53,6 +54,11 @@ const MainPage = () => {
     dispatch(addItem(id, 1));
   };
 
+  const throwError = (e) => {
+    e.preventDefault();
+    alert('Login to add item to your cart!')
+  }
+
   return (
     <div className="body">
       <div className="img-ad-container">
@@ -67,19 +73,25 @@ const MainPage = () => {
         <div className="ad-container">
           {adsArr?.map((ad, idx) =>
             <div className={`ad-box container-${idx}`} key={idx} >
-              <img className="ad-box-img" alt="" src={ad.preview_image}></img>
-              <p>{ad.product_name}</p>
-              {ad?.stock_quantity > 0 ? (
-                <p>In Stock</p>
-              ): (
-                <p>Out of Stock</p>
-              )}
-              <button value={ad?.id} onClick={() => handleCartButton(ad?.id)}>Add to cart</button>
-              {ad?.reviews?.length == 0 ? (
-                <div>Be the first to review!</div>
+              <img className={`ad-box-img-${idx}`} alt="" src={ad.preview_image}></img>
+              <div className="product-details">
+                <p className="product-name">{ad.product_name}</p>
+                {ad?.stock_quantity > 0 ? (
+                  <p className="stock">In Stock</p>
                 ): (
-                  <div>Review Count: {ad?.reviews?.length}</div>
-              )}
+                  <p className="stock">Out of Stock</p>
+                )}
+                {sessionUser ? (
+                  <button value={ad?.id} onClick={() => handleCartButton(ad?.id)}>Add to cart</button>
+                ): (
+                  <button value={ad?.id} onClick={throwError}>Add to cart</button>
+                )}
+                {/* {ad?.reviews?.length == 0 ? (
+                  <div>Be the first to review!</div>
+                  ): (
+                    <div>Review Count: {ad?.reviews?.length}</div>
+                )} */}
+              </div>
             </div>
           )}
         </div>
