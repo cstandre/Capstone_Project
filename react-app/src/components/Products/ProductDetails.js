@@ -55,7 +55,7 @@ const ProductDetailsPage = () => {
             </div>
             <div className="cart-container">
               ${product?.price}
-              Deliver to {sessionUser.first_name} - {sessionUser.city} {sessionUser.zip}
+              Deliver to {sessionUser?.first_name && sessionUser.first_name.charAt(0).toUpperCase() + sessionUser.first_name.slice(1)} - {sessionUser.city} {sessionUser.zip}
               {product?.stock_quantity > 0 ? (
                 <p>In Stock</p>
               ): (

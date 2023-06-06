@@ -28,20 +28,21 @@ function SignupFormPage() {
     e.preventDefault();
 
     if (password === confirmPassword) {
-        const data = await dispatch(signUp(
-      firstName,
-      lastName,
-      email,
-      username,
-      streetAddress,
-      city,
-      state,
-      zip,
-      password
+      const data = await dispatch(signUp(
+        firstName,
+        lastName,
+        email,
+        username,
+        streetAddress,
+        city,
+        state,
+        zip,
+        password
       ));
-        if (data) {
-          setErrors(data)
-        }
+      
+      if (data) {
+        setErrors(data)
+      }
     } else {
         setErrors(['Confirm Password field must be the same as the Password field']);
     }

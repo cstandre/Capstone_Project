@@ -76,7 +76,7 @@ function LoginFormPage() {
         </div>
           <ul>
             {errors.map((error, idx) => (
-              <li key={idx}>{error}</li>
+              <div key={idx}>{error}</div>
             ))}
           </ul>
           <button type="submit" className="continue-botton">Continue</button>

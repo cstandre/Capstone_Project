@@ -60,7 +60,7 @@ def cart_quantity(itemId, quantity):
     item.quantity = quantity
 
     db.session.commit()
-    return item.to_dict()
+    return users_cart()
 
 ## Delte items from cart
 @cart_routes.route('/<int:itemId>', methods=['DELETE'])
@@ -84,4 +84,3 @@ def delete_item(itemId):
     db.session.commit()
 
     return deleted_item
-

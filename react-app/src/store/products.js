@@ -72,7 +72,14 @@ export const createProductFetch = (product) => async (dispatch) => {
         const newProduct = await res.json();
         dispatch(details(newProduct));
         return newProduct;
-    }
+    } else if (res.status < 500) {
+        const product = await res.json();
+        if (product.errors) {
+            return product.errors;
+        }
+    } else {
+        return ['An error occurred. Please try again']
+    };
 };
 
 export const editProduct = (product) => async (dispatch) => {

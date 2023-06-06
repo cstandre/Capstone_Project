@@ -36,7 +36,7 @@ const UserStorePage = () => {
     return (
         <div className="store-container">
             <div className="header-container">
-                <div><p className="store-header">{sessionUser?.first_name}'s Store</p></div>
+                <div><p className="store-header">{sessionUser?.first_name && sessionUser.first_name.charAt(0).toUpperCase() + sessionUser.first_name.slice(1)}'s Store</p></div>
                 <div className="sell-more-container"><button className="sell-more-btn" onClick={addProduct}>Sell More</button></div>
             </div>
             <div className="product-container">

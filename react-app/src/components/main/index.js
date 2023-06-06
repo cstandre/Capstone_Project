@@ -14,11 +14,11 @@ const MainPage = () => {
   const [sliderWidth, setSliderWidth] = useState(0);
   const [sliderHeight, setSliderHeight] = useState(0);
 
-  const adsArr = Object.values(products)?.slice(0,5)
+  const adsArr = Object.values(products)?.slice(0,5);
 
   useEffect(() => {
-    dispatch(loadProducts())
-  }, [dispatch])
+    dispatch(loadProducts());
+  }, [dispatch]);
 
   useEffect(() => {
     const calculateSliderSize = () => {

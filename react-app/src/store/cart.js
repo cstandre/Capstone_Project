@@ -1,6 +1,7 @@
 const CART_ITEMS = 'cart/CART_ITEMS';
 const ITEM_DETAILS = 'cart/ITEM_DETAILS';
 const ITEM_REMOVE = 'cart/ITEM_REMOVE';
+const CART_RESET = 'cart/CART_RESET';
 
 const load = (items) => ({
     type: CART_ITEMS,
@@ -15,7 +16,11 @@ const details = (item) => ({
 const remove = (item) => ({
     type: ITEM_REMOVE,
     item
-})
+});
+
+export const resetCart = () => ({
+    type: CART_RESET,
+});
 
 export const loadItems = () => async (dispatch) => {
     const res = await fetch('/api/cart');
@@ -41,7 +46,22 @@ export const addItem = (productId, quantity) => async (dispatch) => {
     };
 };
 
+export const updateCartItem = (itemId,  quantity) => async (dispatch) => {
+    const res = await fetch(`/api/cart/${itemId}/${quantity}`, {
+        method: "PUT",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ quantity })
+    });
+
+    if (res.ok) {
+        const updatedItem = await res.json();
+        dispatch(load(updatedItem));
+        return updatedItem;
+    };
+}
+
 export const deleteItem = (itemId) => async (dispatch) => {
+    console.log(itemId, 'in deleted Item thunk')
     const res = await fetch(`/api/cart/${itemId}`, {
         method: "DELETE"
     });
@@ -65,6 +85,8 @@ export default function cartReducer(state = initialState, action) {
             const newState = { ...state };
             delete newState[action.item.id];
             return newState
+        case CART_RESET:
+            return initialState
         default:
             return state;
     };

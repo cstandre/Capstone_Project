@@ -20,8 +20,6 @@ const CreateProduct = () => {
 
     const handleProductSubmit = async (e) => {
         e.preventDefault();
-        setErrors([]);
-
 
         const newProduct = {
             product_name,
@@ -31,18 +29,12 @@ const CreateProduct = () => {
             description,
         };
 
-
         const product = await dispatch(createProductFetch(newProduct))
-        .catch(async (res) => {
-            if (res.status === 400) {
-                const errorMsg = "One or more required fields are missing.";
-                setErrors([errorMsg])
-            }
-        })
-        if (product) {
-            history.push(`/products/${product.id}/images`)
+        if (Array.isArray(product) && product.length > 0) {
+            setErrors(product);
+        } else {
+            history.push(`/products/${product.id}`)
         }
-
     };
 
     const homeClick = (e) => {
@@ -60,7 +52,7 @@ const CreateProduct = () => {
                     <img className="logo" alt="" onClick={homeClick} src="https://res.cloudinary.com/djclmc80y/image/upload/v1684814624/amazon_logo_weywcm.png" />
                 </div>
                 <div className="form-content">
-                    <p className="header">Create your product</p>
+                    <p className="header">Product Details</p>
                     <div className="input-fields">
                         <label>
                             <h3>Product Name</h3>
@@ -69,6 +61,7 @@ const CreateProduct = () => {
                                 onChange={(e) => setProductName(e.target.value)}
                                 className="input"
                                 value={product_name}
+                                required
                             />
                         </label>
                         <label>
@@ -87,15 +80,17 @@ const CreateProduct = () => {
                                 value={brand}
                                 onChange={(e) => setBrand(e.target.value)}
                                 className="input"
+                                required
                             />
                         </label>
                         <label>
-                            <h3>price</h3>
+                            <h3>Price</h3>
                             <input
                                 type="number"
                                 value={price}
                                 onChange={(e) => setPrice(e.target.value)}
                                 className="input"
+                                required
                             />
                         </label>
                         <label>
@@ -105,10 +100,15 @@ const CreateProduct = () => {
                                 value={stock_quantity}
                                 onChange={(e) => setStockQuantity(e.target.value)}
                                 className="input"
+                                required
                             />
                         </label>
                     </div>
-                    <ul>{errors?.map((error, idx) => <li key={idx}>{error}</li>)}</ul>
+                    <ul>
+                    {errors?.map((error, idx) => (
+                        <div key={idx}>{error}</div>
+                    ))}
+                    </ul>
                     <div className="creates">
                         <button className="create-button" type="submit">Next</button>
                     </div>
