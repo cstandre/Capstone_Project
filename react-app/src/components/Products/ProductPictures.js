@@ -1,79 +1,37 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useParams, useHistory } from "react-router-dom";
-import { addProductImg } from "../../store/products";
-
 const ProductPicture = () => {
-    const dispatch = useDispatch();
-    const history = useHistory();
-    const { productId } = useParams();
-    const [prevImg, setPrevImg] = useState(null);
-    const [optionalImgs, setOptionalImgs] = useState(Array(4).fill(null));
-    const [errors, setErrors] = useState([]);
+    const [previewImage, setPreviewImage] = useState('');
+    const [image1, setImage1] = useState('');
+    const [image2, setImage2] = useState('');
+    const [image3, setImage3] = useState('');
+    const [image4, setImage4] = useState('');
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        setErrors([]);
-
-        const formData = new FormData();
-
-        if (!prevImg) {
-            setErrors(["A preview image is required"]);
-            return;
-        }
-
-        formData.append("image_preview", prevImg);
-        // console.log(prevImg)
-        // console.log(formData, "after first append")
-        optionalImgs.forEach((optionalImg, index) => {
-            if (optionalImg) {
-                formData.append(`image_${index}`, optionalImg);
-            }
-        });
-
-        const productImages = await dispatch(addProductImg(productId, formData)).catch((res) => {
-            // console.log(formData, 'in the dispatch for the thunk')
-            if (res.status === 400) {
-                const errorMsg = "File type is not supported.";
-                setErrors([errorMsg]);
-            }
-        });
-
-        if (productImages) {
-            history.push(`/products/${productId}`);
-        }
     };
 
-    const handleImageChange = (index, e) => {
-        const newOptionalImgs = [...optionalImgs];
-        newOptionalImgs[index] = e.target.files[0];
-        setOptionalImgs(newOptionalImgs);
+    const homeClick = (e) => {
+        e.preventDefault()
+        history.push('/')
     };
 
     return (
-        <form onSubmit={handleSubmit} encType="multipart/form-data">
-            <div>
-                <label>Preview Image *</label>
+        <form
+            onSubmit={handleSubmit}
+            encType="multipart/form-data"
+            className="form"
+        >
+            <div className="logo-img">
+                <img className="logo" alt="" onClick={homeClick} src="https://res.cloudinary.com/djclmc80y/image/upload/v1684814624/amazon_logo_weywcm.png" />
+            </div>
+            <label>
+                <h3>Main Display Picture</h3>
                 <input
                     type="file"
-                    accept="image/*"
-                    onChange={(e) => setPrevImg(e.target.files[0])}
+                    accept="images"
                 />
-            </div>
-            {[...Array(4)].map((_, index) => (
-                <div key={index}>
-                    <label>Optional Image {index + 1}</label>
-                    <input
-                        type="file"
-                        accept="image/*"
-                        onChange={(e) => handleImageChange(index, e)}
-                    />
-                </div>
-            ))}
-            <button type="submit">Create Product</button>
-            {errors.length > 0 && <div>{errors.join(", ")}</div>}
+            </label>
         </form>
-    );
+    )
 };
 
 export default ProductPicture;

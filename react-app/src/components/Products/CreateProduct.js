@@ -33,7 +33,7 @@ const CreateProduct = () => {
         if (Array.isArray(product) && product.length > 0) {
             setErrors(product);
         } else {
-            history.push(`/products/${product.id}`)
+            history.push(`/products/:productId/images/create`)
         }
     };
 

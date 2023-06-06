@@ -5,5 +5,5 @@ from app.api.aws_helpers import ALLOWED_EXTENSIONS
 
 class ImageForm(FlaskForm):
     image = FileField("image", validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
-    is_preview = BooleanField("Is Preview")
+    is_preview = BooleanField("is_preview")
     submit = SubmitField("submit")

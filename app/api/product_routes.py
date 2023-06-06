@@ -138,9 +138,10 @@ def get_images():
     return {image.id: image.to_dict() for image in images}
 
 ## Add image to product by product Id
-@product_routes.route('/<int:id>/images', methods=["POST"])
+@product_routes.route('/<int:id>/images/create', methods=["POST"])
 @login_required
 def add_img(id):
+    product = Product.query.get(id)
     form = ImageForm()
 
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -158,7 +159,7 @@ def add_img(id):
 
         url = upload["url"]
 
-        is_preview = request.form.get("is_preview") or False
+        is_preview = form.data["is_preview"]
 
         new_image = ProductImage (
             url = url,
