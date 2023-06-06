@@ -7,8 +7,8 @@ class ProductImage(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    url = db.Column(db.String(255), nullable=False)
-    preview = db.Column(db.Boolean, default=False)
+    image = db.Column(db.String(255), nullable=False)
+    is_preview = db.Column(db.Boolean, default=False)
     product_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('products.id')), nullable=False)
 
     product = db.relationship('Product', back_populates='product_images')
@@ -16,6 +16,6 @@ class ProductImage(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
-            'url': self.url,
-            'preview': self.preview
+            'image': self.image,
+            'is_preview': self.is_preview
         }

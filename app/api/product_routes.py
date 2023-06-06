@@ -2,8 +2,7 @@ from flask import Blueprint, request, jsonify
 from flask_login import current_user, login_required
 from app.models import db, Product, ProductImage
 from app.forms.create_product import ProductForm
-from app.forms.product_pictures import ImageForm
-from .aws_helpers import upload_file_to_s3, get_unique_filename
+
 
 product_routes = Blueprint('products', __name__)
 
@@ -136,43 +135,3 @@ def get_images():
         return {'error': 'No images were found'}
 
     return {image.id: image.to_dict() for image in images}
-
-## Add image to product by product Id
-@product_routes.route('/<int:id>/images/create', methods=["POST"])
-@login_required
-def add_img(id):
-    product = Product.query.get(id)
-    form = ImageForm()
-
-    form['csrf_token'].data = request.cookies['csrf_token']
-
-    if form.validate_on_submit():
-        image = form.data["image"]
-        image.filename = get_unique_filename(image.filename)
-        upload = upload_file_to_s3(image)
-
-        if "url" not in upload:
-        # if the dictionary doesn't have a url key
-        # it means that there was an error when we tried to upload
-        # so we send back that error message
-            return jsonify(errors=[upload])
-
-        url = upload["url"]
-
-        is_preview = form.data["is_preview"]
-
-        new_image = ProductImage (
-            url = url,
-            preview = is_preview,
-            product_id = id
-        )
-
-        db.session.add(new_image)
-        db.session.commit()
-        return new_image.to_dict()
-
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
-
-## Update the images of a product
-
-## Delete images of a product

@@ -42,7 +42,7 @@ const ProductDetailsPage = () => {
             <>
             <div className="side-img-container">
               {product?.product_images?.map((img, idx)=>
-                <img key={idx} className="small-img" src={img.url}></img>
+                <img key={idx} className="small-img" src={img.image}></img>
               )}
               </div>
             <div className="main-img-container">

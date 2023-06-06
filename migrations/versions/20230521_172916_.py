@@ -35,8 +35,8 @@ def upgrade():
     )
     op.create_table('productImages',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('url', sa.String(length=255), nullable=False),
-    sa.Column('preview', sa.Boolean(), nullable=True, default=False),
+    sa.Column('image', sa.String(length=255), nullable=False),
+    sa.Column('is_preview', sa.Boolean(), nullable=True, default=False),
     sa.Column('product_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['product_id'], ['products.id'],),
     sa.PrimaryKeyConstraint('id')

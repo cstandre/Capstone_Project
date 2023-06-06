@@ -49,7 +49,7 @@ function App() {
           <Route path="/products/:productId/edit">
             <EditProduct />
           </Route>
-          <Route path="/products/:productId/images/create">
+          <Route path="/:productId/images">
             <ProductPicture />
           </Route>
           <Route exact path="/cart">
