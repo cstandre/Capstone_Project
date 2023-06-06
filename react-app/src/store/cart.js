@@ -1,7 +1,6 @@
 const CART_ITEMS = 'cart/CART_ITEMS';
 const ITEM_DETAILS = 'cart/ITEM_DETAILS';
 const ITEM_REMOVE = 'cart/ITEM_REMOVE';
-const CART_RESET = 'cart/CART_RESET';
 
 const load = (items) => ({
     type: CART_ITEMS,
@@ -13,13 +12,9 @@ const details = (item) => ({
     item
 });
 
-const remove = (item) => ({
+const remove = (itemId) => ({
     type: ITEM_REMOVE,
-    item
-});
-
-export const resetCart = () => ({
-    type: CART_RESET,
+    itemId
 });
 
 export const loadItems = () => async (dispatch) => {
@@ -61,14 +56,13 @@ export const updateCartItem = (itemId,  quantity) => async (dispatch) => {
 }
 
 export const deleteItem = (itemId) => async (dispatch) => {
-    console.log(itemId, 'in deleted Item thunk')
     const res = await fetch(`/api/cart/${itemId}`, {
         method: "DELETE"
     });
 
     if (res.ok) {
         const deletedItem = await res.json();
-        dispatch(remove(deleteItem));
+        dispatch(remove(itemId));
         return deletedItem;
     };
 };
@@ -83,10 +77,8 @@ export default function cartReducer(state = initialState, action) {
             return { ...state, [action.item.id]: action.item };
         case ITEM_REMOVE:
             const newState = { ...state };
-            delete newState[action.item.id];
+            delete newState[action.itemId];
             return newState
-        case CART_RESET:
-            return initialState
         default:
             return state;
     };

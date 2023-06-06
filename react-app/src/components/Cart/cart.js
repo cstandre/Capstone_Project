@@ -6,27 +6,25 @@ const Cart = () => {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state=>state?.session?.user);
     const cartItems = useSelector(state=>state?.cartItems);
-    // const [quantity, setQuantity] = useState('');
 
     const products = Object.values(cartItems).map((items) => ({
         ...items?.product,
         quantity: items?.quantity,
         cartId: items?.id
-      }));
+    }));
 
-    const subtotal = products?.reduce((acc, product) => acc + parseFloat(product?.price), 0).toFixed(2);
     const totalCartAmt = products?.reduce((acc, item) => acc + item?.quantity, 0)
-
+    const subtotal = products?.reduce((acc, product) => acc + parseFloat(product?.price * product?.quantity), 0).toFixed(2);
 
     useEffect(() => {
         dispatch(loadItems());
     }, [dispatch]);
 
-    // const handleSelectChange = async (e) => {
-    //     e.preventDefault();
-    //     setSelectedQuantity(e.target.value)
-    //     console.log(selectedQuantity)
-    //   };
+    const handleSelectChange = async (productId, quantityAmt) => {
+        const numbQuant = Number(quantityAmt);
+        const numbProdId = Number(productId);
+        await dispatch(updateCartItem(numbProdId, numbQuant));
+    };
 
     const handleDelete = (e) => {
         e.preventDefault();
@@ -56,8 +54,7 @@ const Cart = () => {
                                 <p>Out of Stock</p>
                             )}
                             <p>Brand: {product?.brand}</p>
-                            <p>{product.quantity}</p>
-                            {/* <select id='mySelect' value={selectedQuantity} onChange={handleSelectChange}>
+                            <select id='mySelect' value={product?.quantity} onChange={(e) => handleSelectChange(product.cartId, e.target.value)}>
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
@@ -68,7 +65,7 @@ const Cart = () => {
                                 <option>8</option>
                                 <option>9</option>
                                 <option>10</option>
-                            </select> */}
+                            </select>
                             {product.quantity > 1 ? (
                                 <div><button  value={product?.cartId} onClick={() => handleReducer(product?.cartId, product?.quantity)}>Delete</button></div>
                             ): (

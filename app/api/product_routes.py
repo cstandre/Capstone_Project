@@ -122,7 +122,7 @@ def delete_product(id):
     db.session.delete(product)
     db.session.commit()
 
-    return {'message': 'successful delete'}
+    return product.to_dict_detail()
 
 ## Get all product images
 @product_routes.route('/images')
