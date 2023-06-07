@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import SimpleImageSlider from "react-simple-image-slider";
 import { loadProducts } from "../../store/products";
 import { addItem } from "../../store/cart";
@@ -8,6 +9,7 @@ import "./main.css"
 
 
 const MainPage = () => {
+  const history = useHistory();
   const products = useSelector(state=>state?.products);
   const sessionUser = useSelector(state=>state?.session.user);
   const dispatch = useDispatch();
@@ -57,7 +59,12 @@ const MainPage = () => {
   const throwError = (e) => {
     e.preventDefault();
     alert('Login to add item to your cart!')
-  }
+  };
+
+  const handleProductDetail = (productId) => {
+    // console.log(productId)
+    history.push(`/products/${productId}`);
+};
 
   return (
     <div className="body">
@@ -72,14 +79,14 @@ const MainPage = () => {
         </div>
         <div className="ad-container">
           {adsArr?.map((ad, idx) =>
-            <div className={`ad-box container-${idx}`} key={idx} >
+            <div className={`ad-box container-${idx}`} key={idx} value={ad?.id} onClick={() => handleProductDetail(ad?.id)}>
               <img className={`ad-box-img-${idx}`} alt="" src={ad.preview_image}></img>
               <div className="product-details">
-                <p className="product-name">{ad.product_name}</p>
+                <p className="product-name" value={ad?.id} onClick={() => handleProductDetail(ad?.id)}>{ad.product_name}</p>
                 {ad?.stock_quantity > 0 ? (
-                  <p className="stock">In Stock</p>
+                  <p className="in-stock">In Stock</p>
                 ): (
-                  <p className="stock">Out of Stock</p>
+                  <p className="no-stock">Out of Stock</p>
                 )}
                 {sessionUser ? (
                   <button value={ad?.id} onClick={() => handleCartButton(ad?.id)}>Add to cart</button>

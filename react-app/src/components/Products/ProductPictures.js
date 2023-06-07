@@ -7,7 +7,7 @@ const ProductPicture = () => {
     const { productId } = useParams();
     const [selectedImages, setselectedImages] = useState([]);
     const [previewImage, setPreviewImage] = useState("");
-    const [previewIndex, setPreviewIndex] = useState(0);
+    // const [previewIndex, setPreviewIndex] = useState(0);
 
 
     const handleSubmit = async (e) => {
@@ -17,7 +17,7 @@ const ProductPicture = () => {
 
         formData.append('image[]', previewImage);
         formData.append(`is_preview_0`, true);
-        
+
         selectedImages.forEach(img => {
           formData.append('image[]', img);
         });
@@ -37,7 +37,7 @@ const ProductPicture = () => {
         const files = Array.from(e.target.files);
         setselectedImages(files.slice(1))
         setPreviewImage(files[0]);
-        setPreviewIndex(0);
+        // setPreviewIndex(0);
     }
 
     const homeClick = (e) => {

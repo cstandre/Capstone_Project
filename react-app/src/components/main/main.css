@@ -77,6 +77,22 @@
     object-fit: contain;
 }
 
+.ad-box-img-0:hover,
+.ad-box-img-1:hover,
+.ad-box-img-2:hover,
+.ad-box-img-3:hover,
+.ad-box-img-4:hover {
+    cursor: pointer;
+}
+
+.in-stock {
+    color: #017601;
+}
+
+.no-stock {
+    color: #c25636;
+}
+
 .container-0 { grid-area: container-0; }
 .container-1 { grid-area: container-1; }
 .container-2 { grid-area: container-2; }

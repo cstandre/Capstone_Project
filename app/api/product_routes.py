@@ -40,6 +40,9 @@ def user_products():
     user_id = current_user.id
     products = Product.query.filter_by(owner_id = user_id)
 
+    if not products:
+        return {"error": "Product not found"}
+
     return {product.id: product.to_dict() for product in products}
 
 

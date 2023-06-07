@@ -146,7 +146,7 @@ export default function productReducer(state = initialState, action) {
         case GET_PRODUCTS:
             return { ...state, ...action.products};
         case USER_PRODUCTS:
-            return { ...state, ...action.products};
+            return { products: action.products};
         case DETAILS_PRODUCTS:
             return { ...state, [action.product.id]: action.product};
         case DELETE_PRODUCTS:

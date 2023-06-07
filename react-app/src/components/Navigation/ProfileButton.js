@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/session";
+import { userProducts } from "../../store/products";
 
 import './ProfileButton.css'
 
@@ -48,8 +49,9 @@ function ProfileButton({ user }) {
     closeMenu();
   };
 
-  const handleStore = (e) => {
+  const handleStore = async (e) => {
     e.preventDefault();
+    await dispatch(userProducts())
     history.push('/products/user-store');
     closeMenu()
   }
