@@ -17,14 +17,6 @@ function LoginFormPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const demoUser = async (e) => {
-      e.preventDefault();
-      setEmail('demo@aa.io');
-      setPassword('password');
-      await dispatch(login(email, password));
-    }
-    
     const data = await dispatch(login(email, password));
     if (data) {
       setErrors(data);
@@ -39,6 +31,12 @@ function LoginFormPage() {
   const homeClick = (e) => {
     e.preventDefault()
     history.push('/')
+  }
+
+  const demoUser = async (e) => {
+    e.preventDefault();
+    setEmail('demo@aa.io');
+    setPassword('password');
   }
 
   return (
