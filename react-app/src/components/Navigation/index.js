@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import ProfileButton from './ProfileButton';
 import { loadItems } from '../../store/cart';
+import { loadProducts } from '../../store/products';
 
 import './Navigation.css';
 
@@ -33,11 +34,17 @@ function Navigation({ isLoaded }){
 		};
 	};
 
+	const handleHome = async (e) => {
+		e.preventDefault();
+		await dispatch(loadProducts());
+		history.push('/');
+	};
+
 	return (
 		<div>
 			<div className='nav-bar'>
 				<div className='section section1'>
-					<NavLink exact to="/"><img className='nav-logo' alt='' src='https://res.cloudinary.com/djclmc80y/image/upload/v1684893514/amazon_logo_dark_blue_w4vfje.jpg' /></NavLink>
+					<div onClick={handleHome}><img className='nav-logo' alt='' src='https://res.cloudinary.com/djclmc80y/image/upload/v1684893514/amazon_logo_dark_blue_w4vfje.jpg' /></div>
 				</div>
 				{sessionUser ? (
 					<div className='section section2'>

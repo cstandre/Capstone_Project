@@ -35,6 +35,12 @@ const ProductPicture = () => {
 
     const handleImageChange = (e) => {
         const files = Array.from(e.target.files);
+
+        if (files.length > 5) {
+            alert("Please select up to 5 files only.");
+            return;
+        };
+
         setselectedImages(files.slice(1))
         setPreviewImage(files[0]);
         // setPreviewIndex(0);

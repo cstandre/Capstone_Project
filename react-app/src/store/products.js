@@ -88,14 +88,13 @@ export const createProductFetch = (product) => async (dispatch) => {
     };
 };
 
-export const editProduct = (product) => async (dispatch) => {
-    const { id, product_name, price, brand, stock_quantity, description } = product
-
-    const res = await fetch(`/api/products/${id}`, {
+export const editProduct = (product, productId) => async (dispatch) => {
+    const { product_name, price, brand, stock_quantity, description } = product
+    const res = await fetch(`/api/products/${productId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            id: id,
+            id: productId,
             product_name,
             price,
             brand,

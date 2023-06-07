@@ -8,14 +8,24 @@ const EditProduct = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const { productId } = useParams();
-    const product = useSelector(state=>state?.products[productId]);
+    const product = useSelector(state=>state?.products);
 
-    const [ product_name, setProductName ] = useState(product.product_name);
-    const [ price, setPrice ] = useState(product.price);
-    const [ brand, setBrand ] = useState(product.brand);
-    const [ stock_quantity, setStockQuantity ] = useState(product.stock_quantity);
-    const [ description, setDescription ] = useState(product.description);
+    const [ product_name, setProductName ] = useState('');
+    const [ price, setPrice ] = useState('');
+    const [ brand, setBrand ] = useState('');
+    const [ stock_quantity, setStockQuantity ] = useState('');
+    const [ description, setDescription ] = useState('');
     const [ errors, setErrors ] = useState([]);
+
+    useEffect(() => {
+        if (product) {
+          setProductName(product.product_name);
+          setPrice(product.price);
+          setBrand(product.brand);
+          setStockQuantity(product.stock_quantity);
+          setDescription(product.description);
+        }
+      }, [product]);
 
     useEffect(() => {
         dispatch(productDetails(productId))
@@ -26,15 +36,14 @@ const EditProduct = () => {
         setErrors([]);
 
         const newProduct = {
-            id: productId,
             product_name,
             price,
             brand,
             stock_quantity,
-            description,
+            description
         };
 
-        const updatedProduct = await dispatch(editProduct(newProduct))
+        const updatedProduct = await dispatch(editProduct(newProduct, productId))
         .catch(async (res) => {
             if (res.status === 400) {
                 const errorMsg = "One or more required fields are missing.";
@@ -68,6 +77,7 @@ const EditProduct = () => {
                                 type="text"
                                 onChange={(e) => setProductName(e.target.value)}
                                 className="input"
+                                required
                                 value={product_name}
                             />
                         </label>
@@ -77,6 +87,7 @@ const EditProduct = () => {
                                 type="text"
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
+                                required
                                 className="input"
                             />
                         </label>
@@ -95,6 +106,7 @@ const EditProduct = () => {
                                 type="number"
                                 value={price}
                                 onChange={(e) => setPrice(e.target.value)}
+                                required
                                 className="input"
                             />
                         </label>
@@ -104,6 +116,7 @@ const EditProduct = () => {
                                 type="number"
                                 value={stock_quantity}
                                 onChange={(e) => setStockQuantity(e.target.value)}
+                                required
                                 className="input"
                             />
                         </label>

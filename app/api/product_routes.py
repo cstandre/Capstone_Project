@@ -119,6 +119,7 @@ def delete_product(id):
     Query for a product by the id and remove from database.
     """
     product = Product.query.get_or_404(id)
+    print(product, "product-------------------")
     db.session.delete(product)
     db.session.commit()
 

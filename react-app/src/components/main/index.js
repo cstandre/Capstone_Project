@@ -16,7 +16,7 @@ const MainPage = () => {
   const [sliderWidth, setSliderWidth] = useState(0);
   const [sliderHeight, setSliderHeight] = useState(0);
 
-  const adsArr = Object.values(products)?.slice(0,5);
+  const adsArr = Object?.values(products)?.slice(0,5);
 
   useEffect(() => {
     dispatch(loadProducts());
@@ -79,8 +79,8 @@ const MainPage = () => {
         </div>
         <div className="ad-container">
           {adsArr?.map((ad, idx) =>
-            <div className={`ad-box container-${idx}`} key={idx} value={ad?.id} onClick={() => handleProductDetail(ad?.id)}>
-              <img className={`ad-box-img-${idx}`} alt="" src={ad.preview_image}></img>
+            <div className={`ad-box container-${idx}`} key={idx}>
+              <img className={`ad-box-img-${idx}`} alt="" src={ad.preview_image} value={ad?.id} onClick={() => handleProductDetail(ad?.id)}></img>
               <div className="product-details">
                 <p className="product-name" value={ad?.id} onClick={() => handleProductDetail(ad?.id)}>{ad.product_name}</p>
                 {ad?.stock_quantity > 0 ? (
@@ -88,18 +88,18 @@ const MainPage = () => {
                 ): (
                   <p className="no-stock">Out of Stock</p>
                 )}
-                {sessionUser ? (
-                  <button value={ad?.id} onClick={() => handleCartButton(ad?.id)}>Add to cart</button>
-                ): (
-                  <button value={ad?.id} onClick={throwError}>Add to cart</button>
-                )}
-                {/* {ad?.reviews?.length == 0 ? (
+                </div>
+                  {sessionUser ? (
+                    <button value={ad?.id} onClick={() => handleCartButton(ad?.id)}>Add to cart</button>
+                  ): (
+                    <button value={ad?.id} onClick={throwError}>Add to cart</button>
+                  )}
+                </div>
+            /* {ad?.reviews?.length == 0 ? (
                   <div>Be the first to review!</div>
                   ): (
                     <div>Review Count: {ad?.reviews?.length}</div>
-                )} */}
-              </div>
-            </div>
+              )} */
           )}
         </div>
       </div>

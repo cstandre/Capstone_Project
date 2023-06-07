@@ -85,11 +85,12 @@ function SignupFormPage() {
             <label className="input-section">
               <h3>Email</h3>
               <input
-                type="text"
+                type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 className="signup-input"
+                placeholder="example@io.com"
               />
             </label>
             <label className="input-section">
@@ -100,6 +101,7 @@ function SignupFormPage() {
                 onChange={(e) => setUsername(e.target.value)}
                 required
                 className="signup-input"
+                placeholder="username must be unique"
               />
             </label>
               <label className="input-section">
@@ -148,8 +150,10 @@ function SignupFormPage() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                minLength={6}
                 required
                 className="signup-input"
+                placeholder="password must be at least 6 characters"
               />
             </label>
             <label className="input-section">
@@ -157,9 +161,11 @@ function SignupFormPage() {
               <input
                 type="password"
                 value={confirmPassword}
+                minLength={6}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
                 className="signup-input"
+                placeholder="password must be at least 6 characters"
               />
             </label>
           </div>

@@ -14,7 +14,7 @@ const UserStorePage = () => {
     const products = useSelector(state=>state?.products);
 
     const items = Object.values(products).flatMap(item => Object.values(item));
-    console.log(items.map(item=>item.product_name))
+    // console.log(items.map(item=>item.product_name))
 
     useEffect(() => {
         dispatch(userProducts());

@@ -19,22 +19,27 @@ const ProductDetailsPage = () => {
       dispatch(productDetails(productId));
     }, [dispatch, productId]);
 
-      useEffect(() => {
-        if (product) {
-          setMainImg(product?.preview_image);
-        }
-      }, [product]);
+    useEffect(() => {
+      if (product) {
+        setMainImg(product?.preview_image);
+      }
+    }, [product]);
 
-      const handleSelectChange = async (e) => {
-        e.preventDefault();
-        setSelectedQuantity(e.target.value)
-      };
+    const handleSelectChange = async (e) => {
+      e.preventDefault();
+      setSelectedQuantity(e.target.value)
+    };
 
-      const handleCartButton = async (e) => {
-        e.preventDefault();
-        await dispatch(addItem(productId, selectedQuantity));
-        history.push('/cart');
-      };
+    const handleCartButton = async (e) => {
+      e.preventDefault();
+      await dispatch(addItem(productId, selectedQuantity));
+      history.push('/cart');
+    };
+
+    const throwError = (e) => {
+      e.preventDefault();
+      alert('Login to add item to your cart!')
+    };
 
     return (
         <div className="product-page">
@@ -55,25 +60,37 @@ const ProductDetailsPage = () => {
             </div>
             <div className="cart-container">
               ${product?.price}
-              Deliver to {sessionUser?.first_name && sessionUser.first_name.charAt(0).toUpperCase() + sessionUser.first_name.slice(1)} - {sessionUser.city} {sessionUser.zip}
+              {sessionUser ? (
+                <div>
+                  Deliver to {sessionUser?.first_name && sessionUser.first_name.charAt(0).toUpperCase() + sessionUser.first_name.slice(1)} - {sessionUser.city} {sessionUser.zip}
+                </div>
+              ):(
+                <div></div>
+              )}
               {product?.stock_quantity > 0 ? (
                 <p>In Stock</p>
               ): (
                 <p>Out of Stock</p>
               )}
-              <select id='mySelect' value={selectedQuantity} onChange={handleSelectChange}>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-                <option>7</option>
-                <option>8</option>
-                <option>9</option>
-                <option>10</option>
-              </select>
-              <button onClick={handleCartButton}>Add to cart</button>
+              {sessionUser ? (
+                <div>
+                  <select id='mySelect' value={selectedQuantity} onChange={handleSelectChange}>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                  </select>
+                  <button onClick={handleCartButton}>Add to cart</button>
+                </div>
+              ): (
+                <button value={productId} onClick={throwError}>Add to cart</button>
+              )}
             </div>
             </>
         ): (

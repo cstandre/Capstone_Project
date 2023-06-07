@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux"
 import { useModal } from "../../context/Modal";
-import { deleteProduct } from "../../store/products";
+import { deleteProduct, userProducts } from "../../store/products";
 
 
 
@@ -12,6 +12,7 @@ const DeleteProductModal = ({ productId }) => {
     const handleClick = async (e) => {
         e.preventDefault();
         await dispatch(deleteProduct(productId));
+        dispatch(userProducts());
         closeModal();
     };
 
