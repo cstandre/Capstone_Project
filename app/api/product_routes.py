@@ -39,8 +39,6 @@ def user_products():
     """
     user_id = current_user.id
     products = Product.query.filter_by(owner_id = user_id)
-    if not products:
-        return {'error': 'No products could be found'}
 
     return {product.id: product.to_dict() for product in products}
 
@@ -91,13 +89,13 @@ def edit_product(id):
     """
     Query for a product based of it's id and make updates.
     """
-
+    owner_id = current_user.id
     form = ProductForm()
     product = Product.query.get_or_404(id)
 
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    if form.validate_on_submit():
+    if owner_id == product.owner_id and form.validate_on_submit():
         product.product_name = form.data['product_name']
         product.price = form.data['price']
         product.brand = form.data['brand']

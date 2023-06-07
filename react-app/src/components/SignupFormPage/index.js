@@ -39,7 +39,7 @@ function SignupFormPage() {
         zip,
         password
       ));
-      
+
       if (data) {
         setErrors(data)
       }
@@ -169,7 +169,7 @@ function SignupFormPage() {
           <button type="submit" className="continue-botton">Continue</button>
           <div className="after-signup-area">
             <p>By creating an account, you agree to Amazon's Conditions of Use and Privacy Notice.</p>
-            <p>Already have an account? <Link exact to="/login">Sign in</Link></p>
+            <p>Already have an account? <Link to="/login">Sign in</Link></p>
         </div>
         </div>
       </form>

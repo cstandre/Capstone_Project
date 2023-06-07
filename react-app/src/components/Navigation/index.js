@@ -26,7 +26,11 @@ function Navigation({ isLoaded }){
 
 	const handleClick = (e) => {
 		e.preventDefault();
-		history.push('/cart');
+		if (sessionUser) {
+			history.push('/cart');
+		} else {
+			history.push('/login')
+		};
 	};
 
 	return (

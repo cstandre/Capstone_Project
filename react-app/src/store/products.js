@@ -1,10 +1,16 @@
 const GET_PRODUCTS = 'products/GET_PRODUCTS';
+const USER_PRODUCTS = 'products/USER_PRODUCTS';
 const DETAILS_PRODUCTS = 'products/DETAILS_PRODUCTS';
 const DELETE_PRODUCTS = 'products/DELETE_PRODUCTS';
 const ADD_IMG = 'products/ADD_IMG';
 
 const load = (products) => ({
     type: GET_PRODUCTS,
+    products
+});
+
+const userLoad = (products) => ({
+    type: USER_PRODUCTS,
     products
 });
 
@@ -38,7 +44,7 @@ export const userProducts = () => async (dispatch) => {
 
     if (res.ok) {
         const products = await res.json();
-        dispatch(load(products));
+        dispatch(userLoad(products));
         return products;
     };
 };
@@ -138,6 +144,8 @@ const initialState = {};
 export default function productReducer(state = initialState, action) {
     switch (action.type) {
         case GET_PRODUCTS:
+            return { ...state, ...action.products};
+        case USER_PRODUCTS:
             return { ...state, ...action.products};
         case DETAILS_PRODUCTS:
             return { ...state, [action.product.id]: action.product};

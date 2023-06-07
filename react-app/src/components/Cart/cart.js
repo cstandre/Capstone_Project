@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector, useState } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loadItems, deleteItem, updateCartItem } from "../../store/cart";
 
 const Cart = () => {
@@ -42,7 +42,7 @@ const Cart = () => {
 
     return (
         <div>
-            {sessionUser && cartItems ? (
+            {sessionUser && products.length > 0 ? (
                 <div>
                     {products?.map((product, idx) =>
                         <div key={idx}>
