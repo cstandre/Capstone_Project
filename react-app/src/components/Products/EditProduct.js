@@ -19,13 +19,14 @@ const EditProduct = () => {
 
     useEffect(() => {
         if (product) {
-          setProductName(product.product_name);
-          setPrice(product.price);
-          setBrand(product.brand);
-          setStockQuantity(product.stock_quantity);
-          setDescription(product.description);
+          setProductName(product.product_name || '');
+          setPrice(product.price || '');
+          setBrand(product.brand || '');
+          setStockQuantity(product.stock_quantity || '');
+          setDescription(product.description || '');
         }
       }, [product]);
+
 
     useEffect(() => {
         dispatch(productDetails(productId))

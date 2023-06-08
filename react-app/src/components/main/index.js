@@ -80,7 +80,7 @@ const MainPage = () => {
         <div className="ad-container">
           {adsArr?.map((ad, idx) =>
             <div className={`ad-box container-${idx}`} key={idx}>
-              <img className={`ad-box-img-${idx}`} alt="" src={ad.preview_image} value={ad?.id} onClick={() => handleProductDetail(ad?.id)}></img>
+              <img className={`ad-box-img-${idx}`} alt="" src={ad?.preview_image} value={ad?.id} onClick={() => handleProductDetail(ad?.id)}></img>
               <div className="product-details">
                 <p className="product-name" value={ad?.id} onClick={() => handleProductDetail(ad?.id)}>{ad.product_name}</p>
                 {ad?.stock_quantity > 0 ? (

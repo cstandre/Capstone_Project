@@ -40,7 +40,7 @@ const UserStorePage = () => {
                 <div className="store-container">
                     <div>
                         <div className="header-container">
-                            <p>{sessionUser?.first_name && sessionUser?.first_name?.charAt(0).toUpperCase() + sessionUser?.first_name?.slice(1).toLowerCase()}</p>
+                            <p>{sessionUser?.first_name}</p>
                             <div className="sell-more-container">
                                 <button className="sell-more-btn" onClick={addProduct}>Sell More</button>
                             </div>
@@ -76,7 +76,7 @@ const UserStorePage = () => {
             ): (
                 <div className="store-container">
                     <div className="header-container">
-                        <p>{sessionUser?.first_name && sessionUser?.first_name?.charAt(0).toUpperCase() + sessionUser?.first_name?.slice(1).toLowerCase()}</p>
+                        <p>{sessionUser?.first_name}</p>
                         <div className="sell-more-container">
                             <button className="sell-more-btn" onClick={addProduct}>Sell Today</button>
                         </div>

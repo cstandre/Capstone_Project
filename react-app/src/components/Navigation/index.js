@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import ProfileButton from './ProfileButton';
 import { loadItems } from '../../store/cart';
-import { loadProducts } from '../../store/products';
+// import { loadProducts } from '../../store/products';
 
 import './Navigation.css';
 
@@ -36,7 +36,6 @@ function Navigation({ isLoaded }){
 
 	const handleHome = async (e) => {
 		e.preventDefault();
-		await dispatch(loadProducts());
 		history.push('/');
 	};
 
@@ -52,8 +51,8 @@ function Navigation({ isLoaded }){
 							<img className='geo-loc-icon' alt='' src='https://res.cloudinary.com/djclmc80y/image/upload/v1684983616/geo-location-icon_qj4cuw.png'/>
 						</div>
 						<div>
-							<div className='line-1'>Deliver to {sessionUser?.first_name && sessionUser.first_name.charAt(0).toUpperCase() + sessionUser.first_name.slice(1)} </div>
-							<div className='line-2'>{sessionUser?.city && sessionUser.city.charAt(0).toUpperCase() + sessionUser.city.slice(1)}, {sessionUser.zip}</div>
+							<div className='line-1'>Deliver to {sessionUser?.first_name} </div>
+							<div className='line-2'>{sessionUser?.city}, {sessionUser.zip}</div>
 						</div>
 					</div>
 				): (
@@ -74,7 +73,7 @@ function Navigation({ isLoaded }){
 					</span>
 				</div>
 				<div className='section section4'>
-					<div>Hello, {sessionUser?.first_name && sessionUser.first_name.charAt(0).toUpperCase() + sessionUser.first_name.slice(1)}</div>
+					<div>Hello, {sessionUser?.first_name}</div>
 					<span>Manage Account</span>
 					{isLoaded && (
 						<ProfileButton user={sessionUser} />
