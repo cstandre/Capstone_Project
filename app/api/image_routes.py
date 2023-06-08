@@ -24,37 +24,38 @@ def validation_errors_to_error_messages(validation_errors):
 @login_required
 def add_img(productId):
     product = Product.query.get_or_404(productId)
-    print(product, "____________________________")
 
     if not product:
         return {'errors': "Product not found"}, 401
 
     form = ImageForm()
 
+    if form.validate_on_submit():  # Check if the form is valid
+        images = request.files.getlist('image[]')
 
-    images = request.files.getlist('image[]')
+        product_images = []
+        for idx, image in enumerate(images):
+            image.filename = get_unique_filename(image.filename)
+            upload = upload_file_to_s3(image)
+            url = upload["url"]
+            is_preview = request.form.get(f'is_preview_{idx}') == 'true'
 
-    product_images = []
-    for idx, image in enumerate(images):
-        image.filename = get_unique_filename(image.filename)
-        upload = upload_file_to_s3(image)
-        url = upload["url"]
-        is_preview = request.form.get(f'is_preview_{idx}') == 'true'
+            new_image = ProductImage(
+                image=url,
+                is_preview=is_preview,
+                product_id=productId
+            )
+            product_images.append(new_image)
 
-        new_image = ProductImage(
-            image=url,
-            is_preview=is_preview,
-            product_id=productId
-        )
-        product_images.append(new_image)
+        # Save the product images to the database
+        for image in product_images:
+            db.session.add(image)
+        db.session.commit()
 
-    # Save the product images to the database
-    for image in product_images:
-        # print(image, "in image loop___________________")
-        db.session.add(image)
-    db.session.commit()
+        return jsonify([image.to_dict() for image in product_images])
 
-    return jsonify([image.to_dict() for image in product_images])
+    return {'errors': form.errors}  # Return form validation errors if the form is not valid
+
 
 ## Update the images of a product
 
