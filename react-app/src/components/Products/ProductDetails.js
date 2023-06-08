@@ -62,7 +62,7 @@ const ProductDetailsPage = () => {
               ${product?.price}
               {sessionUser ? (
                 <div>
-                  Deliver to {sessionUser?.first_name && sessionUser.first_name.charAt(0).toUpperCase() + sessionUser.first_name.slice(1)} - {sessionUser.city} {sessionUser.zip}
+                  Deliver to {sessionUser?.first_name} - {sessionUser.city} {sessionUser.zip}
                 </div>
               ):(
                 <div></div>
