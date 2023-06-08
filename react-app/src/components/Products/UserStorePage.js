@@ -14,7 +14,6 @@ const UserStorePage = () => {
     const products = useSelector(state=>state?.products);
 
     const items = Object.values(products).flatMap(item => Object.values(item));
-    // console.log(items.map(item=>item.product_name))
 
     useEffect(() => {
         dispatch(userProducts());
@@ -40,7 +39,7 @@ const UserStorePage = () => {
                 <div className="store-container">
                     <div>
                         <div className="header-container">
-                            <p>{sessionUser?.first_name}</p>
+                            <p>{sessionUser?.first_name && sessionUser?.first_name?.charAt(0).toUpperCase() + sessionUser?.first_name?.slice(1).toLowerCase()}</p>
                             <div className="sell-more-container">
                                 <button className="sell-more-btn" onClick={addProduct}>Sell More</button>
                             </div>
@@ -76,7 +75,7 @@ const UserStorePage = () => {
             ): (
                 <div className="store-container">
                     <div className="header-container">
-                        <p>{sessionUser?.first_name}</p>
+                        <p>{sessionUser?.first_name && sessionUser?.first_name?.charAt(0).toUpperCase() + sessionUser?.first_name?.slice(1).toLowerCase()}</p>
                         <div className="sell-more-container">
                             <button className="sell-more-btn" onClick={addProduct}>Sell Today</button>
                         </div>
