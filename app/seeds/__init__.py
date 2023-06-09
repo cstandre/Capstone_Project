@@ -27,12 +27,12 @@ def seed():
         undo_cart()
         undo_reviews()
         undo_review_images()
-    seed_review_images()
-    seed_reviews()
-    seed_cart()
-    seed_product_images()
-    seed_products()
     seed_users()
+    seed_products()
+    seed_product_images()
+    seed_cart()
+    seed_reviews()
+    seed_review_images()
     # Add other seed functions here
 
 
