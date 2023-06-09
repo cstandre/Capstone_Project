@@ -77,6 +77,6 @@ def undo_product_images():
         db.session.delete(nike_product5_image1)
         db.session.delete(nike_product5_image2)
 
-        db.session.execute(text("DELETE FROM productImages"))
+        db.session.execute(text("DELETE FROM product_images"))
 
     db.session.commit()

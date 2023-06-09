@@ -20,6 +20,6 @@ def undo_review_images():
         db.session.delete(image1)
         db.session.delete(image2)
         db.session.delete(image3)
-        db.session.execute(text("DELETE FROM reviewImages"))
+        db.session.execute(text("DELETE FROM review_images"))
 
     db.session.commit()
