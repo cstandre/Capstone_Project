@@ -16,13 +16,31 @@
     position: relative;
     justify-content: center;
     height: 200px;
-    bottom: 90%;
+    bottom: 30%;
     grid-template-areas:
         "container-0 container-1 container-2 container-3"
         "container-0 container-1 container-2 container-4";
     gap: 15px;
-    margin-bottom: 50px;
-    z-index: 1000px
+}
+
+@media (max-width: 1366px) {
+    .ad-container {
+      width: 450px;
+      left: 28%;
+      bottom: 22%;
+    }
+}
+
+@media (max-width: 992px) {
+    .ad-container {
+      width: 150px;
+    }
+}
+
+@media (min-width: 1367px) {
+    .ad-container {
+      width: 300px;
+    }
 }
 
 .ad-box {
@@ -32,7 +50,7 @@
     border: 1px solid #e7e7e7;
     border-radius: 2px;
     background-color: white;
-
+    z-index: 1000;
 }
 
 @media (max-width: 1366px) {

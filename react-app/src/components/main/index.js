@@ -68,6 +68,7 @@ const MainPage = () => {
 
   return (
     <div className="body">
+      <div>
         <div className="slider">
           <SimpleImageSlider
             width={sliderWidth}
@@ -75,6 +76,7 @@ const MainPage = () => {
             images={images}
             showNavs={true}
           />
+        </div>
         <div className="ad-container">
           {adsArr?.map((ad, idx) =>
             <div className={`ad-box container-${idx}`} key={idx}>
