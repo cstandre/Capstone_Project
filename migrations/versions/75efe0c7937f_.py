@@ -76,7 +76,7 @@ def upgrade():
     )
 
     if environment == "production":
-        op.execute(f"ALTER TABLE cartItems SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE cartitems SET SCHEMA {SCHEMA};")
 
     op.create_table('productImages',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -87,7 +87,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     if environment == "production":
-        op.execute(f"ALTER TABLE productImages SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE productimages SET SCHEMA {SCHEMA};")
 
     op.create_table('reviews',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -113,7 +113,7 @@ def upgrade():
     )
 
     if environment == "production":
-        op.execute(f"ALTER TABLE reviewImages SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE reviewimages SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
 
 
