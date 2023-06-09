@@ -11,7 +11,7 @@
     -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%);
 }
 
-.ad-container {
+.product-display-container {
     display: grid;
     position: relative;
     justify-content: center;
@@ -24,7 +24,7 @@
 }
 
 @media (max-width: 1366px) {
-    .ad-container {
+    .product-display-container {
       width: 450px;
       left: 28%;
       bottom: 22%;
@@ -32,18 +32,18 @@
 }
 
 @media (max-width: 992px) {
-    .ad-container {
+    .product-display-container {
       width: 150px;
     }
 }
 
 @media (min-width: 1367px) {
-    .ad-container {
+    .product-display-container {
       width: 300px;
     }
 }
 
-.ad-box {
+.product-box {
     display: grid;
     justify-content: center;
     align-content: start;
@@ -54,26 +54,26 @@
 }
 
 @media (max-width: 1366px) {
-    .ad-box {
+    .product-box {
       width: 200px;
     }
 }
 
 @media (max-width: 992px) {
-    .ad-box {
+    .product-box {
       width: 150px;
     }
 }
 
 @media (min-width: 1367px) {
-    .ad-box {
+    .product-box {
       width: 300px;
     }
 }
 
-.ad-box-img-0,
-.ad-box-img-1,
-.ad-box-img-2 {
+.product-box-img-0,
+.product-box-img-1,
+.product-box-img-2 {
     display: block;
     max-width: 100%;
     min-width: 100%;
@@ -82,8 +82,8 @@
     object-fit: contain;
 }
 
-.ad-box-img-3,
-.ad-box-img-4 {
+.product-box-img-3,
+.product-box-img-4 {
     display: block;
     max-width: 100%;
     min-width: 100%;
@@ -92,11 +92,11 @@
     object-fit: contain;
 }
 
-.ad-box-img-0:hover,
-.ad-box-img-1:hover,
-.ad-box-img-2:hover,
-.ad-box-img-3:hover,
-.ad-box-img-4:hover {
+.product-box-img-0:hover,
+.product-box-img-1:hover,
+.product-box-img-2:hover,
+.product-box-img-3:hover,
+.product-box-img-4:hover {
     cursor: pointer;
 }
 

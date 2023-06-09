@@ -16,7 +16,7 @@ const MainPage = () => {
   const [sliderWidth, setSliderWidth] = useState(0);
   const [sliderHeight, setSliderHeight] = useState(0);
 
-  const adsArr = Object?.values(products)?.slice(0,5);
+  const productArr = Object?.values(products)?.slice(0,5);
 
   useEffect(() => {
     dispatch(loadProducts());
@@ -77,22 +77,22 @@ const MainPage = () => {
             showNavs={true}
           />
         </div>
-        <div className="ad-container">
-          {adsArr?.map((ad, idx) =>
-            <div className={`ad-box container-${idx}`} key={idx}>
-              <img className={`ad-box-img-${idx}`} alt="" src={ad?.preview_image} value={ad?.id} onClick={() => handleProductDetail(ad?.id)}></img>
+        <div className="product-display-container">
+          {productArr?.map((product, idx) =>
+            <div className={`product-box container-${idx}`} key={idx}>
+              <img className={`product-box-img-${idx}`} alt="" src={product?.preview_image} value={product?.id} onClick={() => handleProductDetail(product?.id)}></img>
               <div className="product-details">
-                <p className="product-name" value={ad?.id} onClick={() => handleProductDetail(ad?.id)}>{ad.product_name}</p>
-                {ad?.stock_quantity > 0 ? (
+                <p className="product-name" value={product?.id} onClick={() => handleProductDetail(product?.id)}>{product.product_name}</p>
+                {product?.stock_quantity > 0 ? (
                   <p className="in-stock">In Stock</p>
                 ): (
                   <p className="no-stock">Out of Stock</p>
                 )}
                 </div>
                   {sessionUser ? (
-                    <button value={ad?.id} onClick={() => handleCartButton(ad?.id)}>Add to cart</button>
+                    <button value={product?.id} onClick={() => handleCartButton(product?.id)}>Add to cart</button>
                   ): (
-                    <button value={ad?.id} onClick={throwError}>Add to cart</button>
+                    <button value={product?.id} onClick={throwError}>Add to cart</button>
                   )}
                 </div>
             /* {ad?.reviews?.length == 0 ? (
