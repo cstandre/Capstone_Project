@@ -72,7 +72,7 @@ const initialState = {};
 export default function cartReducer(state = initialState, action) {
     switch (action.type) {
         case CART_ITEMS:
-            return { ...state, ...action.items };
+            return { ...action.items };
         case ITEM_DETAILS:
             return { ...state, [action.item.id]: action.item };
         case ITEM_REMOVE:
