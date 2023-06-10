@@ -29,7 +29,7 @@ def upgrade():
     sa.Column('email', sa.String(length=255), nullable=False),
     sa.Column('street_address', sa.String(length=50), nullable=False),
     sa.Column('city', sa.String(length=50), nullable=False),
-    sa.Column('state', sa.String(length=2), nullable=False),
+    sa.Column('state', sa.String(), nullable=False),
     sa.Column('zip', sa.String(), nullable=False),
     sa.Column('hashed_password', sa.String(length=255), nullable=False),
     sa.PrimaryKeyConstraint('id'),
