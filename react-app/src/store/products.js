@@ -126,7 +126,7 @@ export const addProductImg = (productId, formData) => async (dispatch) => {
 
     const res = await fetch(`/api/products/${productId}/images`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'multipart/form-data' },
         body: formData,
     });
     // console.log(formData, "form data in the thunk")

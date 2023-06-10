@@ -17,7 +17,7 @@ class User(db.Model, UserMixin):
     street_address = db.Column(db.String(50), nullable=False)
     city = db.Column(db.String(50), nullable=False)
     state = db.Column(db.String(2), nullable=False)
-    zip = db.Column(db.Integer, nullable=False)
+    zip = db.Column(db.String, nullable=False)
     hashed_password = db.Column(db.String(255), nullable=False)
 
     products = db.relationship('Product', back_populates='owner')

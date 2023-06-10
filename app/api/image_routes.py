@@ -47,13 +47,10 @@ def add_img(productId):
         product_images.append(new_image)
 
     # Save the product images to the database
-    try:
-        for image in product_images:
-            db.session.add(image)
-        db.session.commit()
-    except Exception as e:
-        print(str(e))
-        db.session.rollback()
+    for image in product_images:
+        db.session.add(image)
+    db.session.commit()
+    return jsonify([image.to_dict() for image in product_images])
 
 
 
