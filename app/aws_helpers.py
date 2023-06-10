@@ -15,15 +15,15 @@ s3 = boto3.client(
 
 
 def get_unique_filename(filename):
-    print(filename, "filename---------------------------")
+    # print(filename, "filename---------------------------")
     ext = filename.rsplit(".", 1)[1].lower()
     unique_filename = uuid.uuid4().hex
     return f"{unique_filename}.{ext}"
 
-print(BUCKET_NAME, "Bucket name before fuction call")
+# print(BUCKET_NAME, "Bucket name before fuction call")
 def upload_file_to_s3(file, acl="public-read"):
-    print(file.filename, "file.filename---------------")
-    print(BUCKET_NAME, "bucket name inside upload file---------------")
+    # print(file.filename, "file.filename---------------")
+    # print(BUCKET_NAME, "bucket name inside upload file---------------")
     try:
         s3.upload_fileobj(
             file,
@@ -45,7 +45,7 @@ def remove_file_from_s3(image_url):
     # AWS needs the image file name, not the URL,
     # so we split that out of the URL
     key = image_url.rsplit("/", 1)[1]
-    print(key)
+    # print(key)
     try:
         s3.delete_object(
         Bucket=BUCKET_NAME,

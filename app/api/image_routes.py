@@ -29,25 +29,25 @@ def add_img(productId):
         return {'errors': "Product not found"}, 401
 
     images = request.files.getlist('image[]')
-    print(images,"images -----------------")
+    # print(images,"images -----------------")
     product_images = []
     for idx, image in enumerate(images):
-        print(image, 'image-------------------------')
+        # print(image, 'image-------------------------')
         image.filename = get_unique_filename(image.filename)
         upload = upload_file_to_s3(image)
-        print(upload, 'upload------------------------------------')
+        # print(upload, 'upload------------------------------------')
 
         if 'url' not in upload:
             return {'errors': "Invalid response from upload_file_to_s3"}, 500
         url = upload["url"]
-        print(url, "url-----------------------------------")
+        # print(url, "url-----------------------------------")
         is_preview = request.form.get(f'is_preview_{idx}') == 'true'
         new_image = ProductImage(
             image=url,
             is_preview=is_preview,
             product_id=productId
         )
-        print(new_image, "new image instance --------------------")
+        # print(new_image, "new image instance --------------------")
         product_images.append(new_image)
 
     # Save the product images to the database

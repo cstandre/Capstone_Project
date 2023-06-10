@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loadItems, deleteItem, updateCartItem } from "../../store/cart";
+import cartReducer, { loadItems, deleteItem, updateCartItem } from "../../store/cart";
 
 const Cart = () => {
     const dispatch = useDispatch();

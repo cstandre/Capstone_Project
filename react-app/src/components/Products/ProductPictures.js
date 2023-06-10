@@ -22,7 +22,7 @@ const ProductPicture = () => {
           formData.append('image[]', img);
         });
 
-        console.log(formData)
+        // console.log(formData)
 
         const res = await fetch(`/api/images/${productId}`, {
             method: "POST",
