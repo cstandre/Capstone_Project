@@ -13,6 +13,8 @@ const Cart = () => {
         cartId: items?.id
     }));
 
+    console.log(cartItems)
+
     const totalCartAmt = products?.reduce((acc, item) => acc + item?.quantity, 0) || 0;
     const subtotal = products?.reduce((acc, product) => acc + parseFloat(product?.price * product?.quantity), 0).toFixed(2);
 

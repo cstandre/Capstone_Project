@@ -70,21 +70,12 @@ def cart_quantity(itemId, quantity):
 @cart_routes.route('/<int:itemId>', methods=['DELETE'])
 @login_required
 def delete_item(itemId):
-    item = CartItem.query.options(db.joinedload('owner')).get(itemId)
+    item = CartItem.query.get(itemId)
 
     if not item:
         return {'error': 'Item not found'}
 
-    product_details = item.products.to_dict_detail() if item.products else None
-
-    deleted_item = {
-        'id': item.id,
-        'cart_id': item.cart_id,
-        'product': product_details,
-        'quantity': item.quantity
-    }
-
     db.session.delete(item)
     db.session.commit()
 
-    return deleted_item
+    return {"messge": "successfull delete"}
