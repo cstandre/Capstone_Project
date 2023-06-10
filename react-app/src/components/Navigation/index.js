@@ -14,12 +14,7 @@ function Navigation({ isLoaded }){
 	const dispatch = useDispatch();
 
 	const quantityArr = Object?.values(cartItems)?.map(item => item?.quantity)
-<<<<<<< HEAD
-	const quantityNum = quantityArr.reduce((acc, num) => acc + num, 0) || 0;
-
-=======
-	const quantityNum = quantityArr?.reduce((acc, num) => acc + num, 0)
->>>>>>> parent of e7a97bc... changed some validations on the sign up form. When a new users first logs in, the cart quatnity is NaN. Trying to fix that.
+	const quantityNum = quantityArr?.reduce((acc, num) => acc + num, 0) || 0;
 
 	useEffect(() => {
 		dispatch(loadItems())
