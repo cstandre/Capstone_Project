@@ -15,8 +15,8 @@ const ProductDetailsPage = () => {
     const [ mainImg, setMainImg ] = useState(null);
     const [selectedQuantity, setSelectedQuantity] = useState(1);
 
-    const productArr = Object?.values(products);
-    const product = productArr[0];
+    const product = Object?.values(products)[0];
+    // const product = productArr[0];
 
     useEffect(() => {
       dispatch(productDetails(productId));

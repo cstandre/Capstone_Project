@@ -8,7 +8,9 @@ const EditProduct = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const { productId } = useParams();
-    const product = useSelector(state=>state?.products);
+    const products = useSelector(state=>state?.products);
+
+    const product = Object?.values(products)[0];
 
     const [ product_name, setProductName ] = useState('');
     const [ price, setPrice ] = useState('');
