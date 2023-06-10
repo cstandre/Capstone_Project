@@ -31,8 +31,10 @@ def add_img(productId):
     images = request.files.getlist('image[]')
     product_images = []
     for idx, image in enumerate(images):
+        print(image)
         image.filename = get_unique_filename(image.filename)
         upload = upload_file_to_s3(image)
+        print(upload)
 
         if 'url' not in upload:
             return {'errors': "Invalid response from upload_file_to_s3"}, 500
