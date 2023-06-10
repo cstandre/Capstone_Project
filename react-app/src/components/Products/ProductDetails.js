@@ -11,9 +11,12 @@ const ProductDetailsPage = () => {
     const history = useHistory();
     const { productId } = useParams();
     const sessionUser = useSelector(state=>state?.session?.user);
-    const product = useSelector(state=>state?.products);
+    const products = useSelector(state=>state?.products);
     const [ mainImg, setMainImg ] = useState(null);
     const [selectedQuantity, setSelectedQuantity] = useState(1);
+
+    const productArr = Object?.values(products);
+    const product = productArr[0];
 
     useEffect(() => {
       dispatch(productDetails(productId));
