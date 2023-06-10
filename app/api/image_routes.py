@@ -30,31 +30,24 @@ def add_img(productId):
 
     form = ImageForm()
 
-    if form.validate_on_submit():  # Check if the form is valid
-        images = request.files.getlist('image[]')
-
-        product_images = []
-        for idx, image in enumerate(images):
-            image.filename = get_unique_filename(image.filename)
-            upload = upload_file_to_s3(image)
-            url = upload["url"]
-            is_preview = request.form.get(f'is_preview_{idx}') == 'true'
-
-            new_image = ProductImage(
-                image=url,
-                is_preview=is_preview,
-                product_id=productId
-            )
-            product_images.append(new_image)
-
-        # Save the product images to the database
-        for image in product_images:
-            db.session.add(image)
-        db.session.commit()
-
-        return jsonify([image.to_dict() for image in product_images])
-
-    return {'errors': form.errors}  # Return form validation errors if the form is not valid
+    images = request.files.getlist('image[]')
+    product_images = []
+    for idx, image in enumerate(images):
+        image.filename = get_unique_filename(image.filename)
+        upload = upload_file_to_s3(image)
+        url = upload["url"]
+        is_preview = request.form.get(f'is_preview_{idx}') == 'true'
+        new_image = ProductImage(
+            image=url,
+            is_preview=is_preview,
+            product_id=productId
+        )
+        product_images.append(new_image)
+    # Save the product images to the database
+    for image in product_images:
+        db.session.add(image)
+    db.session.commit()
+    return jsonify([image.to_dict() for image in product_images])
 
 
 ## Update the images of a product

@@ -143,7 +143,7 @@ const initialState = {};
 export default function productReducer(state = initialState, action) {
     switch (action.type) {
         case GET_PRODUCTS:
-            return { ...state, ...action.products};
+            return { products: action.products};
         case USER_PRODUCTS:
             return { products: action.products};
         case DETAILS_PRODUCTS:

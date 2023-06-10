@@ -73,14 +73,13 @@ def sign_up():
             zip=form.data['zip'],
             password=form.data['password']
         )
-        db.session.add(user)
-        db.session.commit()
         cart = Cart(
             user_id = user.id
         )
+        db.session.add(user)
         db.session.add(cart)
         db.session.commit()
-        
+
         login_user(user)
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401

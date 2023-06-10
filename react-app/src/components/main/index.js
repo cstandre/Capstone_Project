@@ -16,7 +16,9 @@ const MainPage = () => {
   const [sliderWidth, setSliderWidth] = useState(0);
   const [sliderHeight, setSliderHeight] = useState(0);
 
-  const productArr = Object?.values(products)?.slice(0,5);
+
+  const productsArr = Object?.values(products)?.flatMap(product => Object?.values(product));
+
 
   useEffect(() => {
     dispatch(loadProducts());
@@ -78,7 +80,7 @@ const MainPage = () => {
           />
         </div>
         <div className="product-display-container">
-          {productArr?.map((product, idx) =>
+          {productsArr?.map((product, idx) =>
             <div className={`product-box container-${idx}`} key={idx}>
               <img className={`product-box-img-${idx}`} alt="" src={product?.preview_image} value={product?.id} onClick={() => handleProductDetail(product?.id)}></img>
               <div className="product-details">

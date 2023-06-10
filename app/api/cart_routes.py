@@ -9,15 +9,20 @@ cart_routes = Blueprint('cart', __name__)
 ## Get cart items
 @cart_routes.route('')
 def users_cart():
+    if not current_user.is_authenticated:
+        return {'error': 'User is not authenticated'}
+
     user_id = current_user.id
-    cart = Cart.query.filter_by(user_id = user_id).first()
+    cart = Cart.query.filter_by(user_id=user_id).first()
+
 
     if not cart:
         return {'error': 'Cart not found'}
 
-    cart_items = CartItem.query.filter_by(cart_id = cart.id).all()
+    cart_items = CartItem.query.filter_by(cart_id=cart.id).all()
 
-    return {cart_item.id : cart_item.to_dict() for cart_item in cart_items}
+    return {cart_item.id: cart_item.to_dict() for cart_item in cart_items}
+
 
 ## Add items to cart
 @cart_routes.route('/<int:productId>/<int:quantity>', methods=['POST'])
@@ -65,7 +70,7 @@ def cart_quantity(itemId, quantity):
 @cart_routes.route('/<int:itemId>', methods=['DELETE'])
 @login_required
 def delete_item(itemId):
-    item = CartItem.query.get(itemId)
+    item = CartItem.query.options(db.joinedload('owner')).get(itemId)
 
     if not item:
         return {'error': 'Item not found'}
