@@ -33,7 +33,6 @@ def add_img(productId):
     for idx, image in enumerate(images):
         image.filename = get_unique_filename(image.filename)
         upload = upload_file_to_s3(image)
-        print(upload)
 
         if 'url' not in upload:
             return {'errors': "Invalid response from upload_file_to_s3"}, 500
@@ -44,6 +43,7 @@ def add_img(productId):
             is_preview=is_preview,
             product_id=productId
         )
+        print(new_image, "--------------------")
         product_images.append(new_image)
 
     # Save the product images to the database
