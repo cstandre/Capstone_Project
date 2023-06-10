@@ -17,7 +17,7 @@ const MainPage = () => {
   const [sliderHeight, setSliderHeight] = useState(0);
 
 
-  const productsArr = Object?.values(products)?.flatMap(product => Object?.values(product));
+  const productsArr = Object?.values(products)?.flatMap(product => Object?.values(product)).slice(0,5);
 
 
   useEffect(() => {

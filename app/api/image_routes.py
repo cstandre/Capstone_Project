@@ -54,7 +54,9 @@ def add_img(productId):
     except Exception as e:
         print(str(e))
         db.session.rollback()
+        return jsonify({'error': 'An error occurred while saving the images'}), 500
 
+    return jsonify({'message': 'Images added successfully'})
 
 
 ## Update the images of a product
