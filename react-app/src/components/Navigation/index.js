@@ -14,14 +14,8 @@ function Navigation({ isLoaded }){
 	const dispatch = useDispatch();
 
 	const quantityArr = Object?.values(cartItems)?.map(item => item?.quantity)
+	const quantityNum = quantityArr.reduce((acc, num) => acc + num, 0) || 0;
 
-	let quantityNum;
-
-	if (quantityArr.length > 0) {
-		quantityNum = quantityArr?.reduce((acc, num) => acc + num, 0)
-	} else {
-		quantityNum = 0
-	};
 
 	useEffect(() => {
 		dispatch(loadItems())
