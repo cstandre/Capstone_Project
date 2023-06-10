@@ -13,8 +13,8 @@ function Navigation({ isLoaded }){
 	const history = useHistory();
 	const dispatch = useDispatch();
 
-	const quantityArr = Object.values(cartItems).map(item => item.quantity)
-	const quantityNum = quantityArr.reduce((acc, num) => acc + num, 0)
+	const quantityArr = Object?.values(cartItems)?.map(item => item?.quantity)
+	const quantityNum = quantityArr?.reduce((acc, num) => acc + num, 0)
 
 	useEffect(() => {
 		dispatch(loadItems())

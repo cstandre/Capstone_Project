@@ -35,7 +35,7 @@ const UserStorePage = () => {
 
     return (
         <div>
-            {products ? (
+            {items.length ? (
                 <div className="store-container">
                     <div>
                         <div className="header-container">

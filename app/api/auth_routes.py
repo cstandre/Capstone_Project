@@ -73,10 +73,12 @@ def sign_up():
             zip=form.data['zip'],
             password=form.data['password']
         )
+        db.session.add(user)
+        db.session.commit()
+
         cart = Cart(
             user_id = user.id
         )
-        db.session.add(user)
         db.session.add(cart)
         db.session.commit()
 
