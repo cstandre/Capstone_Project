@@ -47,7 +47,7 @@ def add_img(productId):
             is_preview=is_preview,
             product_id=productId
         )
-        print(new_image, "new image instance--------------------")
+        print(new_image, "new image instance --------------------")
         product_images.append(new_image)
 
     # Save the product images to the database
