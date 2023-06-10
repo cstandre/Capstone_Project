@@ -7,13 +7,13 @@ const Cart = () => {
     const sessionUser = useSelector(state=>state?.session?.user);
     const cartItems = useSelector(state=>state?.cartItems);
 
-    const products = Object.values(cartItems).map((items) => ({
+    const products = Object?.values(cartItems)?.map((items) => ({
         ...items?.product,
         quantity: items?.quantity,
         cartId: items?.id
     }));
 
-    const totalCartAmt = products?.reduce((acc, item) => acc + item?.quantity, 0)
+    const totalCartAmt = products?.reduce((acc, item) => acc + item?.quantity, 0) || 0;
     const subtotal = products?.reduce((acc, product) => acc + parseFloat(product?.price * product?.quantity), 0).toFixed(2);
 
     useEffect(() => {
