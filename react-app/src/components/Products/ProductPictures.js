@@ -37,7 +37,6 @@ const ProductPicture = () => {
 
     const handleImageChange = (e) => {
         const files = Array.from(e.target.files);
-        console.log(files)
 
         if (files.length > 5) {
             alert("Please select up to 5 files only.");
