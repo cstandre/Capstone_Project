@@ -3,6 +3,9 @@ import { useHistory } from "react-router-dom";
 import { login } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
+import { loadItems } from '../../store/cart';
+
+
 import './LoginForm.css';
 
 function LoginFormPage() {
@@ -28,8 +31,9 @@ function LoginFormPage() {
     history.push('/signup')
   }
 
-  const homeClick = (e) => {
+  const homeClick = async (e) => {
     e.preventDefault()
+    await dispatch(loadItems())
     history.push('/')
   }
 

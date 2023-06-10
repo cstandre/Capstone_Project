@@ -16,9 +16,12 @@ function Navigation({ isLoaded }){
 	const quantityArr = Object?.values(cartItems)?.map(item => item?.quantity)
 	const quantityNum = quantityArr?.reduce((acc, num) => acc + num, 0) || 0;
 
+
 	useEffect(() => {
-		dispatch(loadItems())
-	}, [dispatch])
+		if (sessionUser) {
+		  dispatch(loadItems());
+		}
+	}, [dispatch, sessionUser]);
 
 	const signIn = (e) => {
 		e.preventDefault();

@@ -8,14 +8,12 @@ cart_routes = Blueprint('cart', __name__)
 
 ## Get cart items
 @cart_routes.route('')
+@login_required
 def users_cart():
-    if not current_user.is_authenticated:
-        return {'error': 'User is not authenticated'}
-
     user_id = current_user.id
     cart = Cart.query.filter_by(user_id=user_id).first()
-
-
+    print(user_id, '-----------------------------------------------------')
+    print(cart, '-----------------------------------------------------')
     if not cart:
         return {'error': 'Cart not found'}
 

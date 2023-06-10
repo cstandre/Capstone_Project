@@ -13,8 +13,6 @@ const Cart = () => {
         cartId: items?.id
     }));
 
-    console.log(cartItems)
-
     const totalCartAmt = products?.reduce((acc, item) => acc + item?.quantity, 0) || 0;
     const subtotal = products?.reduce((acc, product) => acc + parseFloat(product?.price * product?.quantity), 0).toFixed(2);
 
@@ -33,13 +31,6 @@ const Cart = () => {
         const productId = e.target.value
         dispatch(deleteItem(Number(productId)))
     };
-
-    const handleReducer = async (productId, quantityAmt) => {
-        const numProdId = Number(productId);
-        const numQuant = Number(quantityAmt);
-        const newQuant = numQuant - 1;
-        await dispatch(updateCartItem(numProdId, newQuant));
-    }
 
 
     return (
@@ -68,11 +59,7 @@ const Cart = () => {
                                 <option>9</option>
                                 <option>10</option>
                             </select>
-                            {product.quantity > 1 ? (
-                                <div><button  value={product?.cartId} onClick={() => handleReducer(product?.cartId, product?.quantity)}>Delete</button></div>
-                            ): (
-                                <div><button value={product?.cartId} onClick={handleDelete}>Delete</button></div>
-                            )}
+                            <div><button value={product?.cartId} onClick={handleDelete}>Delete</button></div>
                         </div>
                     )}
                     {cartItems ? (
