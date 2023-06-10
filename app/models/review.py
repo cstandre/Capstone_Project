@@ -22,7 +22,7 @@ class Review(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
-            'owner_name': self.owner.username,
+            'owner_name': self.owner.username if self.owner else None,
             'header': self.header,
             'review': self.review,
             'stars': self.stars,
