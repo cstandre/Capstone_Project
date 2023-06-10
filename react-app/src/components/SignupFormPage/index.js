@@ -5,6 +5,7 @@ import { signUp } from "../../store/session";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 import './SignupForm.css';
+import { loadItems } from "../../store/cart";
 
 function SignupFormPage() {
   const dispatch = useDispatch();
@@ -46,6 +47,7 @@ function SignupFormPage() {
     } else {
         setErrors(['Confirm Password field must be the same as the Password field']);
     }
+    await dispatch(loadItems)
   };
 
   const homeClick = (e) => {
