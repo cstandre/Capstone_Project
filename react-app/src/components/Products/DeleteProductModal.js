@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux"
 import { useModal } from "../../context/Modal";
 import { deleteProduct, userProducts } from "../../store/products";
 
-
+import './DeleteProductModal.css'
 
 const DeleteProductModal = ({ productId }) => {
     const dispatch = useDispatch();
@@ -19,11 +19,11 @@ const DeleteProductModal = ({ productId }) => {
     return (
         <>
             <div className="delete-form">
-                <h1 className="delete-title">Confirm Delete</h1>
+                <p className="delete-title">Confirm Delete</p>
                 <div className="delete-confirm">Are you sure you want to delete this product?</div>
                 <div className="delete-buttons">
-                <button className="delete-button" onClick={handleClick}>Yes (Delete)</button>
-                <button className="delete-button" onClick={closeModal}>No</button>
+                <button className="delete-button" onClick={handleClick}><div className="btn-txt">Yes (Delete)</div></button>
+                <button className="cancel-button" onClick={closeModal}><div className="btn-txt">No (Cancel)</div></button>
                 </div>
             </div>
         </>

@@ -1,0 +1,42 @@
+.delete-form {
+    display: grid;
+    justify-content: center;
+    margin: 40px;
+}
+
+.delete-confirm {
+    font-size: 20px;
+}
+
+.delete-buttons {
+    padding-top: 30px;
+}
+
+.delete-title {
+    font-size: 25px;
+}
+
+.cancel-button {
+    background-color: #ffffff;
+    border: 1px solid #dde0e0;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.btn-txt {
+    margin: 5px;
+}
+
+.cancel-button:hover {
+    cursor: pointer;
+}
+
+.delete-button {
+    background-color: #ffd815;
+    border: 1px solid #ffd815;
+    border-radius: 5px;
+}
+
+.delete-button:hover {
+    cursor: pointer;
+}

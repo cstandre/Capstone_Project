@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import cartReducer, { loadItems, deleteItem, updateCartItem } from "../../store/cart";
+import { loadItems, deleteItem, updateCartItem } from "../../store/cart";
+
+import './cart.css'
 
 const Cart = () => {
     const dispatch = useDispatch();
@@ -34,39 +36,64 @@ const Cart = () => {
 
 
     return (
-        <div>
-            {sessionUser && products ? (
-                <div>
-                    {products?.map((product, idx) =>
-                        <div key={idx}>
-                            <p>{product?.product_name}</p>
-                            <p>{product?.price}</p>
-                            {product?.stock_quantity > 0 ? (
-                                <p>In Stock</p>
-                            ): (
-                                <p>Out of Stock</p>
-                            )}
-                            <p>Brand: {product?.brand}</p>
-                            <select id='mySelect' value={product?.quantity} onChange={(e) => handleSelectChange(product.cartId, e.target.value)}>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </select>
-                            <div><button value={product?.cartId} onClick={handleDelete}>Delete</button></div>
+        <div className="body">
+            {sessionUser && products.length > 0 ? (
+                <div className="main-section">
+                    <div className="header-box">
+                        <div className="cart-header">Shopping Cart</div>
+                    </div>
+                    {products?.map((product, idx) => (
+                      <div key={idx} className="cart-item-wrapper">
+                        <div className="cart-img-container">
+                            <img alt="" className="cart-prev-img" src={product?.preview_image}></img>
                         </div>
-                    )}
-                    {cartItems ? (
-                        <p>Subtotal ({totalCartAmt}) item: ${subtotal}</p>
-                    ): (
-                        <p>Subtotal ({totalCartAmt}) items: ${subtotal}</p>
-                    )}
+                        <span className="cart-item-container">
+                          <div className="cart-product">
+                            <p>{product?.product_name}</p>
+                          </div>
+                          <div className="total">
+                            <p className="price">${product?.price}</p>
+                          </div>
+                          <div className="stock-level">
+                            {product?.stock_quantity > 0 ? (
+                              <p className="in-stock">In Stock</p>
+                            ) : (
+                              <p className="no-stock">Out of Stock</p>
+                            )}
+                          </div>
+                          <div className="brand-container">
+                            <p className="brand">Brand: {product?.brand}</p>
+                          </div>
+                          <div className="cart-edit">
+                            <select
+                              id="mySelect"
+                              value={product?.quantity}
+                              onChange={(e) => handleSelectChange(product.cartId, e.target.value)}
+                            >
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                              <option>6</option>
+                              <option>7</option>
+                              <option>8</option>
+                              <option>9</option>
+                              <option>10</option>
+                            </select>
+                            <div className="delete-btn">
+                              <button value={product?.cartId} onClick={handleDelete}>
+                                Delete
+                              </button>
+                            </div>
+                          </div>
+                        </span>
+                      </div>
+                    ))}
+                    <div className="subtotal-box">
+                        <span className="subtotal">Subtotal ({totalCartAmt} item):</span>
+                        <span className="total">${subtotal}</span>
+                    </div>
                 </div>
             ): (
                 <h1>Your Amazon Cart is empty</h1>

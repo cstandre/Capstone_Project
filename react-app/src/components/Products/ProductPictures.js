@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 
+import './ProductPictures.css'
 
 const ProductPicture = () => {
     const history = useHistory();
@@ -54,25 +55,40 @@ const ProductPicture = () => {
     };
 
     return (
-        <form
-            onSubmit={handleSubmit}
-            encType="multipart/form-data"
-            className="form"
-        >
-            <div className="logo-img">
-                <img className="logo" alt="" onClick={homeClick} src="https://res.cloudinary.com/djclmc80y/image/upload/v1684814624/amazon_logo_weywcm.png" />
-            </div>
-            <label>
-                <h3>Add pictures of your product!</h3>
-                <input
-                    type="file"
-                    accept="images/*"
-                    multiple
-                    onChange={handleImageChange}
-                />
-                <button type="submit">Create product</button>
-            </label>
-        </form>
+        <div className="form">
+            <form
+                onSubmit={handleSubmit}
+                encType="multipart/form-data"
+            >
+                <div className="img">
+                    <img className="logo" alt="" onClick={homeClick} src="https://res.cloudinary.com/djclmc80y/image/upload/v1684814624/amazon_logo_weywcm.png" />
+                </div>
+                <div className="form-pictures">
+                    <p className="header">Add Pictures</p>
+                    <div className="input-file">
+                        <input
+                            type="file"
+                            id="file"
+                            accept="images/*"
+                            multiple
+                            onChange={handleImageChange}
+                        />
+                        <p className="img-form-sub-header">Select 1-5 images</p>
+                        <label for='file'>
+                            <div className="upload-container">
+                                <div className="upload-txt">Upload</div>
+                            </div>
+                        </label>
+                        <button type="submit" className="create-botton">
+                            <div className="btn-txt">
+                            Create product
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
     )
 };
 
