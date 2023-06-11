@@ -25,12 +25,17 @@ const ProductDetailsPage = () => {
     useEffect(() => {
       if (product) {
         setMainImg(product?.preview_image);
+        // console.log(product?.preview_image)
       }
     }, [product]);
 
     const handleSelectChange = async (e) => {
       e.preventDefault();
       setSelectedQuantity(e.target.value)
+    };
+
+    const handleImgClick = (img) => {
+      setMainImg(img);
     };
 
     const handleCartButton = async (e) => {
@@ -50,7 +55,7 @@ const ProductDetailsPage = () => {
             <>
             <div className="side-img-container">
               {product?.product_images?.map((img, idx)=>
-                <img key={idx}  alt='' className="small-img" src={img.image}></img>
+                <img key={idx}  alt='' className="small-img" src={img.image} value={img.image} onClick={() => handleImgClick(img.image)}></img>
               )}
               </div>
             <div className="main-img-container">

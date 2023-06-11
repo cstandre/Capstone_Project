@@ -119,11 +119,10 @@ def delete_product(id):
     Query for a product by the id and remove from database.
     """
     product = Product.query.options(db.joinedload(Product.reviews)).get_or_404(id)
-    # print(product, "product-------------------")
     db.session.delete(product)
     db.session.commit()
 
-    return product.to_dict_detail()
+    return {'message': 'Successfull delete'}
 
 ## Get all product images
 @product_routes.route('/images')
