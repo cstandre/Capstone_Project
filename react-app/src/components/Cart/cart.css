@@ -1,13 +1,16 @@
 .main-section {
     background-color: #ffff;
     height: fit-content;
+    width: 600px;
+    margin: 20px;
 }
 
 .cart-item-wrapper {
     display: grid;
     grid-template-columns: auto 1fr;
-    grid-gap: 20px;
+    gap: 20px;
     align-items: center;
+    margin: 20px;
 }
 
 .cart-edit {
@@ -17,7 +20,7 @@
 .header-box {
     border-bottom: 1px solid #eee;
     padding-bottom: 7px;
-    margin-bottom: 20px;
+    margin: 20px 10px 10px 20px;
 }
 
 .cart-header {
@@ -27,12 +30,16 @@
 .cart-img-container {
     display: flex;
     justify-content: center;
-    max-height: auto;
-    min-width: 150px;
+}
+
+.cart-img-container:hover {
+    cursor: pointer;
 }
 
 .cart-prev-img {
-    max-height: 80px;
+    height: 180px;
+    width: 180px;
+    object-fit: contain;
 }
 
 .price,
@@ -45,7 +52,7 @@
     justify-content: end;
     border-top: 1px solid #eee;
     padding-top: 7px;
-    margin-top: 20px;
+    margin: 20px 10px 10px 20px;
 }
 
 .subtotal {
@@ -55,4 +62,25 @@
 
 .total {
     font-weight: 600;
+}
+
+#mySelect {
+    background-color: #f0f2f2;
+    border-radius: 5px;
+    margin-right: 3px;
+    box-shadow: 0 2px 5px rgba(15,17,17,.15);
+    border-color: #D5D9D9;
+}
+
+.prod-deets-delete-btn {
+    background-color: #ffff;
+    color: #0F1111;
+    border: none;
+}
+
+.prod-deets-delete-btn:hover,
+.prod-deets-name:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    color: blue;
 }

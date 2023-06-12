@@ -59,8 +59,9 @@
 .user-store-img {
     display: grid;
     justify-self: center;
-    max-width: 70%;
-    height: auto;
+    width: 170px;
+    height: 270px;
+    object-fit: contain;
 }
 
 .product-details {

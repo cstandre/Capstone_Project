@@ -43,7 +43,7 @@
     color: #767676;
 }
 
-.continue-botton {
+.continue-button {
     background: -webkit-linear-gradient(top, #f4dc9a, #eec962);
     border-color: #767676;
     height: 30px;
@@ -51,7 +51,7 @@
     border-width: 1px;
 }
 
-.continue-botton:hover {
+.continue-button:hover {
     cursor: pointer;
 }
 
@@ -63,7 +63,7 @@ h3 {
 
 .input {
     background-color: #eaf0fe;
-    border: 1px solid #949494;
+    border: 1px solid #a6a6a6;
     border-radius: 3px;
     width: 100%;
 }

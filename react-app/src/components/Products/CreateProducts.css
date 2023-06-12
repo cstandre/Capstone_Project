@@ -1,4 +1,9 @@
 .create-button {
+    background: -webkit-linear-gradient(top, #f4dc9a, #eec962);
+    border-color: #767676;
+    height: 30px;
+    border-radius: 3px;
+    border-width: 1px;
     width: 305px;
 }
 

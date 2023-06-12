@@ -66,7 +66,7 @@ const MainPage = () => {
   const handleProductDetail = (productId) => {
     // console.log(productId)
     history.push(`/products/${productId}`);
-};
+  };
 
   return (
     <div className="body">
@@ -77,36 +77,54 @@ const MainPage = () => {
             height={sliderHeight}
             images={images}
             showNavs={true}
+            autoPlay={true}
+            slideDuration={2.0}
           />
         </div>
         <div className="product-display-container">
-          {productsArr?.map((product, idx) =>
+          {productsArr?.map((product, idx) => (
             <div className={`product-box container-${idx}`} key={idx}>
-              <img className={`product-box-img-${idx}`} alt="" src={product?.preview_image} value={product?.id} onClick={() => handleProductDetail(product?.id)}></img>
-              <div className="product-details">
-                <p className="product-name" value={product?.id} onClick={() => handleProductDetail(product?.id)}>{product.product_name}</p>
-                {product?.stock_quantity > 0 ? (
-                  <p className="in-stock">In Stock</p>
-                ): (
-                  <p className="no-stock">Out of Stock</p>
-                )}
-                </div>
-                  {sessionUser ? (
-                    <button value={product?.id} onClick={() => handleCartButton(product?.id)}>Add to cart</button>
-                  ): (
-                    <button value={product?.id} onClick={throwError}>Add to cart</button>
+              <img
+                className={`product-box-img-${idx}`}
+                alt=""
+                src={product?.preview_image}
+                value={product?.id}
+                onClick={() => handleProductDetail(product?.id)}
+              ></img>
+              <div className="product-details-main">
+                <p
+                  className="product-name"
+                  value={product?.id}
+                  onClick={() => handleProductDetail(product?.id)}
+                >
+                  {product.product_name}
+                </p>
+                  {product?.stock_quantity > 0 ? (
+                    <p className="in-stock">In Stock</p>
+                  ) : (
+                    <p className="no-stock">Out of Stock</p>
                   )}
-                </div>
-            /* {ad?.reviews?.length == 0 ? (
-                  <div>Be the first to review!</div>
-                  ): (
-                    <div>Review Count: {ad?.reviews?.length}</div>
-              )} */
-          )}
+              </div>
+              {sessionUser ? (
+                <button
+                  value={product?.id}
+                  onClick={() => handleCartButton(product?.id)}
+                  className="add-to-cart"
+                >
+                  Add to cart
+                </button>
+              ) : (
+                <button className="add-to-cart" value={product?.id} onClick={throwError}>
+                  <div>Add to cart</div>
+                </button>
+              )}
+            </div>
+          ))}
         </div>
       </div>
     </div>
-  )
+  );
+
 };
 
 export default MainPage;

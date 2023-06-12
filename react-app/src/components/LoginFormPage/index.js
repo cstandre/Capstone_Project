@@ -82,7 +82,7 @@ function LoginFormPage() {
               <div key={idx}>{error}</div>
             ))}
           </ul>
-          <button type="submit" className="continue-botton">Continue</button>
+          <button type="submit" className="continue-button">Continue</button>
           <p>By continuing, you agree to Amazon's Conditions of Use and Privacy Notice.</p>
           <div>
             <p className="demoUser" onClick={demoUser}>Demo User?</p>

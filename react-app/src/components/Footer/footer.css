@@ -6,6 +6,22 @@
     bottom: 0;
 }
 
+.name {
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.link-icons {
+    display: flex;
+    justify-content: center;
+}
+
+.github-icon {
+    margin-right: 10px;
+}
+
 .fa-brands {
     color: white;
 }

@@ -50,62 +50,67 @@ const ProductDetailsPage = () => {
     };
 
     return (
-        <div className="product-page">
-        {product ? (
+      <div className="product-page">
+        <div className="main-container">
+          {product ? (
             <>
-            <div className="side-img-container">
-              {product?.product_images?.map((img, idx)=>
-                <img key={idx}  alt='' className="small-img" src={img.image} value={img.image} onClick={() => handleImgClick(img.image)}></img>
-              )}
+              <div className="side-img-container">
+                {product?.product_images?.map((img, idx)=>
+                  <img key={idx}  alt='' className="small-img" src={img.image} value={img.image} onClick={() => handleImgClick(img.image)}></img>
+                )}
               </div>
-            <div className="main-img-container">
-              <img className="main-img" alt="" src={mainImg}></img>
-            </div>
-            <div className="product-info-container">
-              <h2>{product?.product_name}</h2>
-              {product?.brand}
-              <p>{product?.description}</p>
-            </div>
-            <div className="cart-container">
-              ${product?.price}
-              {sessionUser ? (
-                <div>
-                  Deliver to {sessionUser?.first_name} - {sessionUser.city} {sessionUser.zip}
-                </div>
-              ):(
-                <div></div>
-              )}
-              {product?.stock_quantity > 0 ? (
-                <p>In Stock</p>
-              ): (
-                <p>Out of Stock</p>
-              )}
-              {sessionUser ? (
-                <div>
-                  <select id='mySelect' value={selectedQuantity} onChange={handleSelectChange}>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                  </select>
-                  <button onClick={handleCartButton}>Add to cart</button>
-                </div>
-              ): (
-                <button value={productId} onClick={throwError}>Add to cart</button>
-              )}
-            </div>
+              <div className="main-img-container">
+                <img className="main-img" alt="" src={mainImg}></img>
+              </div>
+              <div className="product-info-container">
+                <h2 className="product-detail-name">{product?.product_name}</h2>
+                {product?.brand}
+                <p className="product-detail-description">{product?.description}</p>
+              </div>
+              <div className="cart-container">
+                <div className="total">${product?.price}</div>
+                {sessionUser ? (
+                  <div>
+                    Deliver to {sessionUser?.first_name} - {sessionUser.city} {sessionUser.zip}
+                  </div>
+                ):(
+                  <div></div>
+                )}
+                {product?.stock_quantity > 0 ? (
+                  <p className="deets-in-stock">In Stock</p>
+                ): (
+                  <p className="deets-no-stock">Out of Stock</p>
+                )}
+                {sessionUser ? (
+                  <div>
+                    <select id='mySelect' value={selectedQuantity} onChange={handleSelectChange}>
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                      <option>6</option>
+                      <option>7</option>
+                      <option>8</option>
+                      <option>9</option>
+                      <option>10</option>
+                    </select>
+                    <div className="deets-cart-btn">
+                      <button className="add-to-cart" onClick={handleCartButton}>Add to cart</button>
+                    </div>
+                  </div>
+                ): (
+                  <button value={productId} onClick={throwError}>Add to cart</button>
+                )}
+              </div>
             </>
-        ): (
-            <>
-            </>
-        )}
+          ): (
+              <>
+              </>
+          )}
+
         </div>
+      </div>
     )
 };
 

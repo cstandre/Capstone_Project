@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loadItems, deleteItem, updateCartItem } from "../../store/cart";
 
@@ -6,6 +7,7 @@ import './cart.css'
 
 const Cart = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const sessionUser = useSelector(state=>state?.session?.user);
     const cartItems = useSelector(state=>state?.cartItems);
 
@@ -34,6 +36,10 @@ const Cart = () => {
         dispatch(deleteItem(Number(productId)))
     };
 
+    const handleProductDetail = (productId) => {
+      // console.log(productId)
+      history.push(`/products/${productId}`);
+    };
 
     return (
         <div className="body">
@@ -45,11 +51,24 @@ const Cart = () => {
                     {products?.map((product, idx) => (
                       <div key={idx} className="cart-item-wrapper">
                         <div className="cart-img-container">
-                            <img alt="" className="cart-prev-img" src={product?.preview_image}></img>
+                            <img
+                              alt=""
+                              className="cart-prev-img"
+                              src={product?.preview_image}
+                              value={product?.id}
+                              onClick={() => handleProductDetail(product?.id)}
+                            >
+                            </img>
                         </div>
                         <span className="cart-item-container">
                           <div className="cart-product">
-                            <p>{product?.product_name}</p>
+                            <p
+                              className="prod-deets-name"
+                              value={product?.id}
+                              onClick={() => handleProductDetail(product?.id)}
+                            >
+                              {product?.product_name}
+                            </p>
                           </div>
                           <div className="total">
                             <p className="price">${product?.price}</p>
@@ -82,8 +101,8 @@ const Cart = () => {
                               <option>10</option>
                             </select>
                             <div className="delete-btn">
-                              <button value={product?.cartId} onClick={handleDelete}>
-                                Delete
+                              <button className="prod-deets-delete-btn" value={product?.cartId} onClick={handleDelete}>
+                               | Delete
                               </button>
                             </div>
                           </div>
@@ -96,7 +115,20 @@ const Cart = () => {
                     </div>
                 </div>
             ): (
-                <h1>Your Amazon Cart is empty</h1>
+              <div>
+                <div className="main-section">
+                  <div className="header-box">
+                    <h1>Your Amazon Cart is empty</h1>
+                    <div className="subtotal-box">
+                      <span className="subtotal">Subtotal ({totalCartAmt} item):
+                      </span>
+                    <span className="total">
+                      ${subtotal}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
             )}
         </div>
     )
