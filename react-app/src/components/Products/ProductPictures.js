@@ -46,7 +46,6 @@ const ProductPicture = () => {
 
         setselectedImages(files.slice(1))
         setPreviewImage(files[0]);
-        // setPreviewIndex(0);
     }
 
     const homeClick = (e) => {
