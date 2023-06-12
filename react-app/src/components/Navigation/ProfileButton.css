@@ -7,13 +7,24 @@
     cursor: pointer;
 }
 
-.logout-button {
+.logout-button,
+.store-button,
+.log-in-button,
+.signup-button {
     background-color: transparent;
     border: none;
 }
 
-.logout-button:hover {
+.logout-button:hover,
+.store-button:hover,
+.log-in-button,
+.signup-button {
     cursor: pointer;
+}
+
+.signup-button {
+    width: 60px;
+    margin: 0;
 }
 
 .profile-dropdown {
@@ -25,16 +36,11 @@
     color: black;
 }
 
-.store-button {
-    background-color: transparent;
-    border: none;
-}
-
-.store-button:hover {
-    cursor: pointer;
-}
-
 .drop-down-header {
     font-size: 12px;
     padding: 5px;
+}
+
+.log-in-button {
+
 }

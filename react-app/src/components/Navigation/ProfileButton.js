@@ -74,8 +74,9 @@ function ProfileButton({ user }) {
           </>
         ) : (
           <>
-            <button onClick={handleLogIn}>Log In</button>
-            <button onClick={handleSignUp}>Sign Up</button>
+            <h1 className="drop-down-header">Your Account</h1>
+            <button className='log-in-button' onClick={handleLogIn}>Log In</button>
+            <button className='signup-button' onClick={handleSignUp}>Sign Up</button>
           </>
         )}
       </div>

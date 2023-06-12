@@ -2,7 +2,7 @@
     display: grid;
     justify-content: center;
     background-color: #e4e6e6;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .slider {
@@ -122,11 +122,17 @@
         width: 150px;
         height: 150px;
     }
+    .product-box-img-3,
+    .product-box-img-4 {
+        width: 80px;
+        height: 80px;
+    }
     .product-box {
         width: 200px;
     }
-    .product-name-main {
+    .product-name {
         width: 180px;
+        margin: 0;
     }
 }
 
