@@ -84,8 +84,9 @@ function LoginFormPage() {
           </ul>
           <button type="submit" className="continue-button">Continue</button>
           <p>By continuing, you agree to Amazon's Conditions of Use and Privacy Notice.</p>
-          <div>
-            <p className="demoUser" onClick={demoUser}>Demo User?</p>
+          <div className="demo-user-container">
+            <p>Just browsing? </p>
+            <p className="demoUser" onClick={demoUser}>Demo User</p>
           </div>
         </div>
       </form>
@@ -94,7 +95,7 @@ function LoginFormPage() {
           <p>New to Amazon?</p>
         </div>
         <div className="button-div">
-          <button className="signup-button" onClick={handleClick}>Create your Amazon account</button>
+          <button className="signup-btn" onClick={handleClick}>Create your Amazon account</button>
         </div>
       </div>
     </div>
