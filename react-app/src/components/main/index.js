@@ -93,7 +93,7 @@ const MainPage = () => {
               ></img>
               <div className="product-details-main">
                 <p
-                  className="product-name"
+                  className="product-name-main"
                   value={product?.id}
                   onClick={() => handleProductDetail(product?.id)}
                 >

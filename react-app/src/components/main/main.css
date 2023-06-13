@@ -125,12 +125,12 @@
     .product-box-img-3,
     .product-box-img-4 {
         width: 80px;
-        height: 80px;
+        height: 70px;
     }
     .product-box {
         width: 200px;
     }
-    .product-name {
+    .product-name-main {
         width: 180px;
         margin: 0;
     }
@@ -138,7 +138,7 @@
 
 @media (max-width: 992px) {
     .product-display-container {
-      width: 150px;
+        width: 150px;
     }
     .product-box {
         width: 150px;
@@ -157,5 +157,10 @@
     }
     .product-box {
         width: 300px;
-      }
+    }
+    .product-box-img-3,
+    .product-box-img-4 {
+        width: 80px;
+        height: 50px;
+    }
 }

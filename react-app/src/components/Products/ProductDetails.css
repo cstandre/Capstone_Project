@@ -59,6 +59,24 @@
     width: 370px;
 }
 
+.product-detail-description {
+    margin-left: 10px;
+}
+
+.product-detail-name {
+    border-bottom: 1px solid #eeefef;
+    margin: 10px;
+}
+
+.about-item {
+    font-size: 17px;
+    border-top: 1px solid #eeefef;
+    padding: 10px;
+    width: 370px;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
 .deets-in-stock {
     color: #067805;
     font-size: 20px;
@@ -69,5 +87,50 @@
 }
 
 .cart-container {
+    display: grid;
+    justify-content: center;
     margin-top: 20px;
+    border: 1px solid #dfe2e2;
+    border-radius: 10px;
+    width: 250px;
+}
+
+.prod-cart-details {
+    margin: 10px;
+    width: 210px;
+}
+
+.buy-new {
+    font-weight: 600;
+}
+
+.prod-price {
+    margin-top: 5px;
+    margin-left: 8px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    font-size: 25px;
+}
+
+.deets-add-to-cart {
+    justify-self: center;
+    background-color: #ffd821;
+    border: 1px solid #ffd821;
+    border-radius: 15px;
+    padding: 7px;
+    width: 100%;
+}
+
+.deets- add-to-cart:hover {
+    cursor: pointer;
+}
+
+.brand-txt {
+    font-weight: bold;
+    margin-right: 3px;
+    margin-left: 10px;
+}
+
+.deets-brand-container {
+    display: inline-flex;
 }
