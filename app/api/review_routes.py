@@ -46,19 +46,21 @@ def user_reviews():
     return {review.id: review.to_dict() for review in reviews}
 
 ## Create a review
-@review_routes.route('/<int:product_id>', method=['POST'])
+@review_routes.route('/<int:product_id>', methods=['POST'])
 @login_required
 def create_review(product_id):
     """
     Queries to see if user already created a review for a product. If not, we will create a review.
     """
     user_id = current_user.id
-    review = Review.query.filter_by(user_id = user_id)
+    product_review = Review.query.filter_by(user_id=user_id, product_id=product_id)
+
+    print(product_review)
 
     form = ReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    if not review and form.validate_on_submit:
+    if form.validate_on_submit:
         new_review = Review(
             user_id = user_id,
             product_id = product_id,
