@@ -79,10 +79,10 @@ def create_review(product_id):
 @review_routes.route('/<int:reviewId>', methods=['PUT'])
 @login_required
 def edit_review(reviewId):
-    userId = current_user.id
+    user_id = current_user.id
     review = Review.query.get_or_404(reviewId)
 
-    print(review, "------------------review-----------------")
+    # print(review, "------------------review-----------------")
 
     if not review:
         return {'error': 'No review could be found'}
@@ -90,10 +90,10 @@ def edit_review(reviewId):
     form = ReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    if userId != review.user_id:
+    if user_id != review.user_id:
         return {'error': 'Must be the owner of the review to edit'}
 
-    if userId == review.user_id and form.validate_on_submit():
+    if user_id == review.user_id and form.validate_on_submit():
         review.header = form.data['header']
         review.review = form.data['review']
         review.stars = form.data['stars']
@@ -105,5 +105,21 @@ def edit_review(reviewId):
 
 
 ## Delete you review
+@review_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_review(id):
+    user_id = current_user.id
+    review = Review.query.get_or_404(id)
 
-## Add img to review
+    if not review:
+        return {'error': 'Review could not be found'}
+
+    if user_id == user_id:
+        db.session.delete(review)
+        db.session.commit()
+        return {'message': 'Successfully Deleted'}
+
+    return {'error': 'Must be the owner of the review to delete'}
+
+## Get all review images
+
