@@ -76,6 +76,33 @@ def create_review(product_id):
 
 
 ## Edit your review
+@review_routes.route('/<int:reviewId>', methods=['PUT'])
+@login_required
+def edit_review(reviewId):
+    userId = current_user.id
+    review = Review.query.get_or_404(reviewId)
+
+    print(review, "------------------review-----------------")
+
+    if not review:
+        return {'error': 'No review could be found'}
+
+    form = ReviewForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if userId != review.user_id:
+        return {'error': 'Must be the owner of the review to edit'}
+
+    if userId == review.user_id and form.validate_on_submit():
+        review.header = form.data['header']
+        review.review = form.data['review']
+        review.stars = form.data['stars']
+
+        db.session.commit()
+        return review.to_dict()
+
+    return {'errors': validation_errors_to_error_message(form.errors)}, 401
+
 
 ## Delete you review
 
