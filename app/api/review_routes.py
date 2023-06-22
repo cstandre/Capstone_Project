@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
-from app.models import db, Review
+from app.models import db, Review, ReviewImage
 from app.forms.review_form import ReviewForm
 
 
@@ -122,4 +122,11 @@ def delete_review(id):
     return {'error': 'Must be the owner of the review to delete'}
 
 ## Get all review images
+@review_routes.route('/<int:reviewId>/images')
+def review_imgs(reviewId):
+    images = ReviewImage.query.filter_by(review_id=reviewId)
 
+    if not images:
+        return {'error': 'No images were found'}
+
+    return {image.id: image.to_dict() for image in images}
