@@ -39,8 +39,7 @@ function LoginFormPage() {
 
   const demoUser = async (e) => {
     e.preventDefault();
-    setEmail('demo@aa.io');
-    setPassword('password');
+    dispatch(login('demo@aa.io','password'));
   }
 
   return (

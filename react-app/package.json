@@ -16,6 +16,7 @@
     "react-scripts": "^4.0.3",
     "react-simple-image-slider": "^2.4.1",
     "react-slick": "^0.29.0",
+    "react-textarea-autosize": "^8.5.0",
     "redux": "^4.1.0",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",

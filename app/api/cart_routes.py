@@ -12,8 +12,6 @@ cart_routes = Blueprint('cart', __name__)
 def users_cart():
     user_id = current_user.id
     cart = Cart.query.filter_by(user_id=user_id).first()
-    print(user_id, '-----------------------------------------------------')
-    print(cart, '-----------------------------------------------------')
     if not cart:
         return {'error': 'Cart not found'}
 

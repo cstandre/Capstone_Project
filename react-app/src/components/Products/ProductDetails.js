@@ -3,6 +3,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { productDetails } from "../../store/products";
 import { addItem } from "../../store/cart";
+import { loadReviews } from "../../store/reviews";
 
 import './ProductDetails.css';
 
@@ -12,14 +13,18 @@ const ProductDetailsPage = () => {
     const { productId } = useParams();
     const sessionUser = useSelector(state=>state?.session?.user);
     const products = useSelector(state=>state?.products);
+    const reviews = useSelector(state=>state?.reviews);
     const [ mainImg, setMainImg ] = useState(null);
     const [selectedQuantity, setSelectedQuantity] = useState(1);
+
+    const reviewArr = Object?.values(reviews)[0];
 
     const product = Object?.values(products)[0];
     // const product = productArr[0];
 
     useEffect(() => {
       dispatch(productDetails(productId));
+      dispatch(loadReviews(productId));
     }, [dispatch, productId]);
 
     useEffect(() => {
@@ -114,6 +119,16 @@ const ProductDetailsPage = () => {
                     <button value={productId} onClick={throwError}>Add to cart</button>
                   )}
                 </div>
+                {reviews? (
+                  <div>
+                    {Object?.values(reviews)?.map(review => (
+                      <p>{review.review}</p>
+                    ))}
+                  </div>
+                ): (
+                  <>
+                  </>
+                )}
               </div>
             </>
           ): (

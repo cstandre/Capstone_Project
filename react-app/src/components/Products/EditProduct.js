@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import TextareaAutosize from 'react-textarea-autosize';
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { editProduct, productDetails } from "../../store/products";
@@ -86,12 +87,12 @@ const EditProduct = () => {
                         </label>
                         <label>
                             <h3>Description</h3>
-                            <input
-                                type="text"
+                            <TextareaAutosize
+                                type="textarea"
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
                                 required
-                                className="input"
+                                className="description"
                             />
                         </label>
                         <label>

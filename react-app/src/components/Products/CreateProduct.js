@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import TextareaAutosize from 'react-textarea-autosize';
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createProductFetch } from "../../store/products";
@@ -66,8 +67,8 @@ const CreateProduct = () => {
                         </label>
                         <label>
                             <h3>Description</h3>
-                            <input
-                                type="text"
+                            <TextareaAutosize
+                                type="textbox"
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
                                 className="input"

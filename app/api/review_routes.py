@@ -17,12 +17,12 @@ def validation_errors_to_error_message(validation_errors):
     return errorMessages
 
 ## Get all reviews
-@review_routes.route('')
-def all_reviews():
+@review_routes.route('/<int:productId>')
+def all_reviews(productId):
     """
     Query for all reviews and return them in a list of dictionaries.
     """
-    reviews = Review.query.all()
+    reviews = Review.query.filter_by(product_id = productId)
 
     if not reviews:
         return {'error': 'No reviews could be found'}
