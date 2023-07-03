@@ -13,6 +13,7 @@ import UserStorePage from "./components/Products/UserStorePage";
 import EditProduct from "./components/Products/EditProduct";
 import ProductPicture from "./components/Products/ProductPictures";
 import Cart from "./components/Cart/cart";
+import CreateReview from "./components/Reviews/CreateReview";
 
 
 
@@ -48,6 +49,9 @@ function App() {
           </Route>
           <Route path="/products/:productId/edit">
             <EditProduct />
+          </Route>
+          <Route path="/products/:productId/review">
+            <CreateReview />
           </Route>
           <Route path="/images/:productId">
             <ProductPicture />

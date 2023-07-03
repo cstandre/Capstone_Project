@@ -3,7 +3,7 @@ const CREATE_REVIEW = 'review/CREATE_REVIEW';
 const EDIT_REVIEW = 'review/EDIT_REVIEW';
 const DELETE_REVIEW = 'review/DELETE_REVIEW';
 
-const getReviews = (reviews) => ({
+const readReviews = (reviews) => ({
     type: LOAD_REVIEWS,
     reviews
 });
@@ -18,12 +18,12 @@ const createReview = (review) => ({
     review
 });
 
-const editReview = (review) => ({
+const updateReview = (review) => ({
     type: EDIT_REVIEW,
     review
 });
 
-const removeReview = (review) => ({
+const deleteReview = (review) => ({
     type: DELETE_REVIEW,
     review
 });
@@ -34,10 +34,14 @@ export const loadReviews = (productId) => async (dispatch) => {
 
     if (res.ok) {
         const reviews = await res.json();
-        dispatch(getReviews(reviews));
+        dispatch(readReviews(reviews));
         return reviews;
     };
 };
+
+export const newReview = (review) => async (dispatch) => {
+    const res = await fetch()
+}
 
 const initialState = {};
 

@@ -1,0 +1,24 @@
+.review-form {
+    padding-bottom: 50px;
+}
+
+.product-img {
+    height: 200px;
+    width: 200px;
+    object-fit: contain;
+}
+
+.review-area {
+    resize:vertical;
+    overflow: hidden;
+}
+
+.add-img-container {
+    border: 1px dashed black;
+    width: 40px;
+
+}
+
+.fa-plus {
+    padding: 10px;
+}

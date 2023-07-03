@@ -15,12 +15,19 @@ def seed_products():
     nike_product_5 = Product(
         owner_id=1, product_name='Nike Legacy 91 Tech Swoosh Hat', price=32.30, brand='Nike', stock_quantity=400, description='CLASSIC COMFORT. The Nike Dri-FIT Legacy91 Hat is a comfortable course staple with a metal buckle closure and a soft sweatband. This product is made with at least 50% recycled polyester fibers. Benefits Nike Dri-FIT technology moves sweat away from your skin for quicker evaporation, helping you stay dry and comfortable. Sweatband is soft and absorbent. Adjustable closure lets you personalize your fit.'
     )
+    ##############################################################################
+    adidas_product_1 = Product(
+        owner_id = 2, product_name = 'adidas Women\'s Puremotion Adapt Running Shoe', price=56.00, brand='Adidas', stock_quantity=1000, description='Built for running. Revitalized for style. Sharp and simple, meet clean and laceless. Cut what\'s unnecessary, keep the attitude.'
+    )
 
     db.session.add(nike_product_1)
     db.session.add(nike_product_2)
     db.session.add(nike_product_3)
     db.session.add(nike_product_4)
     db.session.add(nike_product_5)
+
+    db.session.add(adidas_product_1)
+
     db.session.commit()
 
 
@@ -33,6 +40,9 @@ def undo_products():
         db.session.delete(nike_product_3)
         db.session.delete(nike_product_4)
         db.session.delete(nike_product_5)
+
+        db.session.delete(adidas_product_1)
+
         db.session.execute(text("DELETE FROM products"))
 
     db.session.commit()

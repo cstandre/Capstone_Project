@@ -57,8 +57,6 @@ const EditProduct = () => {
         if (updatedProduct) {
             history.push(`/products/${updatedProduct.id}`)
         };
-
-
     };
 
     const homeClick = (e) => {

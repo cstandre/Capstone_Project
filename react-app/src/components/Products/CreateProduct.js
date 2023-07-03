@@ -60,7 +60,7 @@ const CreateProduct = () => {
                             <input
                                 type="text"
                                 onChange={(e) => setProductName(e.target.value)}
-                                className="input"
+                                className="description"
                                 value={product_name}
                                 required
                             />
@@ -68,10 +68,10 @@ const CreateProduct = () => {
                         <label>
                             <h3>Description</h3>
                             <TextareaAutosize
-                                type="textbox"
+                                type="textarea"
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
-                                className="input"
+                                className="description"
                             />
                         </label>
                         <label>

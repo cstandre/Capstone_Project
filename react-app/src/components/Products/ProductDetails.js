@@ -17,7 +17,12 @@ const ProductDetailsPage = () => {
     const [ mainImg, setMainImg ] = useState(null);
     const [selectedQuantity, setSelectedQuantity] = useState(1);
 
-    const reviewArr = Object?.values(reviews)[0];
+    let reviewValues;
+
+    if (reviews) {
+      reviewValues = Object?.values(reviews)[0];
+    }
+
 
     const product = Object?.values(products)[0];
     // const product = productArr[0];
@@ -47,6 +52,11 @@ const ProductDetailsPage = () => {
       e.preventDefault();
       await dispatch(addItem(productId, selectedQuantity));
       history.push('/cart');
+    };
+
+    const writeReview = (e) => {
+      e.preventDefault();
+      history.push(`/products/${productId}/review`)
     };
 
     const throwError = (e) => {
@@ -119,17 +129,28 @@ const ProductDetailsPage = () => {
                     <button value={productId} onClick={throwError}>Add to cart</button>
                   )}
                 </div>
-                {reviews? (
-                  <div>
-                    {Object?.values(reviews)?.map(review => (
-                      <p>{review.review}</p>
-                    ))}
-                  </div>
-                ): (
-                  <>
-                  </>
-                )}
               </div>
+              <p>Review this products</p>
+              <p>Share your thoughts with other customers</p>
+              <button onClick={writeReview}>Write a customer review</button>
+              {reviewValues? (
+                <div className="review_container">
+                  {Object?.values(reviewValues)?.map(review => (
+                    <div className="review_details">
+                      <p className="review_owner">{review?.owner_name}</p>
+                      <p className="review_header">{review?.header}</p>
+                      <p className="review_msg">{review?.review}</p>
+                      <p className="review_stars">{review?.stars}</p>
+                      {review.review_images.map(img => (
+                        <img className="review_img" alt="" src={img}></img>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              ): (
+                <>
+                </>
+              )}
             </>
           ): (
               <>

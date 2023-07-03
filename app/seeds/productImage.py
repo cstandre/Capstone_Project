@@ -89,7 +89,32 @@ def seed_product_images():
         image='https://caitlyn.s3.us-west-2.amazonaws.com/seeder/tech_swoosh_hat_2.jpg', is_preview=False,
         product_id=5
     )
-
+    ##########################################################################
+    adidas_product1_image1 = ProductImage(
+        image='https://caitlyn.s3.us-west-2.amazonaws.com/adidas-womens-shoes-01.jpg',
+        is_preview=True,
+        product_id=6
+    )
+    adidas_product1_image2 = ProductImage(
+        image='https://caitlyn.s3.us-west-2.amazonaws.com/adidas-womens-shoes-02.jpg',
+        is_preview=False,
+        product_id=6
+    )
+    adidas_product1_image3 = ProductImage(
+        image='https://caitlyn.s3.us-west-2.amazonaws.com/adidas-womens-shoes-03.jpg',
+        is_preview=False,
+        product_id=6
+    )
+    adidas_product1_image4 = ProductImage(
+        image='https://caitlyn.s3.us-west-2.amazonaws.com/adidas-womens-shoes-04.jpg',
+        is_preview=False,
+        product_id=6
+    )
+    adidas_product1_image5 = ProductImage(
+        image='https://caitlyn.s3.us-west-2.amazonaws.com/adidas-womens-shoes-05.jpg',
+        is_preview=False,
+        product_id=6
+    )
 
     db.session.add(nike_product1_image1)
     db.session.add(nike_product1_image2)
@@ -112,6 +137,12 @@ def seed_product_images():
 
     db.session.add(nike_product5_image1)
     db.session.add(nike_product5_image2)
+
+    db.session.add(adidas_product1_image1)
+    db.session.add(adidas_product1_image2)
+    db.session.add(adidas_product1_image3)
+    db.session.add(adidas_product1_image4)
+    db.session.add(adidas_product1_image5)
 
     db.session.commit()
 
@@ -141,6 +172,12 @@ def undo_product_images():
 
         db.session.delete(nike_product5_image1)
         db.session.delete(nike_product5_image2)
+
+        db.session.delete(adidas_product1_image1)
+        db.session.delete(adidas_product1_image2)
+        db.session.delete(adidas_product1_image3)
+        db.session.delete(adidas_product1_image4)
+        db.session.delete(adidas_product1_image5)
 
         db.session.execute(text("DELETE FROM product_images"))
 
