@@ -8,6 +8,7 @@ import OpenModalButton from "../OpenModalButton";
 import DeleteReViewModal from "../Reviews/DeleteReviewModal";
 
 import './ProductDetails.css';
+import EditReview from "../Reviews/EditReview";
 
 const ProductDetailsPage = () => {
     const dispatch = useDispatch();
@@ -58,10 +59,11 @@ const ProductDetailsPage = () => {
 
     const writeReview = (e) => {
       e.preventDefault();
-      history.push(`/products/${productId}/review`)
+      history.push(`/products/${productId}/review`);
     };
 
-    const handleEdit = (reviewId) => {
+    const handleEdit = async (reviewId) => {
+      await EditReview(productId);
       history.push(`/reviews/${reviewId}/edit`);
     };
 
