@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
 from app.models import db, Review, ReviewImage
 from app.forms.review_form import ReviewForm
+from app.aws_helpers import upload_file_to_s3, get_unique_filename
 
 
 review_routes = Blueprint('reviews', __name__)
@@ -130,3 +131,43 @@ def review_imgs(reviewId):
         return {'error': 'No images were found'}
 
     return {image.id: image.to_dict() for image in images}
+
+
+## Add Images to a review
+@review_routes.route('/<int:reviewId>/images', methods=['POST'])
+@login_required
+def add_review_img(reviewId):
+    review = Review.query.get_or_404(reviewId)
+
+    if not review:
+        return {'errors': 'Review not found'}, 401
+
+    images = request.files.getlist('image[]')
+    review_images = []
+
+    for _, image in enumerate(images):
+        image.filename = get_unique_filename(image.filename)
+        upload = upload_file_to_s3(image)
+
+        if 'url' not in upload:
+            return {'errors': 'Invalid response from upload_file_to_s3'}, 500
+        url = upload['url']
+
+        newImage = ReviewImage(
+            url=url,
+            review_id=reviewId
+        )
+
+        review_images.append(newImage)
+
+
+    try:
+        for image in review_images:
+            db.session.add(image)
+        db.session.commit()
+    except Exception as e:
+        print(str(e))
+        db.session.rollback()
+        return jsonify({'error': 'An error occurred while saving the images'}), 500
+
+    return jsonify ({'message': 'Images added successfully'})

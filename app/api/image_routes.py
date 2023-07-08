@@ -1,8 +1,6 @@
 from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
-from app.models import db, Product, ProductImage, Review, ReviewImage
-# from app.forms.create_product import ProductForm
-from app.forms.product_pictures import ImageForm
+from app.models import db, Product, ProductImage
 from app.aws_helpers import upload_file_to_s3, get_unique_filename
 
 images_routes = Blueprint('images', __name__)
@@ -67,7 +65,7 @@ def add_img(productId):
 
 ## Delete images of a product
 
-## Add images to a review by the review id // Not complete 
+## Add images to a review by the review id // Not complete
 # images_routes.route('/<int:reviewId>', methods=['POST'])
 # @login_required
 # def add_review_img(reviewId):

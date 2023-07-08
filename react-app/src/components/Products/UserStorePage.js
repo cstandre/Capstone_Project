@@ -3,9 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import DeleteProductModal from "./DeleteProductModal";
 import OpenModalButton from "../OpenModalButton";
+import { userProducts } from "../../store/products";
 
 import './UserStorePage.css';
-import { userProducts } from "../../store/products";
 
 const UserStorePage = () => {
     const dispatch = useDispatch();

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { productDetails } from "../../store/products";
 import { addItem } from "../../store/cart";
 import { loadReviews } from "../../store/reviews";
+import OpenModalButton from "../OpenModalButton";
 
 import './ProductDetails.css';
 
@@ -135,15 +136,26 @@ const ProductDetailsPage = () => {
               <button onClick={writeReview}>Write a customer review</button>
               {reviewValues? (
                 <div className="review_container">
-                  {Object?.values(reviewValues)?.map(review => (
-                    <div className="review_details">
+                  {Object?.values(reviewValues)?.map((review, idx) => (
+                    <div className="review_details" key={idx}>
                       <p className="review_owner">{review?.owner_name}</p>
                       <p className="review_header">{review?.header}</p>
                       <p className="review_msg">{review?.review}</p>
                       <p className="review_stars">{review?.stars}</p>
-                      {review.review_images.map(img => (
-                        <img className="review_img" alt="" src={img}></img>
+                      {review?.review_images?.map((img, idx) => (
+                        <div key={idx}>
+                          <img className="review_img" alt="" src={img}></img>
+                        </div>
                       ))}
+                      {review?.owner_id == sessionUser.id && (
+                        <div>
+                          <OpenModalButton
+                            buttonText={'Delete'}
+                            modalComponent={<DeleteReViewModal reviewId={review?.id} />}
+                          />
+                          <button>Edit</button>
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
