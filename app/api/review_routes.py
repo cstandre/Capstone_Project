@@ -17,19 +17,6 @@ def validation_errors_to_error_message(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
-## Get all reviews
-@review_routes.route('/<int:productId>')
-def all_reviews(productId):
-    """
-    Query for all reviews and return them in a list of dictionaries.
-    """
-    reviews = Review.query.filter_by(product_id = productId)
-
-    if not reviews:
-        return {'error': 'No reviews could be found'}
-
-    return {review.id: review.to_dict() for review in reviews}
-
 ## Get all reviews for the current user
 @review_routes.route('/current')
 @login_required
@@ -46,6 +33,20 @@ def user_reviews():
 
     return {review.id: review.to_dict() for review in reviews}
 
+## Get details for a review
+@review_routes.route('/<int:id>')
+def review_details(id):
+    """
+    Query for review details for an existing review.
+    """
+    review = Review.query.get(id)
+
+    if not review:
+        return {'error': 'Review not found'}
+
+    return review.to_dict()
+
+
 ## Create a review
 @review_routes.route('/<int:product_id>', methods=['POST'])
 @login_required
@@ -56,7 +57,7 @@ def create_review(product_id):
     user_id = current_user.id
     product_review = Review.query.filter_by(user_id=user_id, product_id=product_id)
 
-    print(product_review)
+    # print(product_review)
 
     form = ReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']

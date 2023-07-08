@@ -61,6 +61,10 @@ const ProductDetailsPage = () => {
       history.push(`/products/${productId}/review`)
     };
 
+    const handleEdit = (reviewId) => {
+      history.push(`/reviews/${reviewId}/edit`);
+    };
+
     const throwError = (e) => {
       e.preventDefault();
       alert('Login to add item to your cart!')
@@ -148,13 +152,13 @@ const ProductDetailsPage = () => {
                           <img className="review_img" alt="" src={img}></img>
                         </div>
                       ))}
-                      {review?.owner_id == sessionUser?.id && (
+                      {review?.owner_id === sessionUser?.id && (
                         <div>
                           <OpenModalButton
                             buttonText={'Delete'}
                             modalComponent={<DeleteReViewModal reviewId={review?.id} productId={productId} />}
                           />
-                          <button>Edit</button>
+                          <button onClick={() => handleEdit(review?.id)}>Edit</button>
                         </div>
                       )}
                     </div>

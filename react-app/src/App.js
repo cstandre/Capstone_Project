@@ -14,6 +14,7 @@ import EditProduct from "./components/Products/EditProduct";
 import ProductPicture from "./components/Products/ProductPictures";
 import Cart from "./components/Cart/cart";
 import CreateReview from "./components/Reviews/CreateReview";
+import EditReview from "./components/Reviews/EditReview";
 
 
 
@@ -52,6 +53,9 @@ function App() {
           </Route>
           <Route path="/products/:productId/review">
             <CreateReview />
+          </Route>
+          <Route exact path="/reviews/:reviewId/edit">
+            <EditReview />
           </Route>
           <Route path="/images/:productId">
             <ProductPicture />
