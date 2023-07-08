@@ -60,16 +60,18 @@ export const createReviewFetch = (createdReview) => async (dispatch) => {
     };
 };
 
-export const addReviewImages = (reviewId, images) => async (dispatch) => {
-    const res = await fetch(`/api/images/${reviewId}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: {
-            
-        }
+export const removeReviews = (reviewId) => async (dispatch) => {
+    const res = await fetch (`/api/reviews/${reviewId}`, {
+        method: "DELETE"
     });
 
+    if (res.ok) {
+        const review = await res.json();
+        dispatch(deleteReview(reviewId));
+        return review
+    };
 };
+
 
 const initialState = {};
 

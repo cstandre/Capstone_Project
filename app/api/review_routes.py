@@ -106,11 +106,11 @@ def edit_review(reviewId):
 
 
 ## Delete you review
-@review_routes.route('/<int:id>', methods=['DELETE'])
+@review_routes.route('/<int:reviewId>', methods=['DELETE'])
 @login_required
-def delete_review(id):
+def delete_review(reviewId):
     user_id = current_user.id
-    review = Review.query.get_or_404(id)
+    review = Review.query.get_or_404(reviewId)
 
     if not review:
         return {'error': 'Review could not be found'}

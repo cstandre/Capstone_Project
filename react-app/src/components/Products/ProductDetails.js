@@ -5,6 +5,7 @@ import { productDetails } from "../../store/products";
 import { addItem } from "../../store/cart";
 import { loadReviews } from "../../store/reviews";
 import OpenModalButton from "../OpenModalButton";
+import DeleteReViewModal from "../Reviews/DeleteReviewModal";
 
 import './ProductDetails.css';
 
@@ -147,11 +148,11 @@ const ProductDetailsPage = () => {
                           <img className="review_img" alt="" src={img}></img>
                         </div>
                       ))}
-                      {review?.owner_id == sessionUser.id && (
+                      {review?.owner_id == sessionUser?.id && (
                         <div>
                           <OpenModalButton
                             buttonText={'Delete'}
-                            modalComponent={<DeleteReViewModal reviewId={review?.id} />}
+                            modalComponent={<DeleteReViewModal reviewId={review?.id} productId={productId} />}
                           />
                           <button>Edit</button>
                         </div>

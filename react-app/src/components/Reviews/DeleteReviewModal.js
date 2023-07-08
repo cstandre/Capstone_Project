@@ -1,13 +1,15 @@
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal"
+import { removeReviews, loadReviews } from "../../store/reviews";
 
-const DeleteReViewModal = ({ reviewId }) => {
+const DeleteReViewModal = ({ reviewId, productId }) => {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
 
     const handleClick = async (e) => {
         e.preventDefault();
-        await dispatch(deleteReview(reviewId));
+        await dispatch(removeReviews(reviewId));
+        await dispatch(loadReviews(productId))
         closeModal();
     }
 
@@ -32,3 +34,5 @@ const DeleteReViewModal = ({ reviewId }) => {
         </div>
     )
 }
+
+export default DeleteReViewModal
