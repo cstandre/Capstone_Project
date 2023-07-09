@@ -1,64 +1,85 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { reviewDetails, editReview } from "../../store/reviews";
+import TextareaAutoSize from 'react-textarea-autosize';
+import { productDetails } from "../../store/products";
 
 
-const EditReview = (productId) => {
-    console.log(productId);
+const EditReview = () => {
     const dispatch = useDispatch();
     const history = useHistory();
-
     const { reviewId } = useParams();
+    const { productId } = useParams();
+    const reviewDeets = useSelector(state=>state?.reviews);
+    const productDeets = useSelector(state=>state?.products);
 
-    // const [ header, setHeader ] = useState(header);
-    // const [ review, setReview ] = useState(review);
-    // const [ stars, setStars ] = useState(stars);
-    // const [ errors, setErrors ] = useState([]);
+    const userReview = Object.values(reviewDeets)[0];
+    const product = Object.values(productDeets)[0];
+
+
+    const [ header, setHeader ] = useState('');
+    const [ review, setReview ] = useState('');
+    const [ stars, setStars ] = useState('');
+    const [ errors, setErrors ] = useState([]);
+
+
+    useEffect(() => {
+        if (userReview) {
+            setHeader(userReview.header || '');
+            setReview(userReview.review || '');
+            setStars(userReview.stars || '');
+        }
+      }, [userReview]);
 
     useEffect(() => {
         dispatch(reviewDetails(reviewId));
-    }, [dispatch, reviewId]);
+        dispatch(productDetails(productId));
+    }, [dispatch, reviewId, productId]);
 
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     setErrors([]);
+    const ratingClick = (e,n) => {
+        e.preventDefault();
+        setStars(n);
+    };
 
-    //     const userReview = {
-    //         productId,
-    //         header,
-    //         review,
-    //         stars
-    //     };
-    //     // console.log(newReview)
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setErrors([]);
 
-    //     const createdReview = await dispatch(editReview(userReview));
-    //     if (createdReview) {
-    //         // const formData = new FormData();
-    //         // const reviewId = createdReview.id
-    //         // // console.log(images)
-    //         // images.forEach(img => {
-    //         //   formData.append('image[]', img);
-    //         // });
+        const userReview = {
+            header,
+            review,
+            stars
+        };
+        // console.log(newReview)
 
-    //         // // console.log(createdReview.id)
-    //         // const res = await fetch(`/api/reviews/${reviewId}/images`, {
-    //         //     method: "POST",
-    //         //     body: formData,
-    //         // });
+        const updatedReview = await dispatch(editReview(userReview, reviewId));
+        if (updatedReview) {
+            // const formData = new FormData();
+            // const reviewId = createdReview.id
+            // // console.log(images)
+            // images.forEach(img => {
+            //   formData.append('image[]', img);
+            // });
+
+            // // console.log(createdReview.id)
+            // const res = await fetch(`/api/reviews/${reviewId}/images`, {
+            //     method: "POST",
+            //     body: formData,
+            // });
 
 
-    //         // if (res.ok) {
-    //         //     await res.json();
-    //         //     history.push('/');
-    //         // };
-    //         history.push(`/products/${productId}`)
-    //     }
-    // };
+            // if (res.ok) {
+            //     await res.json();
+            //     history.push('/');
+            // };
+            history.push(`/products/${productId}`)
+        }
+    };
 
     return (
         <div className="review-form">
-            {/* <h1>Create Review</h1>
+            <h1>Edit Review</h1>
             <img className="product-img" alt="" src={product?.preview_image}></img>
             <p>{product?.product_name}</p>
 
@@ -88,7 +109,7 @@ const EditReview = (productId) => {
                             placeholder="What's most important to know?"
                         />
                     </label>
-                    <label>
+                    {/* <label>
                         <h3>Add a photo</h3>
                         <p>Shoppers fine images more helpful than text alone.</p>
                         <input
@@ -101,7 +122,7 @@ const EditReview = (productId) => {
                         <div className="add-img-container">
                         <i className="fa-solid fa-plus"></i>
                         </div>
-                    </label>
+                    </label> */}
                     <label>
                         <h3>Add a written review</h3>
                         <TextareaAutoSize
@@ -114,7 +135,7 @@ const EditReview = (productId) => {
                     </label>
                     <button type="submit">Submit</button>
                 </form>
-            </div> */}
+            </div>
         </div>
     )
 };

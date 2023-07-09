@@ -8,7 +8,6 @@ import OpenModalButton from "../OpenModalButton";
 import DeleteReViewModal from "../Reviews/DeleteReviewModal";
 
 import './ProductDetails.css';
-import EditReview from "../Reviews/EditReview";
 
 const ProductDetailsPage = () => {
     const dispatch = useDispatch();
@@ -62,9 +61,9 @@ const ProductDetailsPage = () => {
       history.push(`/products/${productId}/review`);
     };
 
-    const handleEdit = async (reviewId) => {
-      await EditReview(productId);
-      history.push(`/reviews/${reviewId}/edit`);
+    const handleEdit = (reviewId, productId) => {
+      dispatch(loadReviews(reviewId))
+      history.push(`/reviews/${reviewId}/product/${productId}/edit`);
     };
 
     const throwError = (e) => {
@@ -160,7 +159,7 @@ const ProductDetailsPage = () => {
                             buttonText={'Delete'}
                             modalComponent={<DeleteReViewModal reviewId={review?.id} productId={productId} />}
                           />
-                          <button onClick={() => handleEdit(review?.id)}>Edit</button>
+                          <button onClick={() => handleEdit(review?.id, productId)}>Edit</button>
                         </div>
                       )}
                     </div>
