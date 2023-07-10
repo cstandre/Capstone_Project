@@ -7,7 +7,9 @@
 .main-container {
     display: grid;
     justify-content: center;
-    grid-template-areas: "side-img main-img details cart";
+    grid-template-areas:
+                "side-img main-img details cart"
+                "reviews reviews reviews reviews";
     width: 1000px;
     margin: 20px;
 }
@@ -34,6 +36,7 @@
 
 .small-img:hover {
     cursor: pointer;
+    box-shadow: 0px 0px 3px 3px lightblue;
 }
 
 .main-img-container {
@@ -136,6 +139,48 @@
     display: inline-flex;
 }
 
+.review-container{
+    display: flex;
+    grid-area: reviews;
+    gap: 20px;
+    width: 100%;
+    border-top: 1px solid #dfe2e2;
+    margin-top: 20px;
+}
+
+.stats {
+
+}
+
+.review-section {
+
+}
+
+.stats-header {
+    font-weight: 600;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.stats-subheader {
+    margin-top: 5px;
+}
+
+.review-btn-txt {
+    margin: 5px;
+    font-size: 12px;
+}
+
+.create-review-btn {
+    background-color: #ffffff;
+    border: 1px solid #dfe2e2;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(15,17,17,.15)
+}
+
+.create-review-btn:hover {
+    cursor: pointer;
+}
 
 .review_img {
     height: 100px;

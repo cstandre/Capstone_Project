@@ -95,15 +95,23 @@
 .product-name-main {
     margin: 0;
     width: 265px;
+    height: 20px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
+.product-name-main:hover {
+    cursor: pointer;
+}
 
 .add-to-cart {
     justify-self: center;
     background-color: #ffd815;
     border: 1px solid #ffd815;
-    border-radius: 10px;
+    border-radius: 15px;
     width: 90px;
+    height: 30px;
 }
 
 .add-to-cart:hover {

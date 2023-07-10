@@ -77,62 +77,70 @@ const CreateReview = () => {
     };
 
     return (
-        <div className="review-form">
-            <h1>Create Review</h1>
-            <img className="product-img" alt="" src={product?.preview_image}></img>
-            <p>{product?.product_name}</p>
-
+        <div className="review-form-container">
+            <h1 className="review-form-header">Create Review</h1>
+            <div className="review-product-deets">
+                <img className="product-img" alt="" src={product?.preview_image}></img>
+                <p>{product?.product_name}</p>
+            </div>
             <div className="review-form">
                 <form
                     onSubmit={handleSubmit}
                     encType="multipart/form-data"
                 >
-                    <h3>Overall Rating</h3>
-                    <span>
-                        {Array(5).fill().map((_,idx) => (
-                            <i
-                            key={idx}
-                            className="fa-regular fa-star"
-                            value={idx}
-                            onClick={(e) => ratingClick(e, idx + 1)}
-                            >
-                            </i>
-                        ))}
-                    </span>
-                    <label>
-                        <h3>Add a headline</h3>
+                    <div className="review-form-section">
+                        <h3 className="review-form-subhead">Overall Rating</h3>
+                        <span>
+                            {Array(5).fill().map((_,idx) => (
+                                <i
+                                key={idx}
+                                className="fa-regular fa-star"
+                                value={idx}
+                                onClick={(e) => ratingClick(e, idx + 1)}
+                                >
+                                </i>
+                            ))}
+                        </span>
+                    </div>
+                    <div className="review-form-section">
+                        <h3 className="review-form-subhead">Add a headline</h3>
                         <input
                             type="text"
+                            className="review-area"
                             value={header}
                             onChange={(e) => setHeader(e.target.value)}
                             placeholder="What's most important to know?"
                         />
-                    </label>
-                    <label>
-                        <h3>Add a photo</h3>
-                        <p>Shoppers fine images more helpful than text alone.</p>
-                        <input
-                            type="file"
-                            id="file"
-                            accept="images/*"
-                            multiple
-                            onChange={handleImageChange}
-                        />
+                    </div>
+                    <div className="review-form-section">
+                        <h3 className="review-form-subhead">Add a photo</h3>
+                        <p>Shoppers find image more helpful than text alone.</p>
                         <div className="add-img-container">
-                        <i className="fa-solid fa-plus"></i>
+                            <label htmlFor="file">
+                              <i className="fa-solid fa-plus"></i>
+                            </label>
+                            <input
+                              type="file"
+                              id="file"
+                              accept="images/*"
+                              multiple
+                              onChange={handleImageChange}
+                            />
                         </div>
-                    </label>
-                    <label>
-                        <h3>Add a written review</h3>
+                    </div>
+                    <div className="review-form-section">
+                        <h3 className="review-form-subhead">Add a written review</h3>
                         <TextareaAutoSize
                             type="textarea"
                             value={review}
                             onChange={(e) => setReview(e.target.value)}
-                            className="review-area"
+                            className="review-area-extend"
                             placeholder="What did you like or dislike? What did you use this product for?"
                         />
-                    </label>
-                    <button type="submit">Submit</button>
+                    </div>
+                    <button className="review-submit-btn" type="submit">
+                        <p className="review-submit-txt">Submit</p>
+                    </button>
                 </form>
             </div>
         </div>

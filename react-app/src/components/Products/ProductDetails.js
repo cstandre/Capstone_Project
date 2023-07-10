@@ -137,38 +137,46 @@ const ProductDetailsPage = () => {
                   )}
                 </div>
               </div>
-              <p>Review this products</p>
-              <p>Share your thoughts with other customers</p>
-              <button onClick={writeReview}>Write a customer review</button>
-              {reviewValues? (
-                <div className="review_container">
-                  {Object?.values(reviewValues)?.map((review, idx) => (
-                    <div className="review_details" key={idx}>
-                      <p className="review_owner">{review?.owner_name}</p>
-                      <p className="review_header">{review?.header}</p>
-                      <p className="review_msg">{review?.review}</p>
-                      <p className="review_stars">{review?.stars}</p>
-                      {review?.review_images?.map((img, idx) => (
-                        <div key={idx}>
-                          <img className="review_img" alt="" src={img}></img>
+              <div className="review-container">
+                <div className="stats">
+                  <p className="stats-header">Review this product</p>
+                  <p className="stats-subheader">Share your thoughts with other customers</p>
+                  <button className="create-review-btn" onClick={writeReview}>
+                    <p className="review-btn-txt">Write a customer review</p>
+                  </button>
+                </div>
+                <div className="review-section">
+                  {reviewValues? (
+                    <div className="review_container">
+                      {Object?.values(reviewValues)?.map((review, idx) => (
+                        <div className="review_details" key={idx}>
+                          <p className="review_owner">{review?.owner_name}</p>
+                          <p className="review_header">{review?.header}</p>
+                          <p className="review_msg">{review?.review}</p>
+                          <p className="review_stars">{review?.stars}</p>
+                          {review?.review_images?.map((img, idx) => (
+                            <div key={idx}>
+                              <img className="review_img" alt="" src={img}></img>
+                            </div>
+                          ))}
+                          {review?.owner_id === sessionUser?.id && (
+                            <div>
+                              <OpenModalButton
+                                buttonText={'Delete'}
+                                modalComponent={<DeleteReViewModal reviewId={review?.id} productId={productId} />}
+                              />
+                              <button onClick={() => handleEdit(review?.id, productId)}>Edit</button>
+                            </div>
+                          )}
                         </div>
                       ))}
-                      {review?.owner_id === sessionUser?.id && (
-                        <div>
-                          <OpenModalButton
-                            buttonText={'Delete'}
-                            modalComponent={<DeleteReViewModal reviewId={review?.id} productId={productId} />}
-                          />
-                          <button onClick={() => handleEdit(review?.id, productId)}>Edit</button>
-                        </div>
-                      )}
                     </div>
-                  ))}
+                  ): (
+                    <>
+                    </>
+                  )}
                 </div>
-              ): (
-                <>
-                </>
-              )}
+              </div>
             </>
           ): (
               <>

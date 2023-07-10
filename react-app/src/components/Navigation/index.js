@@ -94,6 +94,10 @@ function Navigation({ isLoaded }){
 				</div>
 			</div>
 			<div className='category-bar'>
+				<p className='category-txt'>All</p>
+				<p className='category-txt'>Sports</p>
+				<p className='category-txt'>Cleaning Supplies</p>
+				<p className='category-txt'>Gaming</p>
 			</div>
 		</div>
 	);

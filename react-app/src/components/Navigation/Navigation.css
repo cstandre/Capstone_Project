@@ -61,10 +61,20 @@
   height: 30px;
 }
 
-
 .category-bar {
+  display: flex;
   height: 40px;
   background-color: #262f3e;
+}
+
+.category-txt {
+  margin: 0px;
+  padding: 10px;
+  color: #ffff;
+}
+
+.category-txt:hover {
+  cursor: pointer;
 }
 
 .search-container {
@@ -77,6 +87,10 @@
   .search {
     width: 1150px;
     height: 45px;
+  }
+  .cart-num {
+    top: 2.5%;
+    right: 3.6%;
   }
 }
 
@@ -92,12 +106,22 @@
     width: 750px;
     height: 45px;
   }
+  .cart-num {
+    top: 5%;
+    bottom: 95%;
+    left: 93.8%;
+  }
 }
 
 @media (max-width: 1330px) {
   .search {
     width: 450px;
     height: 45px;
+  }
+  .cart-num {
+    top: 5%;
+    bottom: 95%;
+    left: 93.8%;
   }
 }
 
