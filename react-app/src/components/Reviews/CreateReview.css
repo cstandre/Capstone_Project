@@ -23,6 +23,14 @@
     object-fit: contain;
 }
 
+.product-img:hover  {
+    cursor: pointer;
+}
+
+.review-product-name:hover {
+    cursor: pointer;
+}
+
 .review-form {
     margin-top: 10px;
     display: grid;
@@ -62,13 +70,21 @@
 }
 
 .add-img-container {
-    border: 1px dashed black;
-    width: 40px;
-
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: 50px;
+    width: 50px;
+    background-color: #fafafa;
+    border-radius: 5px;
+    border: 1px dashed #aab7b8;
 }
 
 .fa-plus {
+    font-size: 20px;
     padding: 10px;
+    margin: 5px;
+    color: #aab7b8;
 }
 
 .fa-plus:hover {

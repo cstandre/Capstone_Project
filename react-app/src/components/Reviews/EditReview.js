@@ -42,6 +42,10 @@ const EditReview = () => {
         setStars(n);
     };
 
+    const productPage = () => {
+        history.push(`/products/${productId}`)
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrors([]);
@@ -78,37 +82,41 @@ const EditReview = () => {
     };
 
     return (
-        <div className="review-form">
-            <h1>Edit Review</h1>
-            <img className="product-img" alt="" src={product?.preview_image}></img>
-            <p>{product?.product_name}</p>
-
+        <div className="review-form-container">
+            <h1 className="review-form-header">Edit Review</h1>
+            <div className="review-product-deets">
+                <img className="product-img" alt="" src={product?.preview_image} onClick={productPage}></img>
+                <p className="review-product-name" onClick={productPage}>{product?.product_name}</p>
+            </div>
             <div className="review-form">
                 <form
                     onSubmit={handleSubmit}
                     encType="multipart/form-data"
                 >
-                    <h3>Overall Rating</h3>
-                    <span>
-                        {Array(5).fill().map((_,idx) => (
-                            <i
-                            key={idx}
-                            className="fa-regular fa-star"
-                            value={idx}
-                            onClick={(e) => ratingClick(e, idx + 1)}
-                            >
-                            </i>
-                        ))}
-                    </span>
-                    <label>
-                        <h3>Add a headline</h3>
+                    <div className="review-form-section">
+                        <h3 className="review-form-subhead">Overall Rating</h3>
+                        <span>
+                            {Array(5).fill().map((_,idx) => (
+                                <i
+                                key={idx}
+                                className="fa-regular fa-star"
+                                value={idx}
+                                onClick={(e) => ratingClick(e, idx + 1)}
+                                >
+                                </i>
+                            ))}
+                        </span>
+                    </div>
+                    <div className="review-form-section">
+                        <h3 className="review-form-subhead">Add a headline</h3>
                         <input
                             type="text"
+                            className="review-area"
                             value={header}
                             onChange={(e) => setHeader(e.target.value)}
                             placeholder="What's most important to know?"
                         />
-                    </label>
+                    </div>
                     {/* <label>
                         <h3>Add a photo</h3>
                         <p>Shoppers fine images more helpful than text alone.</p>
@@ -123,17 +131,19 @@ const EditReview = () => {
                         <i className="fa-solid fa-plus"></i>
                         </div>
                     </label> */}
-                    <label>
-                        <h3>Add a written review</h3>
+                    <div className="review-form-section">
+                        <h3 className="review-form-subhead">Add a written review</h3>
                         <TextareaAutoSize
                             type="textarea"
                             value={review}
                             onChange={(e) => setReview(e.target.value)}
-                            className="review-area"
+                            className="review-area-extended"
                             placeholder="What did you like or dislike? What did you use this product for?"
                         />
-                    </label>
-                    <button type="submit">Submit</button>
+                    </div>
+                    <button className="review-submit-btn" type="submit">
+                        <p className="review-submit-txt">Submit</p>
+                    </button>
                 </form>
             </div>
         </div>

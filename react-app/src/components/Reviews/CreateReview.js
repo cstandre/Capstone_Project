@@ -40,6 +40,10 @@ const CreateReview = () => {
         setImages(files)
     }
 
+    const productPage = () => {
+        history.push(`/products/${productId}`)
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrors([]);
@@ -80,8 +84,8 @@ const CreateReview = () => {
         <div className="review-form-container">
             <h1 className="review-form-header">Create Review</h1>
             <div className="review-product-deets">
-                <img className="product-img" alt="" src={product?.preview_image}></img>
-                <p>{product?.product_name}</p>
+                <img className="product-img" alt="" src={product?.preview_image} onClick={productPage}></img>
+                <p className="review-product-name" onClick={productPage}>{product?.product_name}</p>
             </div>
             <div className="review-form">
                 <form
@@ -134,7 +138,7 @@ const CreateReview = () => {
                             type="textarea"
                             value={review}
                             onChange={(e) => setReview(e.target.value)}
-                            className="review-area-extend"
+                            className="review-area-extended"
                             placeholder="What did you like or dislike? What did you use this product for?"
                         />
                     </div>
