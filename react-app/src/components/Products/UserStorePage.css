@@ -43,7 +43,10 @@
 }
 
 .product-name {
-    height: 100%;
+    height: 20px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .img-container {

@@ -18,6 +18,8 @@ const ProductDetailsPage = () => {
     const reviews = useSelector(state=>state?.reviews);
     const [ mainImg, setMainImg ] = useState(null);
     const [selectedQuantity, setSelectedQuantity] = useState(1);
+    const [selectedImg, setSelectedImg] = useState(0)
+    const [filledStars, setFilledStars] = useState(0);
 
     let reviewValues;
 
@@ -43,11 +45,13 @@ const ProductDetailsPage = () => {
 
     const handleSelectChange = async (e) => {
       e.preventDefault();
-      setSelectedQuantity(e.target.value)
+      setSelectedQuantity(e.target.value);
     };
 
-    const handleImgClick = (img) => {
+    const handleImgClick = (img, idx) => {
       setMainImg(img);
+      console.log(idx)
+      setSelectedImg(idx);
     };
 
     const handleCartButton = async (e) => {
@@ -58,7 +62,23 @@ const ProductDetailsPage = () => {
 
     const writeReview = (e) => {
       e.preventDefault();
-      history.push(`/products/${productId}/review`);
+      const reviewOwners = {}
+      const user = sessionUser.id
+
+      // console.log(reviewValues)
+      Object.values(reviewValues).forEach(review => {
+        reviewOwners[review.owner_id]=review.id
+      });
+
+      // console.log(Object.keys(reviewOwners))
+
+      if (Object.keys(reviewOwners).includes(user.toString())) {
+        const reviewId = reviewOwners[user.toString()];
+        history.push(`/reviews/${reviewId}/product/${productId}/edit`)
+      } else {
+        history.push(`/products/${productId}/review`);
+      };
+
     };
 
     const handleEdit = (reviewId, productId) => {
@@ -78,7 +98,15 @@ const ProductDetailsPage = () => {
             <>
               <div className="side-img-container">
                 {product?.product_images?.map((img, idx)=>
-                  <img key={idx}  alt='' className="small-img" src={img.image} value={img.image} onClick={() => handleImgClick(img.image)}></img>
+                  <img
+                  key={idx}
+                  alt=''
+                  className={`small-img ${selectedImg === idx ? 'selectedImg': ''}`}
+                  src={img.image}
+                  value={img.image}
+                  onClick={() => handleImgClick(img.image, idx)}
+                  >
+                  </img>
                 )}
               </div>
               <div className="main-img-container">
@@ -146,14 +174,23 @@ const ProductDetailsPage = () => {
                   </button>
                 </div>
                 <div className="review-section">
-                  {reviewValues? (
+                  {reviewValues ? (
                     <div className="review_container">
                       {Object?.values(reviewValues)?.map((review, idx) => (
                         <div className="review_details" key={idx}>
                           <p className="review_owner">{review?.owner_name}</p>
-                          <p className="review_header">{review?.header}</p>
+                          <span>
+                            {Array(5).fill().map((_, idx) => (
+                                <i
+                                key={idx}
+                                className={`fa${idx < review.stars ? 's' : 'r'} star-review fa-star ${idx < review.stars ? 'filled2' : ''}`}
+                                value={idx}
+                                >
+                                </i>
+                            ))}
+                        </span>
+                          <span className="review_header">{review?.header}</span>
                           <p className="review_msg">{review?.review}</p>
-                          <p className="review_stars">{review?.stars}</p>
                           {review?.review_images?.map((img, idx) => (
                             <div key={idx}>
                               <img className="review_img" alt="" src={img}></img>
@@ -161,11 +198,13 @@ const ProductDetailsPage = () => {
                           ))}
                           {review?.owner_id === sessionUser?.id && (
                             <div>
+                              <button onClick={() => handleEdit(review?.id, productId)}>
+                                Edit
+                              </button>
                               <OpenModalButton
                                 buttonText={'Delete'}
                                 modalComponent={<DeleteReViewModal reviewId={review?.id} productId={productId} />}
                               />
-                              <button onClick={() => handleEdit(review?.id, productId)}>Edit</button>
                             </div>
                           )}
                         </div>

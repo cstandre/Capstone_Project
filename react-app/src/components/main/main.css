@@ -118,6 +118,7 @@
     cursor: pointer;
 }
 
+
 @media (max-width: 1366px) {
     .product-display-container {
       width: 450px;

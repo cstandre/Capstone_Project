@@ -21,6 +21,7 @@ const EditReview = () => {
     const [ header, setHeader ] = useState('');
     const [ review, setReview ] = useState('');
     const [ stars, setStars ] = useState('');
+    const [filledStars, setFilledStars] = useState(0);
     const [ errors, setErrors ] = useState([]);
 
 
@@ -29,16 +30,18 @@ const EditReview = () => {
             setHeader(userReview.header || '');
             setReview(userReview.review || '');
             setStars(userReview.stars || '');
+            setFilledStars(userReview.stars || 0);
         }
-      }, [userReview]);
+    }, [userReview]);
 
     useEffect(() => {
         dispatch(reviewDetails(reviewId));
         dispatch(productDetails(productId));
     }, [dispatch, reviewId, productId]);
 
-    const ratingClick = (e,n) => {
+    const ratingClick = (e, n) => {
         e.preventDefault();
+        setFilledStars(n);
         setStars(n);
     };
 
@@ -49,6 +52,11 @@ const EditReview = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrors([]);
+
+        if (stars === 0) {
+            setErrors(["Please select a rating"]);
+            return;
+        };
 
         const userReview = {
             header,
@@ -94,12 +102,15 @@ const EditReview = () => {
                     encType="multipart/form-data"
                 >
                     <div className="review-form-section">
+                        {errors.map((error, idx) => (
+                            <div key={idx}>{error}</div>
+                        ))}
                         <h3 className="review-form-subhead">Overall Rating</h3>
                         <span>
                             {Array(5).fill().map((_,idx) => (
                                 <i
                                 key={idx}
-                                className="fa-regular fa-star"
+                                className={`fa${idx < filledStars ? 's' : 'r'} fa-star ${idx < filledStars ? 'filled' : ''}`}
                                 value={idx}
                                 onClick={(e) => ratingClick(e, idx + 1)}
                                 >
@@ -115,6 +126,7 @@ const EditReview = () => {
                             value={header}
                             onChange={(e) => setHeader(e.target.value)}
                             placeholder="What's most important to know?"
+                            required
                         />
                     </div>
                     {/* <label>
@@ -139,6 +151,7 @@ const EditReview = () => {
                             onChange={(e) => setReview(e.target.value)}
                             className="review-area-extended"
                             placeholder="What did you like or dislike? What did you use this product for?"
+                            required
                         />
                     </div>
                     <button className="review-submit-btn" type="submit">

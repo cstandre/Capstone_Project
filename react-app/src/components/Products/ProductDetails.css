@@ -39,6 +39,10 @@
     box-shadow: 0px 0px 3px 3px lightblue;
 }
 
+.small-img.selectedImg {
+  box-shadow: 0px 0px 3px 3px lightblue;
+}
+
 .main-img-container {
     width: 300px;
     height: 300px;
@@ -125,7 +129,7 @@
     width: 100%;
 }
 
-.deets- add-to-cart:hover {
+.deets-add-to-cart:hover {
     cursor: pointer;
 }
 
@@ -148,12 +152,9 @@
     margin-top: 20px;
 }
 
-.stats {
-
-}
-
-.review-section {
-
+.review_header {
+    margin-left: 5px;
+    font-weight: 600;
 }
 
 .stats-header {
@@ -186,4 +187,27 @@
     height: 100px;
     width: 100px;
     object-fit: contain;
+}
+
+.fa-pen-to-square {
+    background-color: #ffffff;
+    margin-left: 5px;
+}
+
+.fa-pen-to-square:hover {
+    cursor: pointer;
+}
+
+
+.star-review.fa-star {
+    color: #e99e5d;
+    font-size: 15px;
+}
+
+.star-review.fa-star:hover {
+    cursor: default;
+}
+
+.star-review.fa-star.filled2 {
+    color: #fea41c;
 }

@@ -62,12 +62,13 @@
     width: 100%;
 }
 
-.review-area-extend {
-    resize:vertical;
+.review-area-extended {
+    resize: vertical;
     overflow: hidden;
     width: 100%;
     min-height: 80px;
 }
+
 
 .add-img-container {
     display: flex;
@@ -94,6 +95,10 @@
 .fa-star {
     font-size: 30px;
     color: #d6bc8e;
+}
+
+.fa-star.filled {
+    color: #ffbd1c;
 }
 
 .fa-star:hover {
