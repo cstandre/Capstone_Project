@@ -157,6 +157,21 @@
     font-weight: 600;
 }
 
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.review_owner {
+    margin-left: 5px;
+}
+
+.profile-img {
+    margin-top: 10px;
+    height: 25px;
+    width: 25px;
+}
+
 .stats-header {
     font-weight: 600;
     font-size: 20px;
@@ -172,7 +187,9 @@
     font-size: 12px;
 }
 
-.create-review-btn {
+.create-review-btn,
+.review-edit-btn,
+.review-delete-btn {
     background-color: #ffffff;
     border: 1px solid #dfe2e2;
     border-radius: 5px;
@@ -210,4 +227,8 @@
 
 .star-review.fa-star.filled2 {
     color: #fea41c;
+}
+
+.review-section {
+    margin-top: 10px;
 }

@@ -19,7 +19,6 @@ const ProductDetailsPage = () => {
     const [ mainImg, setMainImg ] = useState(null);
     const [selectedQuantity, setSelectedQuantity] = useState(1);
     const [selectedImg, setSelectedImg] = useState(0)
-    const [filledStars, setFilledStars] = useState(0);
 
     let reviewValues;
 
@@ -102,7 +101,7 @@ const ProductDetailsPage = () => {
                   key={idx}
                   alt=''
                   className={`small-img ${selectedImg === idx ? 'selectedImg': ''}`}
-                  src={img.image}
+                  src={img?.image}
                   value={img.image}
                   onClick={() => handleImgClick(img.image, idx)}
                   >
@@ -132,7 +131,7 @@ const ProductDetailsPage = () => {
                   <div className="prod-price">${product?.price}</div>
                   {sessionUser ? (
                     <div className="address">
-                      Deliver to {sessionUser?.first_name} - {sessionUser.city} {sessionUser.zip}
+                      Deliver to {sessionUser?.first_name} - {sessionUser?.city} {sessionUser?.zip}
                     </div>
                   ):(
                     <div></div>
@@ -178,18 +177,25 @@ const ProductDetailsPage = () => {
                     <div className="review_container">
                       {Object?.values(reviewValues)?.map((review, idx) => (
                         <div className="review_details" key={idx}>
-                          <p className="review_owner">{review?.owner_name}</p>
-                          <span>
-                            {Array(5).fill().map((_, idx) => (
-                                <i
-                                key={idx}
-                                className={`fa${idx < review.stars ? 's' : 'r'} star-review fa-star ${idx < review.stars ? 'filled2' : ''}`}
-                                value={idx}
-                                >
-                                </i>
-                            ))}
-                        </span>
-                          <span className="review_header">{review?.header}</span>
+                          <div className="user-info">
+                            <img alt="" className="profile-img" src="https://caitlyn.s3.us-west-2.amazonaws.com/profile+picture.jpg"></img>
+                            <span className="review_owner">
+                              {review?.owner_name}
+                            </span>
+                          </div>
+                          <div>
+                            <span>
+                              {Array(5).fill().map((_, idx) => (
+                                  <i
+                                  key={idx}
+                                  className={`fa${idx < review?.stars ? 's' : 'r'} star-review fa-star ${idx < review?.stars ? 'filled2' : ''}`}
+                                  value={idx}
+                                  >
+                                  </i>
+                              ))}
+                            </span>
+                            <span className="review_header">{review?.header}</span>
+                          </div>
                           <p className="review_msg">{review?.review}</p>
                           {review?.review_images?.map((img, idx) => (
                             <div key={idx}>
@@ -198,10 +204,14 @@ const ProductDetailsPage = () => {
                           ))}
                           {review?.owner_id === sessionUser?.id && (
                             <div>
-                              <button onClick={() => handleEdit(review?.id, productId)}>
+                              <button
+                              className="review-edit-btn"
+                              onClick={() => handleEdit(review?.id, productId)}
+                              >
                                 Edit
                               </button>
                               <OpenModalButton
+                                className='review-delete-btn'
                                 buttonText={'Delete'}
                                 modalComponent={<DeleteReViewModal reviewId={review?.id} productId={productId} />}
                               />
