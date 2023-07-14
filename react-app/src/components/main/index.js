@@ -47,7 +47,7 @@ const MainPage = () => {
       url: "https://caitlyn.s3.us-west-2.amazonaws.com/amazon_banner_1.jpg"
     },
     {
-      url: "https://caitlyn.s3.us-west-2.amazonaws.com/amazon_banner_2.jpg"
+      url: "https://caitlyn.s3.us-west-2.amazonaws.com/amazon_banner_5.jpg"
     },
     {
       url: "https://caitlyn.s3.us-west-2.amazonaws.com/amazon_banner_3.jpg"

@@ -17,24 +17,56 @@ const CreateProduct = () => {
     const [ description, setDescription ] = useState("");
     const [ errors, setErrors ] = useState([]);
 
+    const [selectedImages, setselectedImages] = useState([]);
+    const [previewImage, setPreviewImage] = useState("");
 
+    const handleImageChange = (e) => {
+        const files = Array.from(e.target.files);
+
+        if (files.length > 5) {
+            alert("Please select up to 5 files only.");
+            return;
+        };
+
+        setselectedImages(files.slice(1))
+        setPreviewImage(files[0]);
+    }
 
     const handleProductSubmit = async (e) => {
         e.preventDefault();
+        setErrors([]);
 
         const newProduct = {
             product_name,
             price,
             brand,
             stock_quantity,
-            description,
+            description
         };
 
         const product = await dispatch(createProductFetch(newProduct))
+
         if (Array.isArray(product) && product.length > 0) {
             setErrors(product);
         } else {
-            history.push(`/images/${product.id}`)
+            const formData = new FormData();
+
+            formData.append('image[]', previewImage);
+            formData.append(`is_preview_0`, true);
+
+            selectedImages.forEach(img => {
+              formData.append('image[]', img);
+            });
+            const res = await fetch(`/api/images/${product.id}`, {
+                method: "POST",
+                body: formData,
+            });
+
+
+            if (res.ok) {
+                await res.json();
+                history.push(`/products/${product.id}`);
+            };
         }
     };
 
@@ -104,6 +136,20 @@ const CreateProduct = () => {
                                 required
                             />
                         </label>
+                        <h3>Add a photo</h3>
+                        <p>Choose 1-5 photos to help buyers</p>
+                        <div className="add-img-container">
+                            <label htmlFor="file">
+                              <i className="fa-solid fa-plus"></i>
+                            </label>
+                            <input
+                              type="file"
+                              id="file"
+                              accept="images/*"
+                              multiple
+                              onChange={handleImageChange}
+                            />
+                        </div>
                     </div>
                     <ul>
                     {errors?.map((error, idx) => (
@@ -111,7 +157,7 @@ const CreateProduct = () => {
                     ))}
                     </ul>
                     <div className="creates">
-                        <button className="create-button" type="submit">Next</button>
+                        <button className="create-button" type="submit">Submit</button>
                     </div>
                 </div>
             </form>

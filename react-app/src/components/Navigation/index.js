@@ -70,8 +70,9 @@ function Navigation({ isLoaded }){
 
 
 	const reset = (id) => {
-		document.querySelector('.search-result').classList.add('hidden');
-		setInput('')
+		document.querySelector('.search-results').classList.add('hidden');
+		history.push(`/products/${id}`);
+		setInput('');
 	};
 
 	return (
@@ -117,7 +118,7 @@ function Navigation({ isLoaded }){
 						<div className='search-results hidden'>
 							{products && products?.length > 0 && input?.length > 0 ? (
 								products?.map((product) => (
-									<div key={product?.id} className='search-card' onMouseDown={() => reset(product?.id)}>
+									<div key={product?.id} className='search-card' onClick={() => reset(product?.id)}>
 										<div>{product?.product_name}</div>
 									</div>
 								))
