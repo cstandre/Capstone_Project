@@ -219,8 +219,10 @@
 }
 
 .search-none {
-  /* position: absolute; */
+  position: absolute;
   background-color: rgb(24, 24, 24);
+  top: 55px;
+  left:22px;
   color: white;
   border: white solid 1px;
   width: 140px;
@@ -228,11 +230,8 @@
   text-align: center;
   padding-top: 15px;
   border-radius: 40px;
-  overflow-y:hidden;
-}
-
-.search-none.hidden {
-  display: none;
+  overflow-y: hidden;
+  z-index: 9999;
 }
 
 .all-btn {

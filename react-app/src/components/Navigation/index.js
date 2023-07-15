@@ -100,7 +100,7 @@ function Navigation({ isLoaded }){
 					</span>
 				)}
 				<div className='section section3'>
-						<span className='search-container'>
+						<span className='search-container' onBlur={(e) => hide(e)}>
 						<button className='all-btn'>All</button>
 						<span>
 							<input
@@ -116,17 +116,22 @@ function Navigation({ isLoaded }){
 					</span>
 				</div>
 						<div className='search-results hidden'>
-							{products && products?.length > 0 && input?.length > 0 ? (
-								products?.map((product) => (
-									<div key={product?.id} className='search-card' onClick={() => reset(product?.id)}>
-										<div>{product?.product_name}</div>
-									</div>
-								))
-								) : (
-								<div className='search-none hidden'>
-									Sorry, there are no products that match your search
-								</div>
-							)}
+						{products && (products?.length > 0 && input?.length > 0 ? (
+						  products?.map((product) => (
+						    <div key={product?.id} className='search-card' onClick={() => reset(product?.id)}>
+						      <div>{product?.product_name}</div>
+						    </div>
+						  ))
+						) : (input?.length > 0 ? (
+						  <div className='search-result'>
+						    Sorry, there are no products that match your search
+						  </div>
+						) :
+							<div className='search-result hidden'>
+								Sorry, there are no products that match your search
+					  		</div>
+						))}
+
 						</div>
 				<div className='section section4'>
 					<div>Hello, {sessionUser?.first_name}</div>
