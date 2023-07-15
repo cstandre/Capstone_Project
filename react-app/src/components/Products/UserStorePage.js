@@ -3,9 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import DeleteProductModal from "./DeleteProductModal";
 import OpenModalButton from "../OpenModalButton";
+import { userProducts } from "../../store/products";
 
 import './UserStorePage.css';
-import { userProducts } from "../../store/products";
 
 const UserStorePage = () => {
     const dispatch = useDispatch();
@@ -52,8 +52,8 @@ const UserStorePage = () => {
                                     <img className="user-store-img" alt='' src={product?.preview_image} />
                                 </div>
                                 <div className="buttons">
-                                    <button className="update-btn" value={product?.id} onClick={() => handleEdit(product?.id)}>
-                                        <i className="fa-regular fa-pen-to-square"></i>
+                                    <button className="edit-btn" value={product?.id} onClick={() => handleEdit(product?.id)}>
+                                        Edit
                                     </button>
                                     <OpenModalButton
                                         buttonText={"Delete"}
@@ -64,7 +64,7 @@ const UserStorePage = () => {
                                     <div className="product-name" value={product?.id} onClick={() => handleProductDetail(product?.id)}>
                                         {product?.product_name}
                                     </div>
-                                    <div>
+                                    <div className="review-count">
                                         Review Count: {product?.reviews?.length}
                                     </div>
                                 </div>

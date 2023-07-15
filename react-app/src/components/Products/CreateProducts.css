@@ -11,6 +11,16 @@
     width: 300px;
 }
 
+.description {
+    display: block;
+    background-color: #eaf0fe;
+    border: 1px solid #a6a6a6;
+    border-radius: 3px;
+    width: 300px;
+    resize:vertical;
+    overflow: hidden;
+}
+
 .form-content {
     padding-bottom: 30px;
 }

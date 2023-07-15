@@ -1,6 +1,8 @@
 import React from 'react';
 import { useModal } from '../../context/Modal';
 
+import './index.css'
+
 function OpenModalButton({
   modalComponent, // component to render inside the modal
   buttonText, // text of the button that opens the modal
@@ -15,12 +17,8 @@ function OpenModalButton({
     if (onButtonClick) onButtonClick();
   };
 
-
-  if (buttonText === 'Delete') {
-    return (<i onClick={onClick} className="fa-regular fa-trash-can"></i>)
-  }
   return (
-    <button onClick={onClick}>{buttonText}</button>
+    <button className='delete-modal' onClick={onClick}>{buttonText}</button>
   );
 }
 

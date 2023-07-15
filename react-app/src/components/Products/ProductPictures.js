@@ -78,7 +78,7 @@ const ProductPicture = () => {
                                 <div className="upload-txt">Upload</div>
                             </div>
                         </label>
-                        <button type="submit" className="create-botton">
+                        <button type="submit" className="create-button">
                             <div className="btn-txt">
                             Create product
                             </div>

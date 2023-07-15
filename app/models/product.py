@@ -48,3 +48,9 @@ class Product(db.Model):
             'product_images': [product_image.to_dict() for product_image in self.product_images] if self.product_images else [],
             'reviews': [review.to_dict() for review in self.reviews] if self.reviews else [],
         }
+
+    def to_dict_search(self):
+        return {
+            'id': self.id,
+            'product_name': self.product_name
+        }

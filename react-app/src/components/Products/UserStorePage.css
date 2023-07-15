@@ -43,7 +43,10 @@
 }
 
 .product-name {
-    height: 100%;
+    height: 20px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .img-container {
@@ -68,16 +71,26 @@
     display: grid;
     margin-top: 10px;
     width: 200px;
-    height: 100px;
+    height: 70px;
 }
 
-.update-btn {
-    border: 0;
-    background-color: white;
-}
-
-.update-btn:hover,
+.edit-btn:hover,
 .fa-trash-can:hover,
 .img-container:hover {
     cursor: pointer;
+}
+
+.edit-btn {
+    background-color: #ffffff;
+    border: 1px solid #dfe2e2;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(15,17,17,.15)
+}
+
+.buttons {
+    margin-top: 10px;
+}
+
+.review-count {
+    height: 20px;
 }

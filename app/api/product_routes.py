@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from flask_login import current_user, login_required
-from app.models import db, Product, ProductImage
+from app.models import db, Product, ProductImage, Review
 from app.forms.create_product import ProductForm
 
 
@@ -46,7 +46,7 @@ def user_products():
     return {product.id: product.to_dict() for product in products}
 
 
-## Get one product by the ID
+## Get product by the id
 @product_routes.route('/<int:id>')
 def product_id(id):
     """
@@ -136,3 +136,16 @@ def get_images():
         return {'error': 'No images were found'}
 
     return {image.id: image.to_dict() for image in images}
+
+## Get all reviews for product
+@product_routes.route('/<int:product_id>/reviews')
+def all_reviews(product_id):
+    """
+    Query for all reviews and return them in a list of dictionaries.
+    """
+    reviews = Review.query.filter_by(product_id = product_id)
+
+    if not reviews:
+        return {'error': 'No reviews could be found'}
+
+    return {review.id: review.to_dict() for review in reviews}

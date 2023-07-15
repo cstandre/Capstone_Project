@@ -19,7 +19,8 @@
 .cancel-button {
     background-color: #ffffff;
     border: 1px solid #dde0e0;
-    border-radius: 5px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(15,17,17,.15);
     margin-left: 10px;
 }
 
@@ -34,7 +35,8 @@
 .delete-button {
     background-color: #ffd815;
     border: 1px solid #ffd815;
-    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(15,17,17,.15);
+    border-radius: 10px;
 }
 
 .delete-button:hover {
