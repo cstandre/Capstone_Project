@@ -83,7 +83,7 @@ const CreateReview = () => {
 
             if (res.ok) {
                 await res.json();
-                history.push('/');
+                history.push(`/products/${productId}`);
             };
         };
     };
