@@ -4,8 +4,10 @@ import { useHistory } from "react-router-dom";
 import SimpleImageSlider from "react-simple-image-slider";
 import { loadProducts } from "../../store/products";
 import { addItem } from "../../store/cart";
+import LoginMessage from "../ ErrorModals/loginModal";
 
 import "./main.css"
+import OpenModalButton from "../OpenModalButton";
 
 const MainPage = () => {
   const history = useHistory();
@@ -61,11 +63,6 @@ const MainPage = () => {
     dispatch(addItem(id, 1));
   };
 
-  const throwError = (e) => {
-    e.preventDefault();
-    alert('Login to add item to your cart!')
-  };
-
   const handleProductDetail = (productId) => {
     // console.log(productId)
     history.push(`/products/${productId}`);
@@ -117,9 +114,11 @@ const MainPage = () => {
                   Add to cart
                 </button>
               ) : (
-                <button className="add-to-cart" value={product?.id} onClick={throwError}>
-                  <div>Add to cart</div>
-                </button>
+                  <OpenModalButton
+                    className="add-to-cart"
+                    buttonText={'Add to cart'}
+                    modalComponent={<LoginMessage />}
+                  />
               )}
             </div>
           ))}
