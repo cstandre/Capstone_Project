@@ -7,7 +7,6 @@ import { addItem } from "../../store/cart";
 
 import "./main.css"
 
-
 const MainPage = () => {
   const history = useHistory();
   const products = useSelector(state=>state?.products);
@@ -15,10 +14,7 @@ const MainPage = () => {
   const dispatch = useDispatch();
   const [sliderWidth, setSliderWidth] = useState(0);
   const [sliderHeight, setSliderHeight] = useState(0);
-
-
-  const productsArr = Object?.values(products)?.flatMap(product => Object?.values(product)).slice(0,5);
-
+  const [randomProducts, setRandomProducts] = useState([]);
 
   useEffect(() => {
     dispatch(loadProducts());
@@ -41,6 +37,13 @@ const MainPage = () => {
       window.removeEventListener('resize', calculateSliderSize);
     };
   }, []);
+
+  useEffect(() => {
+    const productsArr = Object?.values(products)?.flatMap(product => Object?.values(product));
+    const randomProducts = productsArr?.sort(() => Math.random() - Math.random()).slice(0, 5);
+    setRandomProducts(randomProducts);
+    // console.log(randomProducts)
+  }, [products])
 
   const images = [
     {
@@ -82,7 +85,7 @@ const MainPage = () => {
           />
         </div>
         <div className="product-display-container">
-          {productsArr?.map((product, idx) => (
+          {randomProducts?.map((product, idx) => (
             <div className={`product-box container-${idx}`} key={idx}>
               <img
                 className={`product-box-img-${idx}`}
