@@ -15,6 +15,7 @@ import ProductPicture from "./components/Products/ProductPictures";
 import Cart from "./components/Cart/cart";
 import CreateReview from "./components/Reviews/CreateReview";
 import EditReview from "./components/Reviews/EditReview";
+import AllProductsPage from "./components/Products/AllProductsPage";
 
 
 
@@ -44,6 +45,9 @@ function App() {
           </Route>
           <Route exact path="/products/user-store">
             <UserStorePage />
+          </Route>
+          <Route exact path="/products/search/all">
+            <AllProductsPage />
           </Route>
           <Route exact path="/products/:productId">
             <ProductDetailsPage />

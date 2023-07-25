@@ -75,6 +75,10 @@ function Navigation({ isLoaded }){
 		setInput('');
 	};
 
+	const searchAll = () => {
+		history.push('/products/search/all')
+	};
+
 	return (
 		<div>
 			<div className='nav-bar'>
@@ -112,27 +116,25 @@ function Navigation({ isLoaded }){
 						/>
 						<span className='magnifying-container'><i className="fa-solid fa-magnifying-glass"></i></span>
 					</span>
-					<span onBlur={(e) => hide(e)}>
-						<div className='search-results hidden'>
-							{products && (products?.length > 0 && input?.length > 0 ? (
-									products?.map((product) => (
-										<div key={product?.id} className='search-card' onClick={() => reset(product?.id)}>
-											<div>{product?.product_name}</div>
-										</div>
-									))
-								) : (input?.length > 0 ? (
-									<div className='search-result'>
-										Sorry, there are no products that match your search
+					<div className='search-results hidden'>
+						{products && (products?.length > 0 && input?.length > 0 ? (
+								products?.map((product) => (
+									<div key={product?.id} className='search-card' onClick={() => reset(product?.id)}>
+										<div>{product?.product_name}</div>
 									</div>
-								) :
-									<div className='search-result hidden'>
-										Sorry, there are no products that match your search
-									</div>
-									)
+								))
+							) : (input?.length > 0 ? (
+								<div className='search-result'>
+									Sorry, there are no products that match your search
+								</div>
+							) :
+								<div className='search-result hidden'>
+									Sorry, there are no products that match your search
+								</div>
 								)
-							}
-						</div>
-					</span>
+							)
+						}
+					</div>
 				</div>
 				<div className='section section4'>
 					<div>Hello, {sessionUser?.first_name}</div>
@@ -154,7 +156,7 @@ function Navigation({ isLoaded }){
 				</div>
 			</div>
 			<div className='category-bar'>
-				<p className='category-txt'>All</p>
+				<p className='category-txt' onClick={searchAll}>All</p>
 				<p className='category-txt'>Sports</p>
 				<p className='category-txt'>Cleaning Supplies</p>
 				<p className='category-txt'>Gaming</p>

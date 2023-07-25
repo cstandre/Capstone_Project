@@ -203,7 +203,7 @@ const ProductDetailsPage = () => {
                           </div>
                           <p className="review_msg">{review?.review}</p>
                           {review?.review_images?.map((img, idx) => (
-                            <div key={idx}>
+                            <div key={idx} className="rev-img-container">
                               <img className="review_img" alt="" src={img}></img>
                             </div>
                           ))}
