@@ -156,10 +156,7 @@ function Navigation({ isLoaded }){
 				</div>
 			</div>
 			<div className='category-bar'>
-				<p className='category-txt' onClick={searchAll}>All</p>
-				<p className='category-txt'>Sports</p>
-				<p className='category-txt'>Cleaning Supplies</p>
-				<p className='category-txt'>Gaming</p>
+				<p className='category-txt' onClick={searchAll}>Shop All Items</p>
 			</div>
 		</div>
 	);
