@@ -4,9 +4,10 @@ import { useHistory } from "react-router-dom";
 import SimpleImageSlider from "react-simple-image-slider";
 import { loadProducts } from "../../store/products";
 import { addItem } from "../../store/cart";
+import LoginMessage from "../ ErrorModals/loginModal";
 
 import "./main.css"
-
+import OpenModalButton from "../OpenModalButton";
 
 const MainPage = () => {
   const history = useHistory();
@@ -15,10 +16,7 @@ const MainPage = () => {
   const dispatch = useDispatch();
   const [sliderWidth, setSliderWidth] = useState(0);
   const [sliderHeight, setSliderHeight] = useState(0);
-
-
-  const productsArr = Object?.values(products)?.flatMap(product => Object?.values(product)).slice(0,5);
-
+  const [randomProducts, setRandomProducts] = useState([]);
 
   useEffect(() => {
     dispatch(loadProducts());
@@ -42,6 +40,13 @@ const MainPage = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const productsArr = Object?.values(products)?.flatMap(product => Object?.values(product));
+    const randomProducts = productsArr?.sort(() => Math.random() - Math.random()).slice(0, 5);
+    setRandomProducts(randomProducts);
+    // console.log(randomProducts)
+  }, [products])
+
   const images = [
     {
       url: "https://caitlyn.s3.us-west-2.amazonaws.com/amazon_banner_1.jpg"
@@ -56,11 +61,6 @@ const MainPage = () => {
 
   const handleCartButton = (id) => {
     dispatch(addItem(id, 1));
-  };
-
-  const throwError = (e) => {
-    e.preventDefault();
-    alert('Login to add item to your cart!')
   };
 
   const handleProductDetail = (productId) => {
@@ -82,7 +82,7 @@ const MainPage = () => {
           />
         </div>
         <div className="product-display-container">
-          {productsArr?.map((product, idx) => (
+          {randomProducts?.map((product, idx) => (
             <div className={`product-box container-${idx}`} key={idx}>
               <img
                 className={`product-box-img-${idx}`}
@@ -114,9 +114,11 @@ const MainPage = () => {
                   Add to cart
                 </button>
               ) : (
-                <button className="add-to-cart" value={product?.id} onClick={throwError}>
-                  <div>Add to cart</div>
-                </button>
+                  <OpenModalButton
+                    className="add-to-cart"
+                    buttonText={'Add to cart'}
+                    modalComponent={<LoginMessage />}
+                  />
               )}
             </div>
           ))}

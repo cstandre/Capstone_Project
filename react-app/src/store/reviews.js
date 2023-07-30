@@ -13,10 +13,10 @@ const readReviews = (reviews) => ({
     reviews
 });
 
-const userReviews = (reviews) => ({
-    type: LOAD_REVIEWS,
-    reviews
-});
+// const userReviews = (reviews) => ({
+//     type: LOAD_REVIEWS,
+//     reviews
+// });
 
 const updateReview = (review) => ({
     type: UPDATE_REVIEW,

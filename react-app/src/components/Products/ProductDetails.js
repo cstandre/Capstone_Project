@@ -6,6 +6,7 @@ import { addItem } from "../../store/cart";
 import { loadReviews } from "../../store/reviews";
 import OpenModalButton from "../OpenModalButton";
 import DeleteReViewModal from "../Reviews/DeleteReviewModal";
+import LoginMessage from "../ ErrorModals/loginModal";
 
 import './ProductDetails.css';
 
@@ -85,11 +86,6 @@ const ProductDetailsPage = () => {
       history.push(`/reviews/${reviewId}/product/${productId}/edit`);
     };
 
-    const throwError = (e) => {
-      e.preventDefault();
-      alert('Login to add item to your cart!')
-    };
-
     return (
       <div className="product-page">
         <div className="main-container">
@@ -160,7 +156,11 @@ const ProductDetailsPage = () => {
                       </div>
                     </div>
                   ): (
-                    <button value={productId} onClick={throwError}>Add to cart</button>
+                    <OpenModalButton
+                      className="add-to-cart"
+                      buttonText={'Add to cart'}
+                      modalComponent={<LoginMessage />}
+                    />
                   )}
                 </div>
               </div>
@@ -168,9 +168,14 @@ const ProductDetailsPage = () => {
                 <div className="stats">
                   <p className="stats-header">Review this product</p>
                   <p className="stats-subheader">Share your thoughts with other customers</p>
-                  <button className="create-review-btn" onClick={writeReview}>
-                    <p className="review-btn-txt">Write a customer review</p>
-                  </button>
+                    {sessionUser ? (
+                      <button className="create-review-btn" onClick={writeReview}>Write a customer review</button>
+                    ): (
+                      <OpenModalButton
+                      buttonText={'Write a customer review'}
+                      modalComponent={<LoginMessage />}
+                    />
+                    )}
                 </div>
                 <div className="review-section">
                   {reviewValues ? (
@@ -198,7 +203,7 @@ const ProductDetailsPage = () => {
                           </div>
                           <p className="review_msg">{review?.review}</p>
                           {review?.review_images?.map((img, idx) => (
-                            <div key={idx}>
+                            <div key={idx} className="rev-img-container">
                               <img className="review_img" alt="" src={img}></img>
                             </div>
                           ))}

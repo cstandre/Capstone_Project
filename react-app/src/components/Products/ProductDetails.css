@@ -200,10 +200,17 @@
     cursor: pointer;
 }
 
+.rev-img-container {
+    display: inline-flex;
+}
+
 .review_img {
     height: 100px;
     width: 100px;
-    object-fit: contain;
+    object-fit: cover;
+    margin: 5px;
+    border: 1px solid #dfe2e2;
+    border-radius: 5px;
 }
 
 .fa-pen-to-square {

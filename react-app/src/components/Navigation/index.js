@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch, shallowEqual } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import ProfileButton from './ProfileButton';
 import { loadItems } from '../../store/cart';
@@ -17,8 +17,8 @@ function Navigation({ isLoaded }){
 	const history = useHistory();
 	const dispatch = useDispatch();
 
-	console.log(results, 'results')
-	console.log(products, 'products')
+	// console.log(results, 'results')
+	// console.log(products, 'products')
 	const [input, setInput] = useState('');
 
 	const quantityArr = Object?.values(cartItems)?.map(item => item?.quantity)
@@ -32,8 +32,10 @@ function Navigation({ isLoaded }){
 	}, [dispatch, sessionUser]);
 
 	useEffect(() => {
-		if (input.length > 0) {
+		if (input.trim().length > 0) {
 			dispatch(search(input));
+		} else {
+			dispatch(search(''));
 		};
 	}, [dispatch, input]);
 
@@ -61,18 +63,20 @@ function Navigation({ isLoaded }){
 	};
 
 	const hide = (e) => {
-		e.preventDefault();
-
+		e.preventDefault()
 		if (!e.currentTarget.contains(e.relatedTarget)) {
 		  document.querySelector('.search-results').classList.add('hidden');
 		}
 	};
 
-
 	const reset = (id) => {
 		document.querySelector('.search-results').classList.add('hidden');
 		history.push(`/products/${id}`);
 		setInput('');
+	};
+
+	const searchAll = () => {
+		history.push('/products/search/all')
 	};
 
 	return (
@@ -88,7 +92,7 @@ function Navigation({ isLoaded }){
 						</div>
 						<div>
 							<div className='line-1'>Deliver to {sessionUser?.first_name} </div>
-							<div className='line-2'>{sessionUser?.city}, {sessionUser.zip}</div>
+							<div className='line-2'>{sessionUser?.city}, {sessionUser?.zip}</div>
 						</div>
 					</div>
 				): (
@@ -100,39 +104,38 @@ function Navigation({ isLoaded }){
 					</span>
 				)}
 				<div className='section section3'>
-						<span className='search-container' onBlur={(e) => hide(e)}>
+					<span className='search-container'>
 						<button className='all-btn'>All</button>
-						<span>
-							<input
-								className='search'
-								value={input}
-								onChange={(e) => setInput(e.target.value)}
-								onFocus={() => show()}
-								type='search'
-								placeholder='Search Amazon'
-							/>
-						</span>
+						<input
+							className='search'
+							value={input}
+							onChange={(e) => setInput(e.target.value)}
+							onFocus={() => show()}
+							type='search'
+							placeholder='Search Amazon'
+						/>
 						<span className='magnifying-container'><i className="fa-solid fa-magnifying-glass"></i></span>
 					</span>
-				</div>
-						<div className='search-results hidden'>
+					<div className='search-results hidden'>
 						{products && (products?.length > 0 && input?.length > 0 ? (
-						  products?.map((product) => (
-						    <div key={product?.id} className='search-card' onClick={() => reset(product?.id)}>
-						      <div>{product?.product_name}</div>
-						    </div>
-						  ))
-						) : (input?.length > 0 ? (
-						  <div className='search-result'>
-						    Sorry, there are no products that match your search
-						  </div>
-						) :
-							<div className='search-result hidden'>
-								Sorry, there are no products that match your search
-					  		</div>
-						))}
-
-						</div>
+								products?.map((product) => (
+									<div key={product?.id} className='search-card' onClick={() => reset(product?.id)}>
+										<div>{product?.product_name}</div>
+									</div>
+								))
+							) : (input?.length > 0 ? (
+								<div className='search-result'>
+									Sorry, there are no products that match your search
+								</div>
+							) :
+								<div className='search-result hidden'>
+									Sorry, there are no products that match your search
+								</div>
+								)
+							)
+						}
+					</div>
+				</div>
 				<div className='section section4'>
 					<div>Hello, {sessionUser?.first_name}</div>
 					<span>Manage Account</span>
@@ -153,10 +156,7 @@ function Navigation({ isLoaded }){
 				</div>
 			</div>
 			<div className='category-bar'>
-				<p className='category-txt'>All</p>
-				<p className='category-txt'>Sports</p>
-				<p className='category-txt'>Cleaning Supplies</p>
-				<p className='category-txt'>Gaming</p>
+				<p className='category-txt' onClick={searchAll}>Shop All Items</p>
 			</div>
 		</div>
 	);

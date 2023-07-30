@@ -1,0 +1,44 @@
+.error-modal {
+    display: grid;
+    justify-content: center;
+    height: 100px;
+    width: 400px;
+    margin: 20px;
+}
+
+.error-msg-header {
+    font-size: 20px;
+    margin-top: 20px;
+    height: 30px;
+}
+
+.modal-btns {
+    height: 20px;
+}
+
+.modal-signup-btn,
+.modal-login-btn {
+    justify-self: center;
+    width: 80px;
+    height: 30px;
+    background-color: #ffff;
+    border: 1px solid #D5D9D9;
+    box-shadow: 0 2px 5px rgba(15,17,17,.15);
+    border-radius: 5px;
+}
+
+.modal-signup-btn {
+    margin-left: 5px;
+}
+
+.modal-login-btn {
+    margin-left: 5px;
+}
+
+.modal-login-btn:hover {
+    background-color: #f8fafa;
+}
+
+.modal-signup-btn:hover {
+    background-color: #f8fafa;
+}

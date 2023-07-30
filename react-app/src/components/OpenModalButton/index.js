@@ -17,9 +17,16 @@ function OpenModalButton({
     if (onButtonClick) onButtonClick();
   };
 
-  return (
-    <button className='delete-modal' onClick={onClick}>{buttonText}</button>
-  );
+  if (buttonText === 'Delete') {
+    return (<button className='delete-modal' onClick={onClick}>{buttonText}</button>);
+  };
+  if (buttonText === 'Add to cart') {
+    return (<button className='add-to-cart' onClick={onClick}>{buttonText}</button>);
+  };
+  if (buttonText === 'Write a customer review') {
+    return (<button className='create-review-btn' onClick={onClick}>{buttonText}</button>);
+  }
+  return (<button onClick={onClick}>{buttonText}</button>);
 }
 
 export default OpenModalButton;

@@ -1,0 +1,54 @@
+.cat-store-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%
+}
+
+.category-banner {
+    width: 90%;
+    padding-bottom: 20px;
+    padding-top: 10px;
+}
+
+.cat-product-container {
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    flex-wrap: wrap;
+}
+
+.cat-each-container {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+}
+
+.cat-product-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.cat-product-name {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    padding-left: 10px;
+    width: 150px;
+}
+
+.price-rating {
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    padding: 10px;
+}
+
+.fa-star {
+    height: 10px;
+}
+
+.cat-price {
+    display: flex;
+    align-items: center;
+}
