@@ -3,9 +3,9 @@ import { useSelector } from 'react-redux';
 import { Redirect } from "react-router-dom";
 
 const ProtectedRoute = ({ children }) => {
-    const user = useSelector((state) => state?.session?.user);
+    const sessionUser = useSelector(state=>state?.session?.user)
 
-    if (!user) {
+    if (!sessionUser) {
         return <Redirect to='/login'/>
     };
 

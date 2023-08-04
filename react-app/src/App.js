@@ -42,15 +42,11 @@ function App() {
           <Route exact path="/signup">
             <SignupFormPage />
           </Route>
-          <ProtectedRoute>
-            <Route exact path="/products/create">
-              <CreateProduct />
-            </Route>
+          <ProtectedRoute exact path="/products/create">
+            <CreateProduct />
           </ProtectedRoute>
-          <ProtectedRoute>
-            <Route exact path="/products/user-store">
-              <UserStorePage />
-            </Route>
+          <ProtectedRoute exact path="/products/user-store">
+            <UserStorePage />
           </ProtectedRoute>
           <Route exact path="/products/search/all">
             <AllProductsPage />
@@ -58,26 +54,20 @@ function App() {
           <Route exact path="/products/:productId">
             <ProductDetailsPage />
           </Route>
-          <ProtectedRoute>
-            <Route exact path="/products/:productId/edit">
-              <EditProduct />
-            </Route>
+          <ProtectedRoute exact path="/products/:productId/edit">
+            <EditProduct />
           </ProtectedRoute>
           <Route exact path="/products/:productId/review">
             <CreateReview />
           </Route>
-          <ProtectedRoute>
-            <Route exact path="/reviews/:reviewId/product/:productId/edit">
-              <EditReview />
-            </Route>
+          <ProtectedRoute exact path="/reviews/:reviewId/product/:productId/edit">
+            <EditReview />
           </ProtectedRoute>
           <Route exact path="/images/:productId">
             <ProductPicture />
           </Route>
-          <ProtectedRoute>
-            <Route exact path="/cart">
-              <Cart />
-            </Route>
+          <ProtectedRoute exact path="/cart">
+            <Cart />
           </ProtectedRoute>
           <Route path='*'>
             <Error404Page />
