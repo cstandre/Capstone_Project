@@ -1,7 +1,7 @@
 .review-form-container {
     display: grid;
     justify-content: center;
-    padding-bottom: 50px;
+    margin-bottom: 150px;
 }
 
 .review-product-deets {

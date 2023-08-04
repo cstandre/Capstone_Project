@@ -1,7 +1,7 @@
 .product-page {
     display: grid;
     justify-content: center;
-    margin-bottom: 50px;
+    margin-bottom: 200px;
 }
 
 .main-container {
@@ -193,10 +193,15 @@
     background-color: #ffffff;
     border: 1px solid #dfe2e2;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(15,17,17,.15)
+    box-shadow: 0 2px 5px rgba(15,17,17,.15);
 }
 
-.create-review-btn:hover {
+.create-review-btn {
+    padding: 10px;
+}
+
+.create-review-btn:hover,
+.review-edit-btn:hover {
     cursor: pointer;
 }
 

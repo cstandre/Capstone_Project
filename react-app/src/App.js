@@ -16,6 +16,8 @@ import Cart from "./components/Cart/cart";
 import CreateReview from "./components/Reviews/CreateReview";
 import EditReview from "./components/Reviews/EditReview";
 import AllProductsPage from "./components/Products/AllProductsPage";
+import Error404Page from "./components/ErrorPages/Error404";
+import ProtectedRoute from "./components/Utils/ProtectedRoutes";
 
 
 
@@ -34,38 +36,51 @@ function App() {
           <Route exact path='/'>
             <MainPage />
           </Route>
-          <Route path="/login" >
+          <Route exact path="/login" >
             <LoginFormPage />
           </Route>
-          <Route path="/signup">
+          <Route exact path="/signup">
             <SignupFormPage />
           </Route>
-          <Route exact path="/products/create">
-            <CreateProduct />
-          </Route>
-          <Route exact path="/products/user-store">
-            <UserStorePage />
-          </Route>
+          <ProtectedRoute>
+            <Route exact path="/products/create">
+              <CreateProduct />
+            </Route>
+          </ProtectedRoute>
+          <ProtectedRoute>
+            <Route exact path="/products/user-store">
+              <UserStorePage />
+            </Route>
+          </ProtectedRoute>
           <Route exact path="/products/search/all">
             <AllProductsPage />
           </Route>
           <Route exact path="/products/:productId">
             <ProductDetailsPage />
           </Route>
-          <Route path="/products/:productId/edit">
-            <EditProduct />
-          </Route>
-          <Route path="/products/:productId/review">
+          <ProtectedRoute>
+            <Route exact path="/products/:productId/edit">
+              <EditProduct />
+            </Route>
+          </ProtectedRoute>
+          <Route exact path="/products/:productId/review">
             <CreateReview />
           </Route>
-          <Route exact path="/reviews/:reviewId/product/:productId/edit">
-            <EditReview />
-          </Route>
-          <Route path="/images/:productId">
+          <ProtectedRoute>
+            <Route exact path="/reviews/:reviewId/product/:productId/edit">
+              <EditReview />
+            </Route>
+          </ProtectedRoute>
+          <Route exact path="/images/:productId">
             <ProductPicture />
           </Route>
-          <Route exact path="/cart">
-            <Cart />
+          <ProtectedRoute>
+            <Route exact path="/cart">
+              <Cart />
+            </Route>
+          </ProtectedRoute>
+          <Route path='*'>
+            <Error404Page />
           </Route>
         </Switch>
       )}

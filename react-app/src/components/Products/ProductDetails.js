@@ -50,7 +50,7 @@ const ProductDetailsPage = () => {
 
     const handleImgClick = (img, idx) => {
       setMainImg(img);
-      console.log(idx)
+      // console.log(idx)
       setSelectedImg(idx);
     };
 
@@ -216,7 +216,6 @@ const ProductDetailsPage = () => {
                                 Edit
                               </button>
                               <OpenModalButton
-                                className='review-delete-btn'
                                 buttonText={'Delete'}
                                 modalComponent={<DeleteReViewModal reviewId={review?.id} productId={productId} />}
                               />

@@ -10,12 +10,12 @@ const Footer = () => {
             </div>
             <div className="link-icons">
                 <span className="github-icon">
-                <a href="https://github.com/cstandre">
+                <a href="https://github.com/cstandre" target="_blank" rel="noopener noreferrer">
                     <i className="fa-brands fa-github fa-2x footer-icon"></i>
                 </a>
                 </span>
                 <span>
-                    <a href="https://www.linkedin.com/in/caitlyn-st-andre-46b1ba143/">
+                    <a href="https://www.linkedin.com/in/caitlyn-st-andre-46b1ba143/" target="_blank" rel="noopener noreferrer">
                         <i className="fa-brands fa-linkedin fa-2x footer-icon"></i>
                     </a>
                 </span>

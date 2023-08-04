@@ -57,7 +57,7 @@ def create_review(product_id):
     user_id = current_user.id
     product_review = Review.query.filter_by(user_id=user_id, product_id=product_id)
 
-    print(product_review, "product_review----------------")
+    # print(product_review, "product_review----------------")
 
     form = ReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']

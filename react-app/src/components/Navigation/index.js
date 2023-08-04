@@ -62,13 +62,6 @@ function Navigation({ isLoaded }){
 		document.querySelector('.search-results').classList.remove('hidden');
 	};
 
-	const hide = (e) => {
-		e.preventDefault()
-		if (!e.currentTarget.contains(e.relatedTarget)) {
-		  document.querySelector('.search-results').classList.add('hidden');
-		}
-	};
-
 	const reset = (id) => {
 		document.querySelector('.search-results').classList.add('hidden');
 		history.push(`/products/${id}`);
