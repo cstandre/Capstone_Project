@@ -3,7 +3,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { productDetails } from "../../store/products";
 import { addItem } from "../../store/cart";
-import { loadReviews } from "../../store/reviews";
+import { loadReviews, reviewDetails } from "../../store/reviews";
 import OpenModalButton from "../OpenModalButton";
 import DeleteReViewModal from "../Reviews/DeleteReviewModal";
 import LoginMessage from "../ ErrorModals/loginModal";
@@ -82,7 +82,8 @@ const ProductDetailsPage = () => {
     };
 
     const handleEdit = (reviewId, productId) => {
-      dispatch(loadReviews(reviewId))
+      console.log(reviewId, 'handleEdit')
+      dispatch(reviewDetails(reviewId))
       history.push(`/reviews/${reviewId}/product/${productId}/edit`);
     };
 
