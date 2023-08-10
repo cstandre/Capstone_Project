@@ -82,7 +82,7 @@ const ProductDetailsPage = () => {
     };
 
     const handleEdit = (reviewId, productId) => {
-      console.log(reviewId, 'handleEdit')
+      // console.log(reviewId, 'handleEdit')
       dispatch(reviewDetails(reviewId))
       history.push(`/reviews/${reviewId}/product/${productId}/edit`);
     };

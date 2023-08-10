@@ -62,7 +62,7 @@ const EditReview = () => {
             stars,
         };
         // console.log(newReview)
-        console.log(reviewId, 'right before the edit review dispatch')
+        // console.log(reviewId, 'right before the edit review dispatch')
         const updatedReview = await dispatch(editReview(userReview, reviewId));
         if (updatedReview) {
             history.push(`/products/${productId}`)

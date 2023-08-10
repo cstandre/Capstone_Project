@@ -61,13 +61,13 @@ export const loadReviews = (productId) => async (dispatch) => {
 };
 
 export const reviewDetails = (reviewId) => async (dispatch) => {
-    console.log(reviewId, 'in thunk')
+    // console.log(reviewId, 'in thunk')
     const res = await fetch(`/api/reviews/${reviewId}`)
 
     if (res.ok) {
         const review = await res.json();
-        console.log('in here')
-        dispatch(readReviews(review));
+        // console.log('in here')
+        // dispatch(readReviews(review));
         return review;
     };
 };
