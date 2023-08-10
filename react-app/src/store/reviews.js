@@ -67,7 +67,7 @@ export const reviewDetails = (reviewId) => async (dispatch) => {
     if (res.ok) {
         const review = await res.json();
         // console.log('in here')
-        // dispatch(readReviews(review));
+        dispatch(readReviews(review));
         return review;
     };
 };
