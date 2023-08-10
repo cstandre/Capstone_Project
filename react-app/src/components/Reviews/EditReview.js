@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { reviewDetails, editReview } from "../../store/reviews";
 import TextareaAutoSize from 'react-textarea-autosize';
 import { productDetails } from "../../store/products";
 
-
 const EditReview = () => {
     const dispatch = useDispatch();
     const history = useHistory();
+    const { reviewId } = useParams();
+    const { productId } = useParams();
 
     const userReview = useSelector(state=>state?.reviews?.reviews);
     const product = useSelector(state=>state?.products?.products);
@@ -30,9 +31,10 @@ const EditReview = () => {
     }, [userReview]);
 
     useEffect(() => {
-        dispatch(reviewDetails(userReview?.id));
-        dispatch(productDetails(product?.id));
-    }, [dispatch, userReview?.id, product?.id]);
+        dispatch(reviewDetails(reviewId));
+        dispatch(productDetails(productId));
+
+    }, [dispatch, reviewId, productId]);
 
     const ratingClick = (e, n) => {
         e.preventDefault();
@@ -42,7 +44,7 @@ const EditReview = () => {
 
     const productPage = (e) => {
         e.preventDefault();
-        history.push(`/products/${product.id}`)
+        history.push(`/products/${productId}`)
     }
 
     const handleSubmit = async (e) => {
@@ -60,10 +62,10 @@ const EditReview = () => {
             stars,
         };
         // console.log(newReview)
-        console.log(userReview.id, 'right before the edit review dispatch')
-        const updatedReview = await dispatch(editReview(userReview, userReview?.id));
+        console.log(reviewId, 'right before the edit review dispatch')
+        const updatedReview = await dispatch(editReview(userReview, reviewId));
         if (updatedReview) {
-            history.push(`/products/${product?.id}`)
+            history.push(`/products/${productId}`)
         };
     };
 

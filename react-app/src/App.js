@@ -17,7 +17,6 @@ import CreateReview from "./components/Reviews/CreateReview";
 import EditReview from "./components/Reviews/EditReview";
 import AllProductsPage from "./components/Products/AllProductsPage";
 import Error404Page from "./components/ErrorPages/Error404";
-import ProtectedRoute from "./components/Utils/ProtectedRoutes";
 
 
 
@@ -42,33 +41,33 @@ function App() {
           <Route exact path="/signup">
             <SignupFormPage />
           </Route>
-          <ProtectedRoute exact path="/products/create">
+          <Route exact path="/products/create">
             <CreateProduct />
-          </ProtectedRoute>
-          <ProtectedRoute exact path="/products/user-store">
+          </Route>
+          <Route exact path="/products/user-store">
             <UserStorePage />
-          </ProtectedRoute>
+          </Route>
           <Route exact path="/products/search/all">
             <AllProductsPage />
           </Route>
           <Route exact path="/products/:productId">
             <ProductDetailsPage />
           </Route>
-          <ProtectedRoute exact path="/products/:productId/edit">
+          <Route exact path="/products/:productId/edit">
             <EditProduct />
-          </ProtectedRoute>
+          </Route>
           <Route exact path="/products/:productId/review">
             <CreateReview />
           </Route>
-          <ProtectedRoute exact path="/reviews/:reviewId/product/:productId/edit">
+          <Route exact path="/reviews/:reviewId/product/:productId/edit">
             <EditReview />
-          </ProtectedRoute>
+          </Route>
           <Route exact path="/images/:productId">
             <ProductPicture />
           </Route>
-          <ProtectedRoute exact path="/cart">
+          <Route exact path="/cart">
             <Cart />
-          </ProtectedRoute>
+          </Route>
           <Route path='*'>
             <Error404Page />
           </Route>

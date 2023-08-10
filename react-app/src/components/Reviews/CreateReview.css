@@ -42,12 +42,16 @@
     padding-top: 10px;
 }
 
-.review-submit-btn{
+.review-submit-btn {
     margin-top: 10px;
     background: #ffd821;
     border: 1px solid #ffd821;
     box-shadow: 0 2px 5px rgba(15,17,17,.15);
     border-radius: 5px;
+}
+
+.review-submit-btn:hover {
+    cursor: pointer;
 }
 
 .review-submit-txt {
