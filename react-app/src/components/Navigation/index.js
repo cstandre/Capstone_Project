@@ -91,7 +91,7 @@ function Navigation({ isLoaded }){
 				): (
 					<span className='section section2' onClick={signIn}>
 						<span>
-							<div className='line-1'>Hello</div>
+							<div className='line-1'>Hello,</div>
 							<div className='line-2'>Sign in to get started</div>
 						</span>
 					</span>

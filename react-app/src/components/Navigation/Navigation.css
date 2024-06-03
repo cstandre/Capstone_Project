@@ -7,8 +7,7 @@
   align-items: center;
   justify-content: space-between;
   height: 60px;
-  padding-left: 20px;
-  padding-right: 20px;
+  width: 100%;
   background-color: #141921;
   margin: 0px;
   color: white;
@@ -16,9 +15,9 @@
 }
 
 .search-results {
-  position: absolute;
+  /* position: absolute; */
   top: 55px;
-  left: 100px;
+  /* left: 100px; */
   background-color: #ffffff;
   color: #262f3e;
   max-height: 200px;
@@ -27,7 +26,7 @@
   white-space: nowrap;
   border-radius: 5px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  z-index: 9999;
+  /* z-index: 9999; */
 }
 
 .profile-dropdown {
@@ -36,20 +35,22 @@
 }
 
 .section1 {
+  padding: 2.5px;
+  margin-left: 10px;
   flex: 0 0 auto;
 }
 
 .section2 {
   display: flex;
   flex: 0 0 auto;
-  padding-right: 5px;
+  padding: 5px;
 }
 
-.section3 {
+/* .section3 {
   display: flex;
   flex: 1 1 auto;
   position: relative;
-}
+} */
 
 .section4 {
   flex: 0 0 auto;
@@ -59,6 +60,7 @@
   display: flex;
   align-items: center;
   position: relative;
+  padding-right: 20px;
 }
 
 
@@ -100,13 +102,15 @@
   cursor: pointer;
 }
 
-/* .search-container {
+.search-container {
   display: flex;
+  justify-content: center;
+  align-items: center;
   border: 1px solid black;
   border-radius: 10px;
-} */
+}
 
-.search-container {
+/* .search-container {
   position: relative;
   display: flex;
   align-items: center;
@@ -114,7 +118,7 @@
 }
 ::-webkit-scrollbar {
   width: 20px;
-}
+} */
 
 @media (min-width: 1730px) {
   .search {
@@ -128,11 +132,11 @@
 
 @media (max-width: 1729px) {
   .search {
-    width: 1000px;
+    width: 700px;
     height: 45px;
   }
   .search-results {
-    width: 1000px;
+    width: 700px;
   }
 }
 
@@ -199,13 +203,16 @@
   color: #a8acb2
 }
 
+.all-btn:hover,
+.section1:hover,
 .section3:hover,
+.section4:hover,
 .section5:hover,
 .section2:hover {
   cursor: pointer;
 }
 
-.search-results.hover{
+.search-results:hover{
   cursor:pointer;
 }
 
@@ -243,7 +250,7 @@
   border-bottom-left-radius: 5px;
 }
 
-.line-1,
+/* .line-1,
 .line-2 {
   margin-left: 15px;
-}
+} */

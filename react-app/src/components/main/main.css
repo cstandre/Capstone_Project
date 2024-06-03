@@ -14,7 +14,7 @@
 .product-display-container {
     display: grid;
     position: relative;
-    justify-content: center;
+    justify-self: center;
     bottom: 30%;
     grid-template-areas:
         "container-0 container-1 container-2 container-3"
@@ -122,7 +122,6 @@
 @media (max-width: 1366px) {
     .product-display-container {
       width: 450px;
-      left: 28%;
       bottom: 22%;
     }
     .product-box-img-0,
@@ -161,7 +160,6 @@
 @media (min-width: 1367px) {
     .product-display-container {
       width: 300px;
-      left: 40%;
       bottom: 22%
     }
     .product-box {
