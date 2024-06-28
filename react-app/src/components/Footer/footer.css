@@ -9,6 +9,7 @@
 .name {
     display: flex;
     justify-content: center;
+    padding-top: 10px;
     color: white;
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -16,6 +17,7 @@
 .link-icons {
     display: flex;
     justify-content: center;
+    padding-top: 5px;
 }
 
 .github-icon {

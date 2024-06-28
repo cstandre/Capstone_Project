@@ -19,7 +19,6 @@ const Footer = () => {
                         <i className="fa-brands fa-linkedin fa-2x footer-icon"></i>
                     </a>
                 </span>
-
             </div>
         </div>
     )

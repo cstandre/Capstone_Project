@@ -32,12 +32,13 @@
 .profile-dropdown {
   position: absolute;
   z-index: 1000;
+  width: 9vw;
 }
 
 .section1 {
-  padding: 2.5px;
-  margin-left: 10px;
+  margin-left: 20px;
   flex: 0 0 auto;
+  padding: 5px;
 }
 
 .section2 {
@@ -54,13 +55,15 @@
 
 .section4 {
   flex: 0 0 auto;
+  padding: 5px;
 }
 
 .section5 {
   display: flex;
   align-items: center;
   position: relative;
-  padding-right: 20px;
+  margin-right: 20px;
+  padding: 5px;
 }
 
 
@@ -69,7 +72,7 @@
 }
 
 .nav-logo {
-  height: 45px;
+  height: 35px;
 }
 
 .section1:hover,
@@ -179,8 +182,8 @@
 }
 
 .cart-icon {
-  height: 50px;
-  width: 50px;
+  height: 35px;
+  width: 35px;
   /* position: relative;
   display: flex;
   justify-content: center;
@@ -190,7 +193,7 @@
 .cart-num {
   position: absolute;
   color:#e98613;
-  top: 38%;
+  top: 30%;
   left: 55%;
   transform: translate(-50%, -50%);
   font-size: 17px;
