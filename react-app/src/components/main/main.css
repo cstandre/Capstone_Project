@@ -14,14 +14,13 @@
 .product-display-container {
     display: grid;
     position: relative;
-    justify-content: center;
+    padding-left: 5%;
+    padding-right: 5%;
     bottom: 22%;
-    left: 12%;
     grid-template-areas:
         "container-0 container-1 container-2 container-3"
         "container-0 container-1 container-2 container-4";
     gap: 10px;
-    max-width: 60vw;
 }
 
 
