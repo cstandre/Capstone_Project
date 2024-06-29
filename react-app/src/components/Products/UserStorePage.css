@@ -74,6 +74,12 @@
     height: 70px;
 }
 
+.product-name:hover,
+.sell-more-btn:hover {
+    text-decoration: none;
+    color: #0f1111;
+}
+
 .edit-btn:hover,
 .fa-trash-can:hover,
 .img-container:hover {
@@ -89,6 +95,10 @@
 
 .buttons {
     margin-top: 10px;
+}
+
+.edit-btn {
+    margin-right: 2px;
 }
 
 .review-count {

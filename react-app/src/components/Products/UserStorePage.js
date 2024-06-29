@@ -65,7 +65,7 @@ const UserStorePage = () => {
                                         {product?.product_name}
                                     </div>
                                     <div className="review-count">
-                                        Review Count: {product?.reviews?.length}
+                                        Customer Reviews: {product?.reviews?.length}
                                     </div>
                                 </div>
                             </div>

@@ -12,11 +12,12 @@
     padding-top: 10px;
 }
 
+
 .cat-product-container {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 1%;
     justify-content: center;
-    width: 90%;
-    flex-wrap: wrap;
 }
 
 .cat-each-container {
@@ -35,7 +36,7 @@
     white-space: nowrap;
     overflow: hidden;
     padding-left: 10px;
-    width: 150px;
+    padding-right: 10px;
 }
 
 .price-rating {
@@ -45,9 +46,7 @@
     padding: 10px;
 }
 
-.fa-star {
-    height: 10px;
-}
+
 
 .cat-price {
     display: flex;
