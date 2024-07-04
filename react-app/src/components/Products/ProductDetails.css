@@ -200,7 +200,12 @@
     padding: 10px;
 }
 
-.create-review-btn:hover,
+.create-review-btn:hover {
+    cursor: pointer;
+    filter: brightness(95%);
+}
+
+
 .review-edit-btn:hover {
     cursor: pointer;
 }
