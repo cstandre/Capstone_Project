@@ -8,3 +8,9 @@
 .delete-modal:hover {
     cursor: pointer;
 }
+
+.btn-main {
+    background-color: #ffffff;
+    padding: 0px;
+    border: #ffffff;
+}

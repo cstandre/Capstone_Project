@@ -1,0 +1,33 @@
+.image-view-modal {
+    width: 95vw;
+    height: 70vh;
+}
+
+.fa-solid.fa-x {
+    background-color: #ffffff;
+    border: #ffffff;
+}
+
+.fa-solid.fa-x:hover {
+    cursor: pointer;
+}
+
+.main-view-img {
+    height: 50vh;
+}
+
+.img-modal-container {
+    display: grid;
+    justify-content: center;
+    grid-template-areas:
+                "main-img details"
+                "main-img side-imgs";
+}
+
+.side-imgs-container { grid-area: side-imgs;}
+
+.side-imgs-container {
+    display: grid;
+    grid-template-columns: 1fr, 1fr, 1fr, 1fr;
+    gap: 2px;
+}

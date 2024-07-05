@@ -6,6 +6,7 @@ import { addItem } from "../../store/cart";
 import { loadReviews, reviewDetails } from "../../store/reviews";
 import OpenModalButton from "../OpenModalButton";
 import DeleteReViewModal from "../Reviews/DeleteReviewModal";
+import ViewProductImgModal from "./ViewProductImgModal";
 import LoginMessage from "../ ErrorModals/loginModal";
 
 import './ProductDetails.css';
@@ -106,7 +107,11 @@ const ProductDetailsPage = () => {
                 )}
               </div>
               <div className="main-img-container">
-                <img className="main-img" alt="" src={mainImg}></img>
+                <OpenModalButton
+                      className="main-img-btn"
+                      buttonText={<img className="main-img" alt="" src={mainImg}></img>}
+                      modalComponent={<ViewProductImgModal product={product} currImg={mainImg} />}
+                />
               </div>
               <div className="product-info-container">
                 <h2 className="product-detail-name">
@@ -140,17 +145,17 @@ const ProductDetailsPage = () => {
                   )}
                   {sessionUser ? (
                     <div>
-                      <select id='mySelect' value={selectedQuantity} onChange={handleSelectChange}>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        <option>6</option>
-                        <option>7</option>
-                        <option>8</option>
-                        <option>9</option>
-                        <option>10</option>
+                      <select className="selection" id='mySelect' value={selectedQuantity} onChange={handleSelectChange}>
+                        <option className="option1">1</option>
+                        <option className="option2">2</option>
+                        <option className="option3">3</option>
+                        <option className="option4">4</option>
+                        <option className="option5">5</option>
+                        <option className="option6">6</option>
+                        <option className="option7">7</option>
+                        <option className="option8">8</option>
+                        <option className="option9">9</option>
+                        <option className="option10">10</option>
                       </select>
                       <div className="deets-cart-btn">
                         <button className="deets-add-to-cart" onClick={handleCartButton}>Add to cart</button>

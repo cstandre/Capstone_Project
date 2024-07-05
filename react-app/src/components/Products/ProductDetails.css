@@ -10,7 +10,7 @@
     grid-template-areas:
                 "side-img main-img details cart"
                 "reviews reviews reviews reviews";
-    width: 1000px;
+    width: 70vw;
     margin: 20px;
 }
 
@@ -49,14 +49,15 @@
 }
 
 .main-img {
-    width: 250px;
-    height: 250px;
+    width: 300px;
+    height: 300px;
     object-fit: contain;
 }
 
 .main-img:hover {
     cursor: pointer;
 }
+
 
 .product-info-container {
     width: 50%;
@@ -120,6 +121,10 @@
     font-size: 25px;
 }
 
+.selection:hover {
+    cursor: pointer;
+}
+
 .deets-add-to-cart {
     justify-self: center;
     background-color: #ffd821;
@@ -131,6 +136,7 @@
 
 .deets-add-to-cart:hover {
     cursor: pointer;
+    filter: brightness(95%);
 }
 
 .brand-txt {

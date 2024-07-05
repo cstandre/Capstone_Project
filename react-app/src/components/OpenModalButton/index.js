@@ -2,6 +2,7 @@ import React from 'react';
 import { useModal } from '../../context/Modal';
 
 import './index.css'
+import ViewProductImgModal from '../Products/ViewProductImgModal';
 
 function OpenModalButton({
   modalComponent, // component to render inside the modal
@@ -17,6 +18,7 @@ function OpenModalButton({
     if (onButtonClick) onButtonClick();
   };
 
+
   if (buttonText === 'Delete') {
     return (<button className='delete-modal' onClick={onClick}>{buttonText}</button>);
   };
@@ -25,8 +27,8 @@ function OpenModalButton({
   };
   if (buttonText === 'Write a customer review') {
     return (<button className='create-review-btn' onClick={onClick}>{buttonText}</button>);
-  }
-  return (<button onClick={onClick}>{buttonText}</button>);
+  };
+  return (<button className='btn-main' onClick={onClick}>{buttonText}</button>);
 }
 
 export default OpenModalButton;
