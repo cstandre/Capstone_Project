@@ -1,0 +1,58 @@
+.review-modal-container {
+    width: 95vw;
+    height: 70vh;
+    display: grid;
+    grid-template-areas: ".area1 .area2";
+    gap: 10px;
+}
+
+.fa-solid.fa-x {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    background-color: #ffffff;
+    border: #ffffff;
+}
+
+.fa-solid.fa-x:hover {
+    cursor: pointer;
+}
+
+.owner-info-mod {
+    display: inline-flex;
+}
+
+.profile-img-mod {
+    display: flex;
+    align-self: center;
+    height: 30px;
+    width: 30px;
+}
+
+.rev-owner-name {
+    display: flex;
+    align-self: center;
+}
+
+.review-img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+
+.review-img:hover,
+.rev_currImg:hover {
+    cursor: pointer;
+}
+
+.area2 {
+    display: grid;
+
+}
+
+.stars-header-mod {
+    display: inline-flex;
+
+}
+

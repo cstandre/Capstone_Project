@@ -7,6 +7,7 @@ import { loadReviews, reviewDetails } from "../../store/reviews";
 import OpenModalButton from "../OpenModalButton";
 import DeleteReViewModal from "../Reviews/DeleteReviewModal";
 import ViewProductImgModal from "./ViewProductImgModal";
+import ReviewImgModal from "../Reviews/ReviewImgModal";
 import LoginMessage from "../ ErrorModals/loginModal";
 
 import './ProductDetails.css';
@@ -208,11 +209,16 @@ const ProductDetailsPage = () => {
                             <span className="review_header">{review?.header}</span>
                           </div>
                           <p className="review_msg">{review?.review}</p>
-                          {review?.review_images?.map((img, idx) => (
-                            <div key={idx} className="rev-img-container">
-                              <img className="review_img" alt="" src={img}></img>
-                            </div>
-                          ))}
+                          <div className="rev-img-container">
+                            {review?.review_images?.map((img, idx) => (
+                              <OpenModalButton
+                                key={idx}
+                                className="main-img-btn"
+                                buttonText={<img key={idx} className={`review_img ${idx}`} alt="" src={img}></img>}
+                                modalComponent={<ReviewImgModal review={review} currImg={img} />}
+                                />
+                            ))}
+                          </div>
                           {review?.owner_id === sessionUser?.id && (
                             <div>
                               <button
