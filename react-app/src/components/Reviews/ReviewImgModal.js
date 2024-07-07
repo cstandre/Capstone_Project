@@ -7,7 +7,7 @@ const ReviewImgModal = (review) => {
     const { closeModal } = useModal();
 
     return (
-        <>
+        <div className="review-mod-page">
             <div className="review-modal-container">
                 <button className="fa-solid fa-x" onClick={closeModal}></button>
                 <div className="area1">
@@ -37,8 +37,8 @@ const ReviewImgModal = (review) => {
                         <div className="rev-mod-header">{review?.review.header}</div>
                     </div>
                     <div className="rev-mod-rev">{review?.review.review}</div>
+                    <div className="img-txt-mod">Images in this review</div>
                     <div className="rev-img-container">
-                        <div className="img-txt-mod">Images in this review</div>
                         {review?.review?.review_images?.map((img, idx) =>
                             <img
                                 key={idx}
@@ -50,7 +50,7 @@ const ReviewImgModal = (review) => {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 

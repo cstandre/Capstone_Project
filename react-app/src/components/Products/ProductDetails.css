@@ -149,10 +149,10 @@
     display: inline-flex;
 }
 
-.review-container{
+.review-container {
     display: flex;
     grid-area: reviews;
-    gap: 20px;
+    gap: 65px;
     width: 100%;
     border-top: 1px solid #dfe2e2;
     margin-top: 20px;
@@ -173,7 +173,6 @@
 }
 
 .profile-img {
-    margin-top: 10px;
     height: 25px;
     width: 25px;
 }
@@ -200,6 +199,10 @@
     border: 1px solid #dfe2e2;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(15,17,17,.15);
+}
+
+.review_details {
+    margin-top: 10px;
 }
 
 .create-review-btn {
@@ -239,6 +242,11 @@
     border-radius: 5px;
 }
 
+.review_img:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 3px 3px lightblue;
+}
+
 .fa-pen-to-square {
     background-color: #ffffff;
     margin-left: 5px;
@@ -264,4 +272,5 @@
 
 .review-section {
     margin-top: 10px;
+    border-bottom: 1px solid #dfe2e2;
 }
