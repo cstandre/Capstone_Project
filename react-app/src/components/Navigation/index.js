@@ -4,9 +4,12 @@ import { useHistory } from 'react-router-dom';
 import ProfileButton from './ProfileButton';
 import { loadItems } from '../../store/cart';
 import { search } from '../../store/search';
+import OpenModalButton from "../OpenModalButton";
+import LoginFormModal from "../LoginFormModal";
 // import { loadProducts } from '../../store/products';
 
 import './Navigation.css';
+
 
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state?.session?.user);
@@ -39,17 +42,12 @@ function Navigation({ isLoaded }){
 		};
 	}, [dispatch, input]);
 
-	const signIn = (e) => {
-		e.preventDefault();
-		history.push('/login');
-	};
-
 	const handleClick = (e) => {
 		e.preventDefault();
 		if (sessionUser) {
 			history.push('/cart');
 		} else {
-			history.push('/login')
+			// setShowLoginModal(true)
 		};
 	};
 
@@ -89,12 +87,17 @@ function Navigation({ isLoaded }){
 						</div>
 					</div>
 				): (
-					<span className='section section2' onClick={signIn}>
-						<span>
-							<div className='line-1'>Hello,</div>
-							<div className='line-2'>Sign in to get started</div>
-						</span>
-					</span>
+					<OpenModalButton
+						buttonText={
+							<span className='section section2'>
+								<div className='sign-in-btn'>
+									<div className='line-1'>Hello,</div>
+									<div className='line-2'>Sign in to get started</div>
+								</div>
+							</span>
+						}
+						modalComponent={<LoginFormModal />}
+					/>
 				)}
 				<div className='section section3'>
 					<span className='search-container'>

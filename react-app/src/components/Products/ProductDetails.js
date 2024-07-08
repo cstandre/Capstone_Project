@@ -7,7 +7,8 @@ import { loadReviews, reviewDetails } from "../../store/reviews";
 import OpenModalButton from "../OpenModalButton";
 import DeleteReViewModal from "../Reviews/DeleteReviewModal";
 import ViewProductImgModal from "./ViewProductImgModal";
-import LoginMessage from "../ ErrorModals/loginModal";
+import LoginFormModal from "../LoginFormModal";
+
 
 import './ProductDetails.css';
 
@@ -165,7 +166,7 @@ const ProductDetailsPage = () => {
                     <OpenModalButton
                       className="add-to-cart"
                       buttonText={'Add to cart'}
-                      modalComponent={<LoginMessage />}
+                      modalComponent={<LoginFormModal />}
                     />
                   )}
                 </div>
@@ -179,7 +180,7 @@ const ProductDetailsPage = () => {
                     ): (
                       <OpenModalButton
                       buttonText={'Write a customer review'}
-                      modalComponent={<LoginMessage />}
+                      modalComponent={<LoginFormModal />}
                     />
                     )}
                 </div>

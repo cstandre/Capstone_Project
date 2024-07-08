@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import SimpleImageSlider from "react-simple-image-slider";
 import { loadProducts } from "../../store/products";
 import { addItem } from "../../store/cart";
-import LoginMessage from "../ ErrorModals/loginModal";
+import LoginFormModal from "../LoginFormModal";
 
 import "./main.css"
 import OpenModalButton from "../OpenModalButton";
@@ -78,7 +78,7 @@ const MainPage = () => {
             images={images}
             showNavs={true}
             autoPlay={true}
-            slideDuration={2.0}
+            slideDuration={5.0}
           />
         </div>
         <div className="product-display-container">
@@ -117,7 +117,7 @@ const MainPage = () => {
                   <OpenModalButton
                     className="add-to-cart"
                     buttonText={'Add to cart'}
-                    modalComponent={<LoginMessage />}
+                    modalComponent={<LoginFormModal />}
                   />
               )}
             </div>

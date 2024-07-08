@@ -3,6 +3,7 @@ import { useModal } from '../../context/Modal';
 
 import './index.css'
 import ViewProductImgModal from '../Products/ViewProductImgModal';
+import LoginFormModal from '../LoginFormModal';
 
 function OpenModalButton({
   modalComponent, // component to render inside the modal
@@ -28,6 +29,9 @@ function OpenModalButton({
   if (buttonText === 'Write a customer review') {
     return (<button className='create-review-btn' onClick={onClick}>{buttonText}</button>);
   };
+  if (modalComponent === LoginFormModal ) {
+    return (<button className='get-started-btn' onClick={onClick}>{buttonText}</button>);
+  }
   return (<button className='btn-main' onClick={onClick}>{buttonText}</button>);
 }
 
