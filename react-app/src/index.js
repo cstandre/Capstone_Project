@@ -1,5 +1,5 @@
 import React, { StrictMode } from "react";
-import ReactDOM from "react-dom";
+// import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 
@@ -7,6 +7,8 @@ import { ModalProvider, Modal } from "./context/Modal";
 import configureStore from "./store";
 import * as sessionActions from "./store/session";
 import App from "./App";
+
+// import reportWebVitals from './reportWebVitals';
 
 import "./index.css";
 import { createRoot } from "react-dom/client";
@@ -38,6 +40,7 @@ root.render(
 	</StrictMode>
 
 )
+
 
 // DEPRECATED //
 
