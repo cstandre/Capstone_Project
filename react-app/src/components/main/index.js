@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import SimpleImageSlider from "react-simple-image-slider";
+import Carousel from '@itseasy21/react-elastic-carousel';
 import { loadProducts } from "../../store/products";
 import { addItem } from "../../store/cart";
 import LoginMessage from "../ ErrorModals/loginModal";
@@ -49,12 +49,15 @@ const MainPage = () => {
 
   const images = [
     {
+      id: 1,
       url: "https://caitlyn.s3.us-west-2.amazonaws.com/amazon_banner_1.jpg"
     },
     {
+      id: 2,
       url: "https://caitlyn.s3.us-west-2.amazonaws.com/amazon_banner_5.jpg"
     },
     {
+      id: 3,
       url: "https://caitlyn.s3.us-west-2.amazonaws.com/amazon_banner_3.jpg"
     }
   ];
@@ -71,16 +74,20 @@ const MainPage = () => {
   return (
     <div className="body">
       <div>
-        <div className="slider">
-          <SimpleImageSlider
-            width={sliderWidth}
-            height={sliderHeight}
-            images={images}
-            showNavs={true}
+        {/* <div className="slider">
+          <Carousel
+            itemsToShow={1}
+            itemsToScroll={1}
+            showArrows={true}
             autoPlay={true}
-            slideDuration={2.0}
-          />
-        </div>
+            infiniteLoop={true}
+            transitionMs={1000}
+          >
+            {images.map(image => (
+              <div key={image.id}><img src={image.url} alt={`Banner ${image.id}`} /></div>
+            ))}
+          </Carousel>
+        </div> */}
         <div className="product-display-container">
           {randomProducts?.map((product, idx) => (
             <div className={`product-box container-${idx}`} key={idx}>
