@@ -1,5 +1,5 @@
-import React, { StrictMode } from "react";
-// import ReactDOM from "react-dom";
+import React from "react";
+import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 
@@ -11,7 +11,6 @@ import App from "./App";
 // import reportWebVitals from './reportWebVitals';
 
 import "./index.css";
-import { createRoot } from "react-dom/client";
 
 const store = configureStore();
 
@@ -23,12 +22,8 @@ if (process.env.NODE_ENV !== "production") {
 // Wrap the application with the Modal provider and render the Modal component
 // after the App component so that all the Modal content will be layered as
 // HTML elements on top of the all the other HTML elements:
-
-const rootElement = document.getElementById("root");
-const root = createRoot(rootElement);
-
-root.render(
-	<StrictMode>
+function Root() {
+	return (
 		<ModalProvider>
 			<Provider store={store}>
 				<BrowserRouter>
@@ -37,29 +32,12 @@ root.render(
 				</BrowserRouter>
 			</Provider>
 		</ModalProvider>
-	</StrictMode>
+	);
+}
 
-)
-
-
-// DEPRECATED //
-
-// function Root() {
-// 	return (
-// 		<ModalProvider>
-// 			<Provider store={store}>
-// 				<BrowserRouter>
-// 					<App />
-// 					<Modal />
-// 				</BrowserRouter>
-// 			</Provider>
-// 		</ModalProvider>
-// 	);
-// }
-
-// ReactDOM.render(
-// 	<React.StrictMode>
-// 		<Root />
-// 	</React.StrictMode>,
-// 	document.getElementById("root")
-// );
+ReactDOM.render(
+	<React.StrictMode>
+		<Root />
+	</React.StrictMode>,
+	document.getElementById("root")
+);
