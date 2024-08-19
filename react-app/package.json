@@ -6,23 +6,19 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "flickity": "^2.3.0",
     "http-proxy-middleware": "^1.0.5",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-elastic-carousel": "^0.11.5",
+    "react-flickity-component": "^4.0.7",
     "react-icons": "^4.10.1",
     "react-is": "^16.13.1",
     "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.3",
-    "react-simple-image-slider": "^2.4.1",
     "react-slick": "^0.29.0",
-    "react-star-rating-component": "^1.4.1",
     "react-textarea-autosize": "^8.5.0",
     "redux": "^4.1.0",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
-    "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.10",
     "web-vitals": "^4.2.3"
   },
@@ -48,5 +44,9 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:5000"
+  "proxy": "http://localhost:5000",
+  "devDependencies": {
+    "@babel/core": "^7.25.2",
+    "@babel/preset-env": "^7.25.3"
+  }
 }

@@ -1,11 +1,7 @@
 {
   "dependencies": {
     "@emotion/unitless": "^0.9.0",
-    "@itseasy21/react-elastic-carousel": "^0.12.3",
-    "@sefailyasoz/react-carousel": "^1.1.1",
-    "@uiw/react-only-when": "^3.0.1",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "@uiw/react-only-when": "^3.0.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.24.8",
